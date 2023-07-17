@@ -1,0 +1,25 @@
+# ninja log v5
+2	127	1689615504920493002	CMakeFiles/QEM.dir/src/dataparser.cpp.o	f7b29dd2d7eac5fe
+3	128	1689615504920518959	CMakeFiles/QEM.dir/src/mesh.cpp.o	d93c12830e6211f4
+128	490	1689615505283194423	_deps/glfw-build/src/CMakeFiles/glfw.dir/vulkan.c.o	f5c6807f6dce7fd3
+4	495	1689615505286015537	_deps/glfw-build/src/CMakeFiles/glfw.dir/init.c.o	b4d81b859e601521
+4	497	1689615505286167363	_deps/glfw-build/src/CMakeFiles/glfw.dir/context.c.o	1d0bec943e969e70
+127	499	1689615505289786563	_deps/glfw-build/src/CMakeFiles/glfw.dir/monitor.c.o	1225ff9170c6da70
+5	507	1689615505299416057	_deps/glfw-build/src/CMakeFiles/glfw.dir/input.c.o	b3b7a643d35aa563
+493	798	1689615505588153879	_deps/glfw-build/src/CMakeFiles/glfw.dir/window.c.o	6af73036d58c16d2
+499	1084	1689615505870286687	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_monitor.m.o	518e2b7c9e61f453
+495	1088	1689615505875986453	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_init.m.o	301650ebeb14a903
+497	1090	1689615505868911128	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_joystick.m.o	13eedaf5ca25e2ca
+799	1091	1689615505875786671	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_time.c.o	80f10f920450b691
+508	1113	1689615505902025156	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_window.m.o	d8582b9f5d220892
+1113	1178	1689615505971002037	_deps/glad-build/CMakeFiles/glad.dir/src/glad.c.o	324dab1590b69dc2
+1179	1214	1689615506010083000	_deps/glad-build/libglad.a	a019da49a8432427
+1090	1344	1689615506135000709	_deps/glfw-build/src/CMakeFiles/glfw.dir/egl_context.c.o	32be0e02a5d57172
+1087	1359	1689615506150082732	_deps/glfw-build/src/CMakeFiles/glfw.dir/posix_thread.c.o	84dcdad2df8bc4be
+1091	1364	1689615506155732084	_deps/glfw-build/src/CMakeFiles/glfw.dir/osmesa_context.c.o	b0a19bcc1424c07b
+1088	1535	1689615506326082409	_deps/glfw-build/src/CMakeFiles/glfw.dir/nsgl_context.m.o	6b43e8de41067034
+1535	1558	1689615506353685000	_deps/glfw-build/src/libglfw3.a	4c7783e4b2856919
+3	6134	1689615510902078843	CMakeFiles/QEM.dir/src/main.cpp.o	b3cef96c62b4a7c4
+6136	6381	1689615511174017142	QEM	5e6f3f9e4277e7ff
+39	6428	1689620124037414703	CMakeFiles/QEM.dir/src/main.cpp.o	b3cef96c62b4a7c4
+6429	6690	1689620124341877514	QEM	5e6f3f9e4277e7ff

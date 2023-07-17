@@ -197,7 +197,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=example
+CMAKE_PROJECT_NAME:STATIC=QEM
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=2.4.0
@@ -415,6 +415,15 @@ OPENGL_gl_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.s
 
 //GLU library for OS X (usually same as OpenGL library)
 OPENGL_glu_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework
+
+//Value Computed by CMake
+QEM_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
+
+//Value Computed by CMake
+QEM_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+QEM_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
 
 //Value Computed by CMake
 example_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug

@@ -11,5 +11,5 @@ igl_include(glfw)
 
 # Add your project files
 file(GLOB SRC_FILES src/*.cpp)
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES} src/dataparser.h src/dataparser.cpp src/mesh.cpp src/mesh.h)
 target_link_libraries(${PROJECT_NAME} PUBLIC igl::glfw)
