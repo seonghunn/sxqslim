@@ -1,0 +1,148 @@
+{
+	"backtrace" : 6,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"igl_add_library",
+			"include",
+			"_igl_include_full",
+			"igl_include",
+			"target_sources",
+			"igl_target_sources"
+		],
+		"files" : 
+		[
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_add_library.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/modules/glfw.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_include.cmake",
+			"CMakeLists.txt",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_target_sources.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 54,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 32,
+				"parent" : 2
+			},
+			{
+				"file" : 1,
+				"parent" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 2,
+				"parent" : 4
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 5
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 14,
+				"parent" : 4
+			},
+			{
+				"command" : 5,
+				"file" : 4,
+				"line" : 6,
+				"parent" : 7
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "Libigl"
+	},
+	"id" : "igl_glfw::@6890427a1f51a3e7e1df",
+	"name" : "igl_glfw",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				4,
+				5,
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/ViewerPlugin.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/map_texture.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 8,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/map_texture.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "INTERFACE_LIBRARY"
+}

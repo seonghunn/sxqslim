@@ -1,0 +1,116 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"include",
+			"_igl_include_full",
+			"igl_include"
+		],
+		"files" : 
+		[
+			"cmake-build-debug/_deps/libigl-src/cmake/recipes/external/eigen.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/modules/core.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_include.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/libigl.cmake",
+			"cmake-build-debug/_deps/libigl-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 4
+			},
+			{
+				"command" : 1,
+				"file" : 4,
+				"line" : 142,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 15,
+				"parent" : 2
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 54,
+				"parent" : 3
+			},
+			{
+				"command" : 1,
+				"file" : 2,
+				"line" : 32,
+				"parent" : 4
+			},
+			{
+				"file" : 1,
+				"parent" : 5
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 23,
+				"parent" : 6
+			},
+			{
+				"file" : 0,
+				"parent" : 7
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 8
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 43,
+				"parent" : 8
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 9,
+			"component" : "eigen",
+			"destination" : "include",
+			"paths" : 
+			[
+				"cmake-build-debug/_deps/eigen-src/Eigen"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 10,
+			"component" : "eigen",
+			"destination" : "lib/cmake/eigen",
+			"exportName" : "EigenTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "Eigen3_Eigen::@7e03116a751a0a925ea3",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"_deps/libigl-build/CMakeFiles/Export/249b5657e72390bf7963761b324f92ad/EigenTargets.cmake"
+			],
+			"type" : "export"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "_deps/libigl-build",
+		"source" : "cmake-build-debug/_deps/libigl-src"
+	}
+}

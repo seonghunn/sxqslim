@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/eigen-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/glad-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/glfw-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/build/_deps/libigl-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/eigen-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/glad-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/glfw-src" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/libigl-src" vcs="Git" />
+  </component>
+</project>
