@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
     // man.obj : non-manifold mesh
     //igl::readOBJ("../model/input/man.obj",V,F);
-    igl::readOBJ("../model/input/bunny.obj", V, F);
+    igl::readOBJ("../model/input/cube.obj", V, F);
 
     cout << "Number of Input vertices : "<<V.rows()<<endl;
     cout << "Number of Input faces : "<<F.rows()<<endl;
@@ -75,6 +75,7 @@ int main(int argc, char *argv[])
     igl::adjacency_list(F, adjacencyList);
 
     // Calculate the cost for each pair and add it to the priority queue
+    //TODO: Remove the redundancy (i,j) - (j,i)
     for (int i = 0; i < adjacencyList.size(); i++) {
         for (int j = 0; j < adjacencyList[i].size(); j++) {
             // index of each vertex
@@ -87,11 +88,10 @@ int main(int argc, char *argv[])
 
             // Matrix to solve linear equation to find optimal point of new vertex
             Eigen::Matrix4d A;
-            A << Q.row(0),
-                    Q.row(1),
-                    Q.row(2),
-                    Eigen::RowVector4d(0, 0, 0, 1);
-
+            A.row(0) << Q.row(0);
+            A.row(1) << Q.row(1);
+            A.row(2) << Q.row(2);
+            A.row(3) << 0, 0, 0, 1;
             // Target : position of new vertex
             Eigen::Vector4d target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
             // v^T Q v
@@ -105,14 +105,16 @@ int main(int argc, char *argv[])
         }
     }
 
-    int target_num_faces = 1000;
+    int target_num_faces = 4;
 
     /*
      * edge collapsing
      */
+    V_out = V;
+    F_out = F;
     while (true) {
         // If terminal condition met, break
-        if (F.rows() < target_num_faces) break;
+        if (F_out.rows() < target_num_faces) break;
 
         Pair pair = pq.top();
         pq.pop();
@@ -131,15 +133,6 @@ int main(int argc, char *argv[])
         V_out.row(pair.v1) = pair.target.head<3>() / pair.target.w();
 
         // Update the faces in F_out
-        if (F_out.rows() == 0) {
-            for (int j = 0; j < 3; j++) {
-                if (F_out(0, j) == pair.v2) {
-                    // if Faces which has v2, modify it to index of v1 (target)
-                    F_out(0, j) = pair.v1;
-                }
-            }
-        }
-
         for (int i = 0; i < F_out.rows(); i++) {
             for (int j = 0; j < 3; j++) {
                 if (F_out(i, j) == pair.v2) {
