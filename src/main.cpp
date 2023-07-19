@@ -12,7 +12,12 @@
 #include <set>
 #include "quadratic.h"
 #include "collapse_edge_custom.h"
+#include "collapse_callback.h"
 
+// Q values table
+struct QValues {
+    vector<Eigen::Matrix4d> values;
+};
 
 int main(int argc, char * argv[])
 {
@@ -57,13 +62,14 @@ int main(int argc, char * argv[])
     }
 
     // Add initial Q value to vector
-    vector<Eigen::Matrix4d> qvalues(OV.rows(), Eigen::Matrix4d::Zero());
+    QValues qvalues;
+    qvalues.values.resize(OV.rows(), Eigen::Matrix4d::Zero());
     for (int i = 0; i < OF.rows(); i++) {
         Eigen::Vector4d p(N_homo(i, 0), N_homo(i, 1), N_homo(i, 2), N_homo(i, 3));
         Eigen::Matrix4d q = p * p.transpose();
         // Add q for each 3 vertex in face, addition for summing q for all adjacent planes
         for (int j = 0; j < 3; j++) {
-            qvalues[OF(i,j)] += q;
+            qvalues.values[OF(i,j)] += q;
         }
     }
 
@@ -78,7 +84,7 @@ int main(int argc, char * argv[])
                                       double & cost,
                                       Eigen::RowVectorXd & p)
     {
-        quadratic(e, V, F, E, EMAP, EF, EI, qvalues, cost, p);
+        quadratic(e, V, F, E, EMAP, EF, EI, qvalues.values, cost, p);
     };
 
     // Function to reset original mesh and data structures
@@ -99,7 +105,7 @@ int main(int argc, char * argv[])
             {
                 double cost = e;
                 RowVectorXd p(1,3);
-                quadratic(e,V,F,E,EMAP,EF,EI,qvalues,cost,p);
+                quadratic(e,V,F,E,EMAP,EF,EI,qvalues.values,cost,p);
                 C.row(e) = p;
                 costs(e) = cost;
             },10000);
@@ -125,7 +131,7 @@ int main(int argc, char * argv[])
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
             {
-                if(!collapse_edge_custom(quadratic_with_qvalues,V,F,E,EMAP,EF,EI,Q,EQ,C))
+                if(!collapse_edge(quadratic_with_qvalues,pre_collapse,post_collapse,V,F,E,EMAP,EF,EI,Q,EQ,C))
                 {
                     break;
                 }

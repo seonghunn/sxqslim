@@ -27,6 +27,7 @@ void quadratic(
     A.row(3) << 0, 0, 0, 1;
 
     // new optimal point
+    //TODO: p is either vertices or midpoint if A is singular
     Eigen::Vector4d target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
     // transform homogeneous coordinates to normal coordinates
     p = target.head<3>() / target.w();
