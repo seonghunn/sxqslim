@@ -11,6 +11,7 @@
 #include <iostream>
 #include <set>
 #include "quadratic.h"
+#include "collapse_edge_custom.h"
 
 
 int main(int argc, char * argv[])
@@ -48,7 +49,6 @@ int main(int argc, char * argv[])
     Eigen::MatrixXd N_homo(OF.rows(), 4);
     igl::per_face_normals(OV, OF, N_faces);
 
-    cout << N_faces << endl;
     // Homogeneous Coordinate
     for (int i = 0; i < N_faces.rows(); i++) {
         Eigen::RowVector3d n = N_faces.row(i);
@@ -66,6 +66,20 @@ int main(int argc, char * argv[])
             qvalues[OF(i,j)] += q;
         }
     }
+
+    // Lambda function to use quadratic in collapse_edge_custom function
+    auto quadratic_with_qvalues = [&](const int e,
+                                      const Eigen::MatrixXd & V,
+                                      const Eigen::MatrixXi & F,
+                                      const Eigen::MatrixXi & E,
+                                      const Eigen::VectorXi & EMAP,
+                                      const Eigen::MatrixXi & EF,
+                                      const Eigen::MatrixXi & EI,
+                                      double & cost,
+                                      Eigen::RowVectorXd & p)
+    {
+        quadratic(e, V, F, E, EMAP, EF, EI, qvalues, cost, p);
+    };
 
     // Function to reset original mesh and data structures
     const auto & reset = [&]()
@@ -85,7 +99,7 @@ int main(int argc, char * argv[])
             {
                 double cost = e;
                 RowVectorXd p(1,3);
-                quadratic(e,V,F,E,EMAP,EF,EI,cost,p);
+                quadratic(e,V,F,E,EMAP,EF,EI,qvalues,cost,p);
                 C.row(e) = p;
                 costs(e) = cost;
             },10000);
@@ -111,7 +125,7 @@ int main(int argc, char * argv[])
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
             {
-                if(!collapse_edge(quadratic,V,F,E,EMAP,EF,EI,Q,EQ,C))
+                if(!collapse_edge(quadratic_with_qvalues,V,F,E,EMAP,EF,EI,Q,EQ,C))
                 {
                     break;
                 }

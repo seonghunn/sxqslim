@@ -12,10 +12,13 @@ void quadratic(
         const Eigen::VectorXi & /*EMAP*/,
         const Eigen::MatrixXi & /*EF*/,
         const Eigen::MatrixXi & /*EI*/,
+        vector<Eigen::Matrix4d> & qvalues,
         double & cost,
-        //vector<Eigen::Matrix4d> & qvalues,
         Eigen::RowVectorXd & p)
 {
+
+    cout << "q" << qvalues[0] << endl;
+    qvalues[0].row(0) << 0,0,0,0;
     cost = (V.row(E(e,0))-V.row(E(e,1))).norm();
     p = 0.5*(V.row(E(e,0))+V.row(E(e,1)));
 }

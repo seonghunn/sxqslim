@@ -18,7 +18,7 @@ void quadratic(
         const Eigen::VectorXi & /*EMAP*/,
         const Eigen::MatrixXi & /*EF*/,
         const Eigen::MatrixXi & /*EI*/,
-        //vector<Eigen::Matrix4d> & qvalues,
+        vector<Eigen::Matrix4d> & qvalues,
         double & cost,
         Eigen::RowVectorXd & p);
 
