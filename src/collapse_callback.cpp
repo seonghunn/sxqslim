@@ -51,12 +51,14 @@ void setup_callbacks(QValues& qvalues) {
                const bool collapsed)
             {
                 // You can access and modify qvalues.values here.
-                std::cout << qvalues.values[0] << std::endl;
+                //std::cout << qvalues.values[0] << std::endl;
+                //std::cout <<"new vertex "<< C.row(e) << std::endl;
                 // value change success
                 //qvalues.values[0].row(0) << 1,1,1,1;
 
 /*                if (collapsed) {
                     std::cout << "Edge " << e << " was collapsed." << std::endl;
                 }*/
+                std::cout << "overall E" << E << std::endl;
             };
 }
