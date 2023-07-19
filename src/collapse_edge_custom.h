@@ -11,7 +11,7 @@
 #include <vector>
 #include "quadratic.h"
 
-IGL_INLINE bool collapse_edge_custom(
+bool collapse_edge_custom(
         const igl::decimate_cost_and_placement_callback & cost_and_placement,
         Eigen::MatrixXd & V,
         Eigen::MatrixXi & F,

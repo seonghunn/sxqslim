@@ -125,7 +125,7 @@ int main(int argc, char * argv[])
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
             {
-                if(!collapse_edge(quadratic_with_qvalues,V,F,E,EMAP,EF,EI,Q,EQ,C))
+                if(!collapse_edge_custom(quadratic_with_qvalues,V,F,E,EMAP,EF,EI,Q,EQ,C))
                 {
                     break;
                 }
