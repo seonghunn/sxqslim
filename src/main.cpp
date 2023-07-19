@@ -14,11 +14,6 @@
 #include "collapse_edge_custom.h"
 #include "collapse_callback.h"
 
-// Q values table
-struct QValues {
-    vector<Eigen::Matrix4d> values;
-};
-
 int main(int argc, char * argv[])
 {
     using namespace std;
@@ -28,7 +23,7 @@ int main(int argc, char * argv[])
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
     // Load a closed manifold mesh
-    string filename("../model/input/bunny.obj");
+    string filename("../model/input/cube.obj");
     if(argc>=2)
     {
         filename = argv[1];
@@ -86,6 +81,9 @@ int main(int argc, char * argv[])
     {
         quadratic(e, V, F, E, EMAP, EF, EI, qvalues.values, cost, p);
     };
+    // call wrap function to use qvalues in callback function
+    setup_callbacks(qvalues);
+
 
     // Function to reset original mesh and data structures
     const auto & reset = [&]()

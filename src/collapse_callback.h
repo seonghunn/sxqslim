@@ -9,8 +9,14 @@
 #include <igl/is_edge_manifold.h>
 #include <igl/min_heap.h>
 #include <Eigen/Core>
+#include <vector>
+
+struct QValues {
+    std::vector<Eigen::Matrix4d> values;
+};
 
 extern igl::decimate_pre_collapse_callback pre_collapse;
 extern igl::decimate_post_collapse_callback post_collapse;
+void setup_callbacks(QValues& qvalues);
 
 #endif //QEM_COLLAPSE_CALLBACK_H
