@@ -6,6 +6,8 @@
 #define QEM_QUADRATIC_H
 
 #include "Eigen/Core"
+#include <igl/per_vertex_normals.h>
+
 void quadratic(
         const int e,
         const Eigen::MatrixXd & V,

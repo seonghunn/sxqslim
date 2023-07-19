@@ -6,6 +6,7 @@
 #include <igl/parallel_for.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
+#include <igl/per_vertex_normals.h>
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
@@ -39,7 +40,14 @@ int main(int argc, char * argv[])
     Eigen::VectorXi EQ;
     // If an edge were collapsed, we'd collapse it to these points:
     MatrixXd C;
+
     int num_collapsed;
+
+    // Surface normal per vertex
+    Eigen::MatrixXd N_vertices;
+    igl::per_vertex_normals(OV, OF, N_vertices);
+
+    cout << N_vertices << endl;
 
     // Function to reset original mesh and data structures
     const auto & reset = [&]()
@@ -59,7 +67,7 @@ int main(int argc, char * argv[])
             {
                 double cost = e;
                 RowVectorXd p(1,3);
-                shortest_edge_and_midpoint(e,V,F,E,EMAP,EF,EI,cost,p);
+                quadratic(e,V,F,E,EMAP,EF,EI,cost,p);
                 C.row(e) = p;
                 costs(e) = cost;
             },10000);
