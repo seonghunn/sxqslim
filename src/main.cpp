@@ -6,7 +6,7 @@
 #include <igl/parallel_for.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
-#include <igl/per_vertex_normals.h>
+#include <igl/per_face_normals.h>
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
@@ -22,7 +22,7 @@ int main(int argc, char * argv[])
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
     // Load a closed manifold mesh
-    string filename("../model/input/bunny.obj");
+    string filename("../model/input/cube.obj");
     if(argc>=2)
     {
         filename = argv[1];
@@ -44,10 +44,28 @@ int main(int argc, char * argv[])
     int num_collapsed;
 
     // Surface normal per vertex
-    Eigen::MatrixXd N_vertices;
-    igl::per_vertex_normals(OV, OF, N_vertices);
+    Eigen::MatrixXd N_faces;
+    Eigen::MatrixXd N_homo(OF.rows(), 4);
+    igl::per_face_normals(OV, OF, N_faces);
 
-    cout << N_vertices << endl;
+    cout << N_faces << endl;
+    // Homogeneous Coordinate
+    for (int i = 0; i < N_faces.rows(); i++) {
+        Eigen::RowVector3d n = N_faces.row(i);
+        double d = -n.dot(OV.row(OF(i, 0)));
+        N_homo.row(i) << n, d;
+    }
+
+    // Add initial Q value to vector
+    vector<Eigen::Matrix4d> qvalues(OV.rows(), Eigen::Matrix4d::Zero());
+    for (int i = 0; i < OF.rows(); i++) {
+        Eigen::Vector4d p(N_homo(i, 0), N_homo(i, 1), N_homo(i, 2), N_homo(i, 3));
+        Eigen::Matrix4d q = p * p.transpose();
+        // Add q for each 3 vertex in face, addition for summing q for all adjacent planes
+        for (int j = 0; j < 3; j++) {
+            qvalues[OF(i,j)] += q;
+        }
+    }
 
     // Function to reset original mesh and data structures
     const auto & reset = [&]()

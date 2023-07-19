@@ -7,6 +7,8 @@
 
 #include "Eigen/Core"
 #include <igl/per_vertex_normals.h>
+#include <vector>
+using namespace std;
 
 void quadratic(
         const int e,
@@ -16,6 +18,7 @@ void quadratic(
         const Eigen::VectorXi & /*EMAP*/,
         const Eigen::MatrixXi & /*EF*/,
         const Eigen::MatrixXi & /*EI*/,
+        //vector<Eigen::Matrix4d> & qvalues,
         double & cost,
         Eigen::RowVectorXd & p);
 
