@@ -15,8 +15,8 @@ IGL_INLINE bool collapse_edge_custom(
         Eigen::MatrixXi & EI,
         igl::min_heap< std::tuple<double,int,int> > & Q,
         Eigen::VectorXi & EQ,
-        Eigen::MatrixXd & C,
-        std::vector<Eigen::Matrix4d> & qvalues)
+        Eigen::MatrixXd & C
+        )
 {
     // Use qvalues here if necessary
 
