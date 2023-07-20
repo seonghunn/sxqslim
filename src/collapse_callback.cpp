@@ -59,6 +59,8 @@ void setup_callbacks(QValues& qvalues) {
 /*                if (collapsed) {
                     std::cout << "Edge " << e << " was collapsed." << std::endl;
                 }*/
-                std::cout << "overall E" << E << std::endl;
+                if(collapsed){
+                    std::cout << "overall E" << E << std::endl;
+                }
             };
 }
