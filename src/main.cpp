@@ -20,7 +20,7 @@ int main(int argc, char * argv[])
     using namespace igl;
     cout << "[filename.(off|obj|ply)]" << endl;
     cout<<"  [space]  toggle animation."<<endl;
-    cout<<"  'r'  reset."<<endl;
+    //cout<<"  'r'  reset."<<endl;
     string input_filename(argv[1]);
     string output_filename(argv[2]);
     double ratio = std::stod(argv[3]);
@@ -33,7 +33,13 @@ int main(int argc, char * argv[])
     MatrixXi F,OF;
     read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
     // check whether mesh is manifold
-    if(is_edge_manifold(OF)) cout << "Input model is Manifold mesh" << endl;
+    if(is_edge_manifold(OF)) {
+        cout << "\n" << "*******************************" << endl;
+        cout << "Input model is Manifold mesh" << endl;
+        cout << "Number of Vertex : " << OV.rows() << endl;
+        cout << "Number of Faces : " << OF.rows() << endl;
+        cout << "*******************************" << "\n" << endl;
+    }
     else {
         cout << "Input model is Non-Manifold mesh" << endl;
         cout << "Please use Manifold mesh" << endl;
@@ -157,7 +163,6 @@ int main(int argc, char * argv[])
                     if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
                     else cout << "Resulting mesh is Non-Manifold" << endl;
                     cout << "*******************************" << endl;
-                    break;
                 }
             }
 
@@ -167,14 +172,15 @@ int main(int argc, char * argv[])
                 viewer.data().clear();
                 viewer.data().set_mesh(V,F);
                 viewer.data().set_face_based(true);
-                if(flag) {
+                //TODO: Handle exception of cube.obj
+                if (flag){
                     if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
                         cout << "Successfully wrote to " << output_filename << ".obj" << endl;
-                        return 0;
+                        return true;
                     }
                     else{
                         cout << "Failed to wrote to " << output_filename << ".obj" << endl;
-                        return -1;
+                        return false;
                     }
                 }
             }
