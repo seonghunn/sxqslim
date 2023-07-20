@@ -1,8 +1,5 @@
-#include <igl/circulation.h>
 #include <igl/collapse_edge.h>
 #include <igl/edge_flaps.h>
-#include <igl/decimate.h>
-#include <igl/shortest_edge_and_midpoint.h>
 #include <igl/parallel_for.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
@@ -11,7 +8,6 @@
 #include <iostream>
 #include <set>
 #include "quadratic.h"
-#include "collapse_edge_custom.h"
 #include "collapse_callback.h"
 
 int main(int argc, char * argv[])
@@ -19,7 +15,7 @@ int main(int argc, char * argv[])
     using namespace std;
     using namespace Eigen;
     using namespace igl;
-    cout<<"Usage: ./703_Decimation_bin [filename.(off|obj|ply)]"<<endl;
+    cout << "[filename.(off|obj|ply)]" << endl;
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
     // Load a closed manifold mesh
@@ -31,33 +27,30 @@ int main(int argc, char * argv[])
     MatrixXd V,OV;
     MatrixXi F,OF;
     read_triangle_mesh(filename,OV,OF);
-
+    //initialize viewer
     igl::opengl::glfw::Viewer viewer;
-
     // Prepare array-based edge data structures and priority queue
-    VectorXi EMAP;
+    VectorXi EMAP, EQ;
     MatrixXi E,EF,EI;
     igl::min_heap< std::tuple<double,int,int> > Q;
-    Eigen::VectorXi EQ;
     // If an edge were collapsed, we'd collapse it to these points:
     MatrixXd C;
-
     int num_collapsed;
 
-    // Surface normal per vertex
+    // Surface normal per vertex to compute Q
     Eigen::MatrixXd N_faces;
     Eigen::MatrixXd N_homo(OF.rows(), 4);
     igl::per_face_normals(OV, OF, N_faces);
 
-    // Homogeneous Coordinate
+    // Transform to Homogeneous Coordinate
     for (int i = 0; i < N_faces.rows(); i++) {
         Eigen::RowVector3d n = N_faces.row(i);
         double d = -n.dot(OV.row(OF(i, 0)));
         N_homo.row(i) << n, d;
     }
 
-    // Add initial Q value to vector
-    QValues qvalues;
+    // Add initial Q value of each vertex to vector
+    customcbf::QValues qvalues;
     qvalues.values.resize(OV.rows(), Eigen::Matrix4d::Zero());
     for (int i = 0; i < OF.rows(); i++) {
         Eigen::Vector4d p(N_homo(i, 0), N_homo(i, 1), N_homo(i, 2), N_homo(i, 3));
@@ -68,7 +61,7 @@ int main(int argc, char * argv[])
         }
     }
 
-    // Lambda function to use quadratic in collapse_edge_custom function
+    // Wrapper function to use quadratic in collapse_edge_custom function
     auto quadratic_with_qvalues = [&](const int e,
                                       const Eigen::MatrixXd & V,
                                       const Eigen::MatrixXi & F,
@@ -82,7 +75,7 @@ int main(int argc, char * argv[])
         quadratic(e, V, F, E, EMAP, EF, EI, qvalues.values, cost, p);
     };
     // call wrap function to use qvalues in callback function
-    setup_callbacks(qvalues);
+    customcbf::setup_post_collapse_with_qvalues(qvalues);
 
 
     // Function to reset original mesh and data structures
@@ -129,7 +122,10 @@ int main(int argc, char * argv[])
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
             {
-                if(!collapse_edge(quadratic_with_qvalues,pre_collapse,post_collapse,V,F,E,EMAP,EF,EI,Q,EQ,C))
+                if(!collapse_edge(quadratic_with_qvalues,
+                                  customcbf::pre_collapse,
+                                  customcbf::post_collapse,
+                                  V,F,E,EMAP,EF,EI,Q,EQ,C))
                 {
                     break;
                 }
