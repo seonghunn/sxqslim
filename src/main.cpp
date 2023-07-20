@@ -23,7 +23,7 @@ int main(int argc, char * argv[])
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
     // Load a closed manifold mesh
-    string filename("../model/input/cube.obj");
+    string filename(argv[0]);
     if(argc>=2)
     {
         filename = argv[1];
