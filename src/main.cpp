@@ -4,13 +4,14 @@
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/per_face_normals.h>
-#include <igl/remove_duplicate_vertices.h>
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
-#include "quadratic.h"
 #include "collapse_callback.h"
 #include "helper.h"
+
+#define INPUT_PATH "../model/input/"
+#define OUTPUT_PATH "../model/output/"
 
 int main(int argc, char * argv[])
 {
@@ -20,26 +21,33 @@ int main(int argc, char * argv[])
     cout << "[filename.(off|obj|ply)]" << endl;
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
-    // Load mesh data
     string input_filename(argv[1]);
     string output_filename(argv[2]);
-    if (argc != 3) {
-        cout << "Invalid Format : try to run './QEM <input_filename> <output_filename>'" << endl;
+    double ratio = std::stod(argv[3]);
+    if (argc != 4) {
+        cout << "Invalid Format : try to run './QEM <input_filename> <output_filename> <ratio of remain edge>'" << endl;
         return -1;
-        //input_filename = argv[1];
     }
+    // Load mesh data
     MatrixXd V,OV;
     MatrixXi F,OF;
-    read_triangle_mesh(input_filename,OV,OF);
+    read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
     // check whether mesh is manifold
     if(is_edge_manifold(OF)) cout << "Input model is Manifold mesh" << endl;
-    else cout << "Input model is Non-Manifold mesh" << endl;
-    //initialize viewer
-    igl::opengl::glfw::Viewer viewer;
+    else {
+        cout << "Input model is Non-Manifold mesh" << endl;
+        cout << "Please use Manifold mesh" << endl;
+        return -1;
+    }
     // Prepare array-based edge data structures and priority queue
     VectorXi EMAP, EQ;
     MatrixXi E,EF,EI;
     igl::min_heap< std::tuple<double,int,int> > Q;
+    // Set stopping condition based on removed vertices
+    int num_input_vertices = OV.rows();
+    int stopping_condition = ceil(num_input_vertices * (1.0 - ratio));
+    //initialize viewer
+    igl::opengl::glfw::Viewer viewer;
     // If an edge were collapsed, we'd collapse it to these points:
     MatrixXd C;
     int num_collapsed;
@@ -123,39 +131,8 @@ int main(int argc, char * argv[])
         // If animating then collapse 10% of edges
         if(viewer.core().is_animating && !Q.empty())
         {
-            // if stopping condition met, break
-            if (num_collapsed>=10000) {
-                viewer.core().is_animating = false;
-                // remove duplicated vertices and faces
-                Eigen::MatrixXi F2(F.rows(),3);
-                Eigen::VectorXi J(F.rows());
-                int m = 0;
-                for(int f = 0;f<F.rows();f++)
-                {
-                    if(
-                            F(f,0) != IGL_COLLAPSE_EDGE_NULL ||
-                            F(f,1) != IGL_COLLAPSE_EDGE_NULL ||
-                            F(f,2) != IGL_COLLAPSE_EDGE_NULL)
-                    {
-                        F2.row(m) = F.row(f);
-                        J(m) = f;
-                        m++;
-                    }
-                }
-                F2.conservativeResize(m,F2.cols());
-                J.conservativeResize(m);
-                Eigen::VectorXi _1;
-                Eigen::MatrixXd U;
-                Eigen::MatrixXi G;
-                Eigen::VectorXi I;
-                igl::remove_unreferenced(V,F2,U,G,_1,I);
-                V = U;
-                F = G;
-                if(is_edge_manifold(F)) cout << "Manifold mesh!" << endl;
-                else cout << "Non-Manifold mesh!" << endl;
-                return 0;
-            }
             bool something_collapsed = false;
+            bool flag = false;
             // collapse edge
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
@@ -170,17 +147,36 @@ int main(int argc, char * argv[])
                 }
                 something_collapsed = true;
                 num_collapsed++;
+                // if stopping condition met, break
+                if (num_collapsed>=stopping_condition) {
+                    viewer.core().is_animating = false;
+                    flag = true;
+                    // remove duplicated vertices and faces
+                    customHPF::remove_duplicated_faces(V,F);
+                    cout << "\n" << "*******************************" << endl;
+                    if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
+                    else cout << "Resulting mesh is Non-Manifold" << endl;
+                    cout << "*******************************" << endl;
+                    break;
+                }
             }
 
             if(something_collapsed)
             {
-                if(is_edge_manifold(F)) cout << "Manifold mesh" << endl;
-                else cout << "Non-Manifold mesh" << endl;
-                //cout << V << endl;
-                //cout << F << endl;
+                cout << num_collapsed << " vertices are removed" << endl;
                 viewer.data().clear();
                 viewer.data().set_mesh(V,F);
                 viewer.data().set_face_based(true);
+                if(flag) {
+                    if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
+                        cout << "Successfully wrote to " << output_filename << ".obj" << endl;
+                        return 0;
+                    }
+                    else{
+                        cout << "Failed to wrote to " << output_filename << ".obj" << endl;
+                        return -1;
+                    }
+                }
             }
         }
         return false;
@@ -193,9 +189,6 @@ int main(int argc, char * argv[])
                 {
                     case ' ': //space, stop
                         viewer.core().is_animating ^= 1;
-                        //cout << F.size() << endl;
-/*                        if (is_edge_manifold(F))cout << "Manifold Mesh" << endl;
-                        else cout << "Non-Manifold Mesh" << endl;*/
                         break;
                     case 'R':
                     case 'r':
