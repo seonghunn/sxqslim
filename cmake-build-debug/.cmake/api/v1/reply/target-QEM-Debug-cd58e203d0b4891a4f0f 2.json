@@ -158,17 +158,12 @@
 			[
 				0,
 				1,
-				2,
-				3
+				2
 			]
 		}
 	],
 	"dependencies" : 
 	[
-		{
-			"backtrace" : 14,
-			"id" : "glfw::@fa9f4482d3a2b070f206"
-		},
 		{
 			"backtrace" : 14,
 			"id" : "igl_glfw::@6890427a1f51a3e7e1df"
@@ -180,6 +175,10 @@
 		{
 			"backtrace" : 14,
 			"id" : "igl_core::@7e03116a751a0a925ea3"
+		},
+		{
+			"backtrace" : 14,
+			"id" : "glfw::@fa9f4482d3a2b070f206"
 		},
 		{
 			"backtrace" : 14,
@@ -247,17 +246,15 @@
 			[
 				0,
 				1,
-				2,
-				3
+				2
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				4,
-				5,
-				6
+				3,
+				4
 			]
 		}
 	],
@@ -267,12 +264,6 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/collapse_callback.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/collapse_edge_custom.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -290,11 +281,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/quadratic.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "src/collapse_edge_custom.h",
 			"sourceGroupIndex" : 1
 		},
 		{

@@ -8,6 +8,7 @@
 #include <igl/decimate_callback_types.h>
 #include <igl/is_edge_manifold.h>
 #include <igl/min_heap.h>
+#include <igl/remove_unreferenced.h>
 #include <Eigen/Core>
 #include <vector>
 

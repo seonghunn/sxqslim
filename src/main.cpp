@@ -4,6 +4,7 @@
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/per_face_normals.h>
+#include <igl/remove_duplicate_vertices.h>
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
@@ -121,6 +122,17 @@ int main(int argc, char * argv[])
         // If animating then collapse 10% of edges
         if(viewer.core().is_animating && !Q.empty())
         {
+            // if stopping condition met, break
+            if (num_collapsed>=10000) {
+                viewer.core().is_animating = false;
+                Eigen::MatrixXd V_out; // Output vertices
+                Eigen::MatrixXi F_out; // Output faces
+                Eigen::VectorXi I, J;
+                double epsilon = 1e-5; // Tolerance for considering vertices as duplicates
+                igl::remove_duplicate_vertices(V, F, epsilon, V_out, I, J, F_out);
+                if(is_edge_manifold(F_out)) cout << "Manifold mesh!" << endl;
+                else cout << "Non-Manifold mesh!" << endl;
+            }
             bool something_collapsed = false;
             // collapse edge
             const int max_iter = std::ceil(0.01*Q.size());
@@ -159,6 +171,7 @@ int main(int argc, char * argv[])
                 {
                     case ' ': //space, stop
                         viewer.core().is_animating ^= 1;
+                        //cout << F.size() << endl;
 /*                        if (is_edge_manifold(F))cout << "Manifold Mesh" << endl;
                         else cout << "Non-Manifold Mesh" << endl;*/
                         break;

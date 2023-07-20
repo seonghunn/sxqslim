@@ -5,6 +5,7 @@
 #include "collapse_callback.h"
 using namespace std;
 
+#define IGL_COLLAPSE_EDGE_NULL 0
 namespace customCBF{
     struct removed_vertices_index{
         int v1;
@@ -111,6 +112,8 @@ namespace customCBF{
                         Eigen::Matrix4d Q2 = qValues.values[RV_idx2];
                         qValues.values[RV_idx1] = Q1 + Q2;
                         qValues.values[RV_idx2] = Q1 + Q2;
+
+                        //TODO: remove vertex and faces
                     }
                 };
     }
