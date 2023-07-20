@@ -99,39 +99,6 @@ int main(int argc, char * argv[])
     //customCBF::setup_cost_and_placement_with_qValues(qValues);
     customCBF::setup_post_collapse_with_qValues(qValues);
 
-    // Function to reset original mesh and data structures
-    const auto & reset = [&]()
-    {
-        F = OF;
-        V = OV;
-        edge_flaps(F,E,EMAP,EF,EI);
-        C.resize(E.rows(),V.cols());
-        VectorXd costs(E.rows());
-        Q = {};
-        EQ = Eigen::VectorXi::Zero(E.rows());
-        {
-            Eigen::VectorXd costs(E.rows());
-            igl::parallel_for(E.rows(),[&](const int e)
-            {
-                double cost = e;
-                RowVectorXd p(1,3);
-                //reset each cost
-                customCBF::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
-                C.row(e) = p;
-                costs(e) = cost;
-            },10000);
-            for(int e = 0;e<E.rows();e++)
-            {
-                Q.emplace(costs(e),e,0);
-            }
-        }
-
-        num_collapsed = 0;
-        viewer.data().clear();
-        viewer.data().set_mesh(V,F);
-        viewer.data().set_face_based(true);
-    };
-
     const auto &pre_draw = [&](igl::opengl::glfw::Viewer & viewer)->bool
     {
         // If animating then collapse 10% of edges
@@ -191,22 +158,15 @@ int main(int argc, char * argv[])
     const auto &key_down =
             [&](igl::opengl::glfw::Viewer &viewer,unsigned char key,int mod)->bool
             {
-                switch(key)
-                {
-                    case ' ': //space, stop
-                        viewer.core().is_animating ^= 1;
-                        break;
-                    case 'R':
-                    case 'r':
-                        reset();
-                        break;
-                    default:
-                        return false;
-                }
+                if(key ==' ') viewer.core().is_animating ^= 1;
+                else return false;
                 return true;
             };
 
-    reset();
+    //reset();
+    // reset function to assign all initial value, especially cost_table (qValues.values)
+    customHPF::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
+                     qValues.values, viewer, num_collapsed);
     viewer.core().background_color.setConstant(1);
     viewer.core().is_animating = true;
     viewer.callback_key_down = key_down;
