@@ -5,7 +5,7 @@
 #include "collapse_callback.h"
 using namespace std;
 
-namespace customcbf{
+namespace customCBF{
     struct removed_vertices_index{
         int v1;
         int v2;
@@ -42,15 +42,49 @@ namespace customcbf{
 
                 return true;  // Allow the edge to be collapsed.
             };
-    igl::decimate_cost_and_placement_callback cost_and_palcement;
+    igl::decimate_cost_and_placement_callback cost_and_placement;
+
+    void setup_cost_and_placement_callback_with_qValues(QValues& qValues){
+        cost_and_placement=
+                [&qValues](
+                        const int e,
+                        const Eigen::MatrixXd & V,
+                        const Eigen::MatrixXi & F,
+                        const Eigen::MatrixXi & E,
+                        const Eigen::VectorXi & /*EMAP*/,
+                        const Eigen::MatrixXi & /*EF*/,
+                        const Eigen::MatrixXi & /*EI*/,
+                        double & cost,
+                        Eigen::RowVectorXd & p)
+                {
+                    // E(e,0) returns the index of first vertex of edge e
+                    int v1 = E(e, 0);
+                    int v2 = E(e, 1);
+                    Eigen::Matrix4d Q = qValues.values[v1] + qValues.values[v2];
+                    Eigen::Matrix4d A;
+                    A.row(0) << Q.row(0);
+                    A.row(1) << Q.row(1);
+                    A.row(2) << Q.row(2);
+                    A.row(3) << 0, 0, 0, 1;
+
+                    // new optimal point
+                    //TODO: p is either vertices or midpoint if A is singular
+                    Eigen::Vector4d target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
+                    // transform homogeneous coordinates to normal coordinates
+                    p = target.head<3>() / target.w();
+
+                    cost = target.transpose() * Q * target;
+                    //cost = (V.row(E(e,0))-V.row(E(e,1))).norm();
+                    //p = 0.5*(V.row(E(e,0))+V.row(E(e,1)));
+                };
+    }
 
 // callback function for post_collapse stage, this function always called every decimation step
     igl::decimate_post_collapse_callback post_collapse;
-
-// Wrapper function to use qvalues table
-    void setup_post_collapse_with_qvalues(QValues& qvalues) {
+// Wrapper function to use qValues table
+    void setup_post_collapse_with_qValues(QValues& qValues) {
         post_collapse=
-                [&qvalues](const Eigen::MatrixXd &V,
+                [&qValues](const Eigen::MatrixXd &V,
                            const Eigen::MatrixXi &F,
                            const Eigen::MatrixXi &E,
                            const Eigen::VectorXi &EMAP,
@@ -73,10 +107,10 @@ namespace customcbf{
                         int RV_idx1 = RV.v1;
                         int RV_idx2 = RV.v2;
                         // Update Q = Q1 + Q2 (index of Q might be indices of removed vertices)
-                        Eigen::Matrix4d Q1 = qvalues.values[RV_idx1];
-                        Eigen::Matrix4d Q2 = qvalues.values[RV_idx2];
-                        qvalues.values[RV_idx1] = Q1 + Q2;
-                        qvalues.values[RV_idx2] = Q1 + Q2;
+                        Eigen::Matrix4d Q1 = qValues.values[RV_idx1];
+                        Eigen::Matrix4d Q2 = qValues.values[RV_idx2];
+                        qValues.values[RV_idx1] = Q1 + Q2;
+                        qValues.values[RV_idx2] = Q1 + Q2;
                     }
                 };
     }
