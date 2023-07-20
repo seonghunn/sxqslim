@@ -163,6 +163,7 @@ int main(int argc, char * argv[])
                     if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
                     else cout << "Resulting mesh is Non-Manifold" << endl;
                     cout << "*******************************" << endl;
+                    break;
                 }
             }
 
@@ -172,15 +173,14 @@ int main(int argc, char * argv[])
                 viewer.data().clear();
                 viewer.data().set_mesh(V,F);
                 viewer.data().set_face_based(true);
-                //TODO: Handle exception of cube.obj
-                if (flag){
+                if(flag) {
                     if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
                         cout << "Successfully wrote to " << output_filename << ".obj" << endl;
-                        return true;
+                        return 0;
                     }
                     else{
                         cout << "Failed to wrote to " << output_filename << ".obj" << endl;
-                        return false;
+                        return -1;
                     }
                 }
             }
