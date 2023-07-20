@@ -18,10 +18,21 @@ namespace customCBF{
 
     extern igl::decimate_pre_collapse_callback pre_collapse;
     extern igl::decimate_post_collapse_callback post_collapse;
-    extern igl::decimate_cost_and_placement_callback cost_and_placement;
+    //extern igl::decimate_cost_and_placement_callback cost_and_placement;
 
-    void setup_cost_and_placement_with_qValues(QValues &qvalues);
-    void setup_post_collapse_with_qValues(QValues& qValues);
+    //void setup_cost_and_placement_with_qValues(QValues&);
+    void setup_post_collapse_with_qValues(QValues&);
+    void quadratic(
+            const int e,
+            const Eigen::MatrixXd & V,
+            const Eigen::MatrixXi & /*F*/,
+            const Eigen::MatrixXi & E,
+            const Eigen::VectorXi & /*EMAP*/,
+            const Eigen::MatrixXi & /*EF*/,
+            const Eigen::MatrixXi & /*EI*/,
+            std::vector<Eigen::Matrix4d> & qvalues,
+            double & cost,
+            Eigen::RowVectorXd & p);
 }
 
 #endif //QEM_COLLAPSE_CALLBACK_H

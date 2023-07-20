@@ -18,15 +18,20 @@ int main(int argc, char * argv[])
     cout << "[filename.(off|obj|ply)]" << endl;
     cout<<"  [space]  toggle animation."<<endl;
     cout<<"  'r'  reset."<<endl;
-    // Load a closed manifold mesh
-    string filename(argv[0]);
-    if(argc>=2)
-    {
-        filename = argv[1];
+    // Load mesh data
+    string input_filename(argv[1]);
+    string output_filename(argv[2]);
+    if (argc != 3) {
+        cout << "Invalid Format : try to run './QEM <input_filename> <output_filename>'" << endl;
+        return -1;
+        //input_filename = argv[1];
     }
     MatrixXd V,OV;
     MatrixXi F,OF;
-    read_triangle_mesh(filename,OV,OF);
+    read_triangle_mesh(input_filename,OV,OF);
+    // check whether mesh is manifold
+    if(is_edge_manifold(OF)) cout << "Input model is Manifold mesh" << endl;
+    else cout << "Input model is Non-Manifold mesh" << endl;
     //initialize viewer
     igl::opengl::glfw::Viewer viewer;
     // Prepare array-based edge data structures and priority queue
@@ -72,11 +77,11 @@ int main(int argc, char * argv[])
                                       double & cost,
                                       Eigen::RowVectorXd & p)
     {
-        quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
+        customCBF::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
     };
     // call wrap function to use qValues in callback function
+    //customCBF::setup_cost_and_placement_with_qValues(qValues);
     customCBF::setup_post_collapse_with_qValues(qValues);
-
 
     // Function to reset original mesh and data structures
     const auto & reset = [&]()
@@ -86,8 +91,6 @@ int main(int argc, char * argv[])
         edge_flaps(F,E,EMAP,EF,EI);
         C.resize(E.rows(),V.cols());
         VectorXd costs(E.rows());
-        // https://stackoverflow.com/questions/2852140/priority-queue-clear-method
-        // Q.clear();
         Q = {};
         EQ = Eigen::VectorXi::Zero(E.rows());
         {
@@ -96,7 +99,8 @@ int main(int argc, char * argv[])
             {
                 double cost = e;
                 RowVectorXd p(1,3);
-                quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
+                //reset each cost
+                customCBF::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
                 C.row(e) = p;
                 costs(e) = cost;
             },10000);
@@ -122,6 +126,7 @@ int main(int argc, char * argv[])
             const int max_iter = std::ceil(0.01*Q.size());
             for(int j = 0;j<max_iter;j++)
             {
+                // if collapsing doesn't occur, break
                 if(!collapse_edge(quadratic_with_qValues,
                                   customCBF::pre_collapse,
                                   customCBF::post_collapse,
@@ -135,6 +140,10 @@ int main(int argc, char * argv[])
 
             if(something_collapsed)
             {
+                if(is_edge_manifold(F)) cout << "Manifold mesh" << endl;
+                else cout << "Non-Manifold mesh" << endl;
+                //cout << V << endl;
+                //cout << F << endl;
                 viewer.data().clear();
                 viewer.data().set_mesh(V,F);
                 viewer.data().set_face_based(true);
@@ -148,8 +157,10 @@ int main(int argc, char * argv[])
             {
                 switch(key)
                 {
-                    case ' ':
+                    case ' ': //space, stop
                         viewer.core().is_animating ^= 1;
+/*                        if (is_edge_manifold(F))cout << "Manifold Mesh" << endl;
+                        else cout << "Non-Manifold Mesh" << endl;*/
                         break;
                     case 'R':
                     case 'r':

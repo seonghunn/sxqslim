@@ -31,8 +31,9 @@ void quadratic(
     Eigen::Vector4d target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
     // transform homogeneous coordinates to normal coordinates
     p = target.head<3>() / target.w();
-
     cost = target.transpose() * Q * target;
+
+    // use this for midpoint - distance
     //cost = (V.row(E(e,0))-V.row(E(e,1))).norm();
-//    p = 0.5*(V.row(E(e,0))+V.row(E(e,1)));
+    //p = 0.5*(V.row(E(e,0))+V.row(E(e,1)));
 }
