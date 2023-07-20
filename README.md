@@ -41,6 +41,7 @@ This should find and build the dependencies and create a `example` binary.
 
 From within the `build` directory just issue:
 
-    ./example
+    ./QEM <input_filename> <output_filename> <ratio_of_collapsing>
 
+If you set ratio as 0.3, only 30% of vertices will be remained.<br/>
 A glfw app should launch displaying a 3D cube.
