@@ -10,6 +10,7 @@
 #include <set>
 #include "quadratic.h"
 #include "collapse_callback.h"
+#include "helper.h"
 
 int main(int argc, char * argv[])
 {
@@ -125,13 +126,34 @@ int main(int argc, char * argv[])
             // if stopping condition met, break
             if (num_collapsed>=10000) {
                 viewer.core().is_animating = false;
-                Eigen::MatrixXd V_out; // Output vertices
-                Eigen::MatrixXi F_out; // Output faces
-                Eigen::VectorXi I, J;
-                double epsilon = 1e-5; // Tolerance for considering vertices as duplicates
-                igl::remove_duplicate_vertices(V, F, epsilon, V_out, I, J, F_out);
-                if(is_edge_manifold(F_out)) cout << "Manifold mesh!" << endl;
+                // remove duplicated vertices and faces
+                Eigen::MatrixXi F2(F.rows(),3);
+                Eigen::VectorXi J(F.rows());
+                int m = 0;
+                for(int f = 0;f<F.rows();f++)
+                {
+                    if(
+                            F(f,0) != IGL_COLLAPSE_EDGE_NULL ||
+                            F(f,1) != IGL_COLLAPSE_EDGE_NULL ||
+                            F(f,2) != IGL_COLLAPSE_EDGE_NULL)
+                    {
+                        F2.row(m) = F.row(f);
+                        J(m) = f;
+                        m++;
+                    }
+                }
+                F2.conservativeResize(m,F2.cols());
+                J.conservativeResize(m);
+                Eigen::VectorXi _1;
+                Eigen::MatrixXd U;
+                Eigen::MatrixXi G;
+                Eigen::VectorXi I;
+                igl::remove_unreferenced(V,F2,U,G,_1,I);
+                V = U;
+                F = G;
+                if(is_edge_manifold(F)) cout << "Manifold mesh!" << endl;
                 else cout << "Non-Manifold mesh!" << endl;
+                return 0;
             }
             bool something_collapsed = false;
             // collapse edge
