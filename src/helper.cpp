@@ -5,30 +5,28 @@
 #include "helper.h"
 
 
-namespace customHPF{
-    bool remove_duplicated_faces(Eigen::MatrixXd& V, Eigen::MatrixXi& F){
-        Eigen::MatrixXi F2(F.rows(),3);
+namespace qem {
+    bool remove_duplicated_faces(Eigen::MatrixXd &V, Eigen::MatrixXi &F) {
+        Eigen::MatrixXi F2(F.rows(), 3);
         Eigen::VectorXi J(F.rows());
         int m = 0;
-        for(int f = 0;f<F.rows();f++)
-        {
-            if(
-                    F(f,0) != IGL_COLLAPSE_EDGE_NULL ||
-                    F(f,1) != IGL_COLLAPSE_EDGE_NULL ||
-                    F(f,2) != IGL_COLLAPSE_EDGE_NULL)
-            {
+        for (int f = 0; f < F.rows(); f++) {
+            if (
+                    F(f, 0) != IGL_COLLAPSE_EDGE_NULL ||
+                    F(f, 1) != IGL_COLLAPSE_EDGE_NULL ||
+                    F(f, 2) != IGL_COLLAPSE_EDGE_NULL) {
                 F2.row(m) = F.row(f);
                 J(m) = f;
                 m++;
             }
         }
-        F2.conservativeResize(m,F2.cols());
+        F2.conservativeResize(m, F2.cols());
         J.conservativeResize(m);
         Eigen::VectorXi _1;
         Eigen::MatrixXd U;
         Eigen::MatrixXi G;
         Eigen::VectorXi I;
-        igl::remove_unreferenced(V,F2,U,G,_1,I);
+        igl::remove_unreferenced(V, F2, U, G, _1, I);
         V = U;
         F = G;
         //TODO: exception handling
@@ -40,7 +38,7 @@ namespace customHPF{
     void reset(MatrixXd &V, MatrixXd &OV, MatrixXi &F, MatrixXi &OF,
                MatrixXi &E, VectorXi &EMAP, MatrixXi &EF, MatrixXi &EI, VectorXi &EQ,
                MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
-               igl::opengl::glfw::Viewer &viewer, int& num_collapsed) {
+               igl::opengl::glfw::Viewer &viewer, int &num_collapsed) {
 
         F = OF;
         V = OV;
@@ -55,7 +53,7 @@ namespace customHPF{
                 double cost = e;
                 RowVectorXd p(1, 3);
                 //reset each cost
-                customCBF::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
+                qem::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
                 C.row(e) = p;
                 costs(e) = cost;
             }, 10000);
@@ -68,5 +66,34 @@ namespace customHPF{
         viewer.data().clear();
         viewer.data().set_mesh(V, F);
         viewer.data().set_face_based(true);
+    }
+
+    void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF) {
+/*      VectorXi C, I;
+        MatrixXi FF;
+        igl::facet_components(F, C);
+
+        cout << C << endl;
+
+        igl::orient_outward(V, F, C, FF, I);
+
+        return FF;*/
+        if (qem::check_mesh_orientation(V, F)) {
+            FF = F;
+            return;
+        }
+
+        for (int i = 0; i < F.rows(); ++i) {
+            Eigen::Vector3d v1 = V.row(F(i, 0));
+            Eigen::Vector3d v2 = V.row(F(i, 1));
+            Eigen::Vector3d v3 = V.row(F(i, 2));
+            Eigen::Vector3d centroid = (v1 + v2 + v3) / 3;
+            Eigen::Vector3d normal = (v2 - v1).cross(v3 - v1);
+
+            // dot product using normal and centroid vector, if it is positive, the surface orients outward.
+            if (centroid.dot(normal) < 0) {
+                FF.row(i) << F(i, 2), F(i, 1), F(i, 0);
+            }
+        }
     }
 }

@@ -4,11 +4,14 @@
 #include <igl/read_triangle_mesh.h>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/per_face_normals.h>
+//#include <igl/bfs_orient.h>
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
 #include "collapse_callback.h"
 #include "helper.h"
+#include "manifold.h"
+//#include "process.h"
 
 #define INPUT_PATH "../model/input/"
 #define OUTPUT_PATH "../model/output/"
@@ -29,11 +32,14 @@ int main(int argc, char * argv[])
         return -1;
     }
     // Load mesh data
-    MatrixXd V,OV;
-    MatrixXi F,OF;
+    MatrixXd V, V_, OV;
+    MatrixXi F, F_, OF;
     read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
+    // set orient outward
+    //qem::set_input_orient_outward(OV, F_, OF);
     // check whether mesh is manifold
-    if(is_edge_manifold(OF)) {
+    //if(is_edge_manifold(OF)) {
+    if(qem::is_manifold(OV, OF)){
         cout << "\n" << "*******************************" << endl;
         cout << "Input model is Manifold mesh" << endl;
         cout << "Number of Vertex : " << OV.rows() << endl;
@@ -71,7 +77,7 @@ int main(int argc, char * argv[])
     }
 
     // Add initial Q value of each vertex to vector
-    customCBF::QValues qValues;
+    qem::QValues qValues;
     qValues.values.resize(OV.rows(), Eigen::Matrix4d::Zero());
     for (int i = 0; i < OF.rows(); i++) {
         Eigen::Vector4d p(N_homo(i, 0), N_homo(i, 1), N_homo(i, 2), N_homo(i, 3));
@@ -93,11 +99,11 @@ int main(int argc, char * argv[])
                                       double & cost,
                                       Eigen::RowVectorXd & p)
     {
-        customCBF::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
+        qem::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
     };
     // call wrap function to use qValues in callback function
     //customCBF::setup_cost_and_placement_with_qValues(qValues);
-    customCBF::setup_post_collapse_with_qValues(qValues);
+    qem::setup_post_collapse_with_qValues(qValues);
 
     const auto &pre_draw = [&](igl::opengl::glfw::Viewer & viewer)->bool
     {
@@ -112,9 +118,9 @@ int main(int argc, char * argv[])
             {
                 // if collapsing doesn't occur, break
                 if(!collapse_edge(quadratic_with_qValues,
-                                  customCBF::pre_collapse,
-                                  customCBF::post_collapse,
-                                  V,F,E,EMAP,EF,EI,Q,EQ,C))
+                                  qem::pre_collapse,
+                                  qem::post_collapse,
+                                  V, F, E, EMAP, EF, EI, Q, EQ, C))
                 {
                     break;
                 }
@@ -125,7 +131,7 @@ int main(int argc, char * argv[])
                     viewer.core().is_animating = false;
                     flag = true;
                     // remove duplicated vertices and faces
-                    customHPF::remove_duplicated_faces(V,F);
+                    qem::remove_duplicated_faces(V, F);
                     cout << "\n" << "*******************************" << endl;
                     if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
                     else cout << "Resulting mesh is Non-Manifold" << endl;
@@ -165,9 +171,24 @@ int main(int argc, char * argv[])
 
     //reset();
     // reset function to assign all initial value, especially cost_table (qValues.values)
-    customHPF::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
-                     qValues.values, viewer, num_collapsed);
+    qem::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
+               qValues.values, viewer, num_collapsed);
     viewer.core().background_color.setConstant(1);
+/*    qem::process(quadratic_with_qValues,
+                 qem::pre_collapse,
+                 qem::post_collapse,
+                 V,
+                 F,
+                 E,
+                 EMAP,
+                 EF,
+                 EI,
+                 EQ,
+                 C,
+                 Q,
+                 stopping_condition,
+                 num_collapsed
+    );*/
     viewer.core().is_animating = true;
     viewer.callback_key_down = key_down;
     viewer.callback_pre_draw = pre_draw;

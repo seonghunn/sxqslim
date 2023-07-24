@@ -6,7 +6,7 @@
 using namespace std;
 
 #define IGL_COLLAPSE_EDGE_NULL 0
-namespace customCBF{
+namespace qem{
     struct removed_vertices_index{
         int v1;
         int v2;
@@ -33,9 +33,11 @@ namespace customCBF{
                 //     return false;
                 // }
                 // collapsing edges that are not generate non-manifold mesh
-/*            if(!igl::is_edge_manifold(F)) {
-                return false;
-            }*/
+                MatrixXd V_ = V;
+                MatrixXi F_ = F;
+
+                qem::remove_duplicated_faces(V_, F_);
+                if(!qem::is_manifold(V_, F_)) return false;
 
                 // Get index of vertices which supposed to be replaced
                 RV.v1 = E(e,0);
@@ -84,14 +86,14 @@ namespace customCBF{
     igl::decimate_post_collapse_callback post_collapse;
 // Wrapper function to use qValues table
     void setup_post_collapse_with_qValues(QValues& qValues) {
-        post_collapse=
+        post_collapse =
                 [&qValues](const Eigen::MatrixXd &V,
                            const Eigen::MatrixXi &F,
                            const Eigen::MatrixXi &E,
                            const Eigen::VectorXi &EMAP,
                            const Eigen::MatrixXi &EF,
                            const Eigen::MatrixXi &EI,
-                           const igl::min_heap< std::tuple<double,int,int> > &Q,
+                           const igl::min_heap<std::tuple<double, int, int> > &Q,
                            const Eigen::VectorXi &EQ,
                            const Eigen::MatrixXd &C,
                            const int e,
@@ -99,12 +101,11 @@ namespace customCBF{
                            const int e2,
                            const int f1,
                            const int f2,
-                           const bool collapsed)
-                {
+                           const bool collapsed) {
                     //Note : the resulting vertex after collapsing is C.row(e)
                     //Note : the vertices list V after collapsing changes to C (for each edge's end vertices)
                     // If edge is collapsed
-                    if(collapsed){
+                    if (collapsed) {
                         int RV_idx1 = RV.v1;
                         int RV_idx2 = RV.v2;
                         // Update Q = Q1 + Q2 (index of Q might be indices of removed vertices)
@@ -115,6 +116,39 @@ namespace customCBF{
 
                         //TODO: remove vertex and faces
                     }
+
+
+/*                    cout << "****V****" << endl;
+                    cout << V << endl;
+                    cout << "****F****" << endl;
+                    cout << F << endl;
+                    cout << "****qValues****" << endl;
+                    for (int i = 0; i < qValues.values.size(); i++) {
+                        cout << "*************" << endl;
+                        cout << qValues.values[i] << endl;
+                    }
+                    cout << endl;
+                    cout << "***E***" << endl;
+                    cout << E << endl;
+
+                    MatrixXd VCopy = V;
+                    MatrixXi FCopy = F;
+
+                    QEM::remove_duplicated_faces(VCopy, FCopy);
+
+                    cout << "****V after****" << endl;
+                    cout << VCopy << endl;
+                    cout << "****F after****" << endl;
+                    cout << FCopy << endl;
+                    cout << "****qValues after****" << endl;
+                    for (int i = 0; i < qValues.values.size(); i++) {
+                        cout << "****after****" << endl;
+                        cout << qValues.values[i] << endl;
+                    }
+                    cout << endl;
+                    cout << "***E after***" << endl;
+                    cout << E << endl;*/
+
                 };
     }
 

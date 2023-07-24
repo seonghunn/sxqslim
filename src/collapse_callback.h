@@ -11,8 +11,10 @@
 #include <igl/remove_unreferenced.h>
 #include <Eigen/Core>
 #include <vector>
+#include "helper.h"
+#include "manifold.h"
 
-namespace customCBF{
+namespace qem{
     struct QValues {
         std::vector<Eigen::Matrix4d> values;
     };
