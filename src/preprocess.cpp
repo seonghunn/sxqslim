@@ -19,6 +19,7 @@ namespace qem{
             FF = F;
             return;
         }
+        FF.resize(F.rows(), F.cols());
 
         for (int i = 0; i < F.rows(); ++i) {
             Eigen::Vector3d v1 = V.row(F(i, 0));
@@ -29,7 +30,10 @@ namespace qem{
 
             // dot product using normal and centroid vector, if it is positive, the surface orients outward.
             if (centroid.dot(normal) < 0) {
-                FF.row(i) << F(i, 2), F(i, 1), F(i, 0);
+                FF.row(i) << F(i, 0), F(i, 2), F(i, 1);
+            }
+            else{
+                FF.row(i) << F.row(i);
             }
         }
     }

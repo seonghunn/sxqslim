@@ -8,7 +8,7 @@
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
-#include <time.h>
+#include <ctime>
 #include "collapse_callback.h"
 #include "helper.h"
 #include "manifold.h"
@@ -36,9 +36,13 @@ int main(int argc, char * argv[])
     // Load mesh data
     MatrixXd V, V_, OV;
     MatrixXi F, F_, OF;
+    //read_triangle_mesh(INPUT_PATH + input_filename, OV, F_);
     read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
     // set orient outward
     //qem::set_input_orient_outward(OV, F_, OF);
+    //for (int i = 0; i < OF.rows(); i++) {
+    //    cout << "F_ : " << F_.row(i) << " OF : " << OF.row(i) << endl;
+    //}
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
     if(qem::is_manifold(OV, OF)){
@@ -73,6 +77,8 @@ int main(int argc, char * argv[])
     // Add initial Q value of each vertex to vector
     qem::QValues qValues;
     qem::init_qValues(OV, OF, N_homo, qValues.values);
+
+    edge_flaps(OF, E, EMAP, EF, EI);
 
     // Wrapper function to use quadratic in collapse_edge_custom function
     auto quadratic_with_qValues = [&](const int e,
@@ -185,8 +191,8 @@ int main(int argc, char * argv[])
                     end = clock();
                     qem::remove_duplicated_faces(V, F);
                     cout << "\n" << "*******************************" << endl;
-                    if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
-                    else cout << "Resulting mesh is Non-Manifold" << endl;
+                    if (qem::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
+                    else { cout << "Resulting mesh is Non-Manifold" << endl; }
                     cout << "*******************************" << endl;
                     break;
                 }

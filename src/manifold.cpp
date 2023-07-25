@@ -5,6 +5,7 @@
 #include "manifold.h"
 
 namespace qem{
+    //TODO: self orientation doesn't work at large mesh
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F){
         for (int i = 0; i < F.rows(); ++i) {
             Eigen::Vector3d v1 = V.row(F(i, 0));
@@ -21,28 +22,44 @@ namespace qem{
         return true;
     }
 
+    //TODO: Implement self intersection
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
+        //igl::copyleft::cgal::RemeshSelfIntersectionsParam params;
+        //params.detect_only = true;
+
+        Eigen::MatrixXd V_temp;
+        Eigen::MatrixXi F_temp,IF,J,IM;
+
+        //igl::copyleft::cgal::remesh_self_intersections(V, F, params, V_temp, F_temp, IF, J, IM);
+
+        cout << "IF " << IF << endl;
+
         return true;
     }
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){
         // check edge_manifold
         if(!igl::is_edge_manifold(F)) {
-            //cout<< "edge manifold test fail"<<endl;
+            cout<< "edge manifold test fail"<<endl;
             return false;
         }
 
-        //cout << "edge manifold test success" << endl;
+        cout << "edge manifold test success" << endl;
 
-/*        // check orientation
+/*
+        // check orientation
         if(!qem::check_mesh_orientation(V, F)){
             cout << "orientation test fail" << endl;
             return false;
         }
 
-        cout << "orientation test success" << endl;*/
+        cout << "orientation test success" << endl;
+*/
+
 
         //TODO: check self-intersection
+        //check self-intersection
+        check_self_intersection(V, F);
 
         return true;
     }
