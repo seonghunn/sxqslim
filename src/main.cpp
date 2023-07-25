@@ -8,9 +8,11 @@
 #include <Eigen/Core>
 #include <iostream>
 #include <set>
+#include <time.h>
 #include "collapse_callback.h"
 #include "helper.h"
 #include "manifold.h"
+#include "preprocess.h"
 //#include "process.h"
 
 #define INPUT_PATH "../model/input/"
@@ -65,28 +67,12 @@ int main(int argc, char * argv[])
     int num_collapsed;
 
     // Surface normal per vertex to compute Q
-    Eigen::MatrixXd N_faces;
     Eigen::MatrixXd N_homo(OF.rows(), 4);
-    igl::per_face_normals(OV, OF, N_faces);
-
-    // Transform to Homogeneous Coordinate
-    for (int i = 0; i < N_faces.rows(); i++) {
-        Eigen::RowVector3d n = N_faces.row(i);
-        double d = -n.dot(OV.row(OF(i, 0)));
-        N_homo.row(i) << n, d;
-    }
+    qem::get_normal_homo_per_face(OV, OF, N_homo);
 
     // Add initial Q value of each vertex to vector
     qem::QValues qValues;
-    qValues.values.resize(OV.rows(), Eigen::Matrix4d::Zero());
-    for (int i = 0; i < OF.rows(); i++) {
-        Eigen::Vector4d p(N_homo(i, 0), N_homo(i, 1), N_homo(i, 2), N_homo(i, 3));
-        Eigen::Matrix4d q = p * p.transpose();
-        // Add q for each 3 vertex in face, addition for summing q for all adjacent planes
-        for (int j = 0; j < 3; j++) {
-            qValues.values[OF(i, j)] += q;
-        }
-    }
+    qem::init_qValues(OV, OF, N_homo, qValues.values);
 
     // Wrapper function to use quadratic in collapse_edge_custom function
     auto quadratic_with_qValues = [&](const int e,
@@ -169,6 +155,64 @@ int main(int argc, char * argv[])
                 return true;
             };
 
+
+    const auto &process = [&](igl::opengl::glfw::Viewer & viewer)->bool
+    {
+        clock_t start, end;
+        start = clock();
+        while(!Q.empty())
+        {
+            bool something_collapsed = false;
+            bool flag = false;
+            // collapse edge
+            const int max_iter = std::ceil(0.01*Q.size());
+            for(int j = 0;j<max_iter;j++)
+            {
+                // if collapsing doesn't occur, break
+                if(!collapse_edge(quadratic_with_qValues,
+                                  qem::pre_collapse,
+                                  qem::post_collapse,
+                                  V, F, E, EMAP, EF, EI, Q, EQ, C))
+                {
+                    break;
+                }
+                something_collapsed = true;
+                num_collapsed++;
+                // if stopping condition met, break
+                if (num_collapsed>=stopping_condition) {
+                    flag = true;
+                    // remove duplicated vertices and faces
+                    end = clock();
+                    qem::remove_duplicated_faces(V, F);
+                    cout << "\n" << "*******************************" << endl;
+                    if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
+                    else cout << "Resulting mesh is Non-Manifold" << endl;
+                    cout << "*******************************" << endl;
+                    break;
+                }
+            }
+
+            if(something_collapsed)
+            {
+                cout << num_collapsed << " vertices are removed" << endl;
+                viewer.data().clear();
+                viewer.data().set_mesh(V,F);
+                viewer.data().set_face_based(true);
+                if(flag) {
+                    cout << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
+                    if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
+                        cout << "Successfully wrote to " << output_filename << ".obj" << endl;
+                        return 0;
+                    }
+                    else{
+                        cout << "Failed to wrote to " << output_filename << ".obj" << endl;
+                        return -1;
+                    }
+                }
+            }
+        }
+        return false;
+    };
     //reset();
     // reset function to assign all initial value, especially cost_table (qValues.values)
     qem::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
@@ -189,8 +233,14 @@ int main(int argc, char * argv[])
                  stopping_condition,
                  num_collapsed
     );*/
-    viewer.core().is_animating = true;
-    viewer.callback_key_down = key_down;
-    viewer.callback_pre_draw = pre_draw;
+    //viewer.core().is_animating = true;
+    //viewer.callback_key_down = key_down;
+    //viewer.callback_pre_draw = pre_draw;
+    process(viewer);
+
+    viewer.data().clear();
+    viewer.data().set_mesh(V,F);
+    viewer.data().set_face_based(true);
+
     return viewer.launch();
 }

@@ -36,8 +36,9 @@ namespace qem{
                 MatrixXd V_ = V;
                 MatrixXi F_ = F;
 
-                qem::remove_duplicated_faces(V_, F_);
-                if(!qem::is_manifold(V_, F_)) return false;
+                //TODO: Time complexity
+/*                qem::remove_duplicated_faces(V_, F_);
+                if(!qem::is_manifold(V_, F_)) return false;*/
 
                 // Get index of vertices which supposed to be replaced
                 RV.v1 = E(e,0);

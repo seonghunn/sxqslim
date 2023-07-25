@@ -89,6 +89,13 @@ build CMakeFiles/QEM.dir/src/manifold.cpp.o: CXX_COMPILER__QEM_Debug /Users/seon
   OBJECT_DIR = CMakeFiles/QEM.dir
   OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
 
+build CMakeFiles/QEM.dir/src/preprocess.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/preprocess.cpp || cmake_object_order_depends_target_QEM
+  DEP_FILE = CMakeFiles/QEM.dir/src/preprocess.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++11
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks
+  OBJECT_DIR = CMakeFiles/QEM.dir
+  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+
 build CMakeFiles/QEM.dir/src/process.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/process.cpp || cmake_object_order_depends_target_QEM
   DEP_FILE = CMakeFiles/QEM.dir/src/process.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk -fcolor-diagnostics -std=gnu++11
@@ -111,7 +118,7 @@ build CMakeFiles/QEM.dir/src/quadratic.cpp.o: CXX_COMPILER__QEM_Debug /Users/seo
 #############################################
 # Link the executable QEM
 
-build QEM: CXX_EXECUTABLE_LINKER__QEM_Debug CMakeFiles/QEM.dir/src/collapse_callback.cpp.o CMakeFiles/QEM.dir/src/helper.cpp.o CMakeFiles/QEM.dir/src/main.cpp.o CMakeFiles/QEM.dir/src/manifold.cpp.o CMakeFiles/QEM.dir/src/process.cpp.o CMakeFiles/QEM.dir/src/quadratic.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
+build QEM: CXX_EXECUTABLE_LINKER__QEM_Debug CMakeFiles/QEM.dir/src/collapse_callback.cpp.o CMakeFiles/QEM.dir/src/helper.cpp.o CMakeFiles/QEM.dir/src/main.cpp.o CMakeFiles/QEM.dir/src/manifold.cpp.o CMakeFiles/QEM.dir/src/preprocess.cpp.o CMakeFiles/QEM.dir/src/process.cpp.o CMakeFiles/QEM.dir/src/quadratic.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk
   LINK_LIBRARIES = _deps/glad-build/libglad.a  /Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd  _deps/glfw-build/src/libglfw3.a  -framework Cocoa  -framework IOKit  -framework CoreFoundation
   OBJECT_DIR = CMakeFiles/QEM.dir

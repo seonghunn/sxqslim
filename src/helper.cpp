@@ -67,33 +67,4 @@ namespace qem {
         viewer.data().set_mesh(V, F);
         viewer.data().set_face_based(true);
     }
-
-    void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF) {
-/*      VectorXi C, I;
-        MatrixXi FF;
-        igl::facet_components(F, C);
-
-        cout << C << endl;
-
-        igl::orient_outward(V, F, C, FF, I);
-
-        return FF;*/
-        if (qem::check_mesh_orientation(V, F)) {
-            FF = F;
-            return;
-        }
-
-        for (int i = 0; i < F.rows(); ++i) {
-            Eigen::Vector3d v1 = V.row(F(i, 0));
-            Eigen::Vector3d v2 = V.row(F(i, 1));
-            Eigen::Vector3d v3 = V.row(F(i, 2));
-            Eigen::Vector3d centroid = (v1 + v2 + v3) / 3;
-            Eigen::Vector3d normal = (v2 - v1).cross(v3 - v1);
-
-            // dot product using normal and centroid vector, if it is positive, the surface orients outward.
-            if (centroid.dot(normal) < 0) {
-                FF.row(i) << F(i, 2), F(i, 1), F(i, 0);
-            }
-        }
-    }
 }

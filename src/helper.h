@@ -28,7 +28,6 @@ namespace qem{
                MatrixXi &E, VectorXi &EMAP, MatrixXi &EF, MatrixXi &EI, VectorXi &EQ,
                MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
                igl::opengl::glfw::Viewer &viewer, int &num_collapsed);
-    void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF);
 }
 
 #endif //QEM_HELPER_H

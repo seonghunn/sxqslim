@@ -93,23 +93,16 @@
 				0,
 				1,
 				2,
-				3,
-				4,
-				5,
-				6,
-				7
+				3
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				8,
-				9,
-				10,
-				11,
-				12,
-				13
+				4,
+				5,
+				6
 			]
 		}
 	],
@@ -117,17 +110,7 @@
 	[
 		{
 			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 8,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/ViewerPlugin 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -137,17 +120,7 @@
 		},
 		{
 			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 8,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/map_texture 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -157,27 +130,12 @@
 		},
 		{
 			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 8,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/Viewer.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 8,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/background_window.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 8,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/glfw/map_texture 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{

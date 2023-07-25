@@ -131,7 +131,13 @@
 				15,
 				16,
 				17,
-				18,
+				18
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
 				19,
 				20,
 				21,
@@ -149,50 +155,7 @@
 				33,
 				34,
 				35,
-				36,
-				37
-			]
-		},
-		{
-			"name" : "Source Files",
-			"sourceIndexes" : 
-			[
-				38,
-				39,
-				40,
-				41,
-				42,
-				43,
-				44,
-				45,
-				46,
-				47,
-				48,
-				49,
-				50,
-				51,
-				52,
-				53,
-				54,
-				55,
-				56,
-				57,
-				58,
-				59,
-				60,
-				61,
-				62,
-				63,
-				64,
-				65,
-				66,
-				67,
-				68,
-				69,
-				70,
-				71,
-				72,
-				73
+				36
 			]
 		}
 	],
@@ -200,17 +163,7 @@
 	[
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/MeshGL 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/MeshGL.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerCore 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -220,17 +173,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerData 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerData.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/bind_vertex_attrib_array 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -240,17 +183,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_index_vbo 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_index_vbo.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_mesh_vbo 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -260,17 +193,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_shader_program 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_shader_program.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_vector_vbo 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -280,17 +203,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/destroy_shader_program 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/destroy_shader_program.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/gl 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -300,17 +213,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/gl_type_size 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/gl_type_size.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/init_render_to_texture 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -320,17 +223,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/load_shader 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/load_shader.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_program_info_log 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -340,17 +233,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_shader_info_log 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_shader_info_log.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/report_gl_error 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -360,17 +243,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/uniform_type_to_string 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/uniform_type_to_string.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/verasansmono_compressed 2.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -380,27 +253,12 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/vertex_array 2.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/vertex_array.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/MeshGL 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/MeshGL.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerCore 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -410,17 +268,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerData 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/ViewerData.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/bind_vertex_attrib_array 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -430,17 +278,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_index_vbo 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_index_vbo.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_mesh_vbo 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -450,17 +288,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_shader_program 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_shader_program.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/create_vector_vbo 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -470,17 +298,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/destroy_shader_program 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/destroy_shader_program.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/gl_type_size 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -490,17 +308,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/init_render_to_texture 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/init_render_to_texture.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/load_shader 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -510,17 +318,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_program_info_log 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_program_info_log.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/print_shader_info_log 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -530,17 +328,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/report_gl_error 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/report_gl_error.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/uniform_type_to_string 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -550,17 +338,7 @@
 		},
 		{
 			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/verasansmono_compressed 2.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
 			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/verasansmono_compressed.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 12,
-			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/opengl/vertex_array 2.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
