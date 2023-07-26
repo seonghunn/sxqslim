@@ -6,6 +6,7 @@
 #define QEM_MANIFOLD_H
 #include <Eigen/Core>
 #include <igl/is_edge_manifold.h>
+//#include "../include/igl/fast_find_self_intersections.h"
 
 using namespace Eigen;
 using namespace std;

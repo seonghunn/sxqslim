@@ -1,0 +1,5343 @@
+{
+	"backtrace" : 8,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"igl_add_library",
+			"include",
+			"_igl_include_full",
+			"igl_include",
+			"target_sources",
+			"igl_target_sources"
+		],
+		"files" : 
+		[
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_add_library.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/modules/core.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_include.cmake",
+			"cmake-build-debug/_deps/libigl-src/cmake/libigl.cmake",
+			"cmake-build-debug/_deps/libigl-src/CMakeLists.txt",
+			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_target_sources.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 4
+			},
+			{
+				"command" : 2,
+				"file" : 4,
+				"line" : 142,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 15,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 54,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 32,
+				"parent" : 4
+			},
+			{
+				"file" : 1,
+				"parent" : 5
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 2,
+				"parent" : 6
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 7
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 17,
+				"parent" : 6
+			},
+			{
+				"command" : 5,
+				"file" : 5,
+				"line" : 6,
+				"parent" : 9
+			}
+		]
+	},
+	"folder" : 
+	{
+		"name" : "Libigl"
+	},
+	"id" : "igl_core::@7e03116a751a0a925ea3",
+	"name" : "igl_core",
+	"paths" : 
+	{
+		"build" : "_deps/libigl-build",
+		"source" : "cmake-build-debug/_deps/libigl-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				167,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192,
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218,
+				219,
+				220,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				231,
+				232,
+				233,
+				234,
+				235,
+				236,
+				237,
+				238,
+				239,
+				240,
+				241,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248,
+				249,
+				250,
+				251,
+				252,
+				253,
+				254,
+				255,
+				256,
+				257,
+				258,
+				259,
+				260,
+				261,
+				262,
+				263,
+				264,
+				265,
+				266,
+				267,
+				268,
+				269,
+				270,
+				271,
+				272,
+				273,
+				274,
+				275,
+				276,
+				277,
+				278,
+				279,
+				280,
+				281,
+				282,
+				283,
+				284,
+				285,
+				286,
+				287,
+				288,
+				289,
+				290,
+				291,
+				292,
+				293,
+				294,
+				295,
+				296,
+				297,
+				298,
+				299,
+				300,
+				301,
+				302,
+				303,
+				304,
+				305,
+				306,
+				307,
+				308,
+				309,
+				310,
+				311,
+				312,
+				313,
+				314,
+				315,
+				316,
+				317,
+				318,
+				319,
+				320,
+				321,
+				322,
+				323,
+				324,
+				325,
+				326,
+				327,
+				328,
+				329,
+				330,
+				331,
+				332,
+				333,
+				334,
+				335,
+				336,
+				337,
+				338,
+				339,
+				340,
+				341,
+				342,
+				343,
+				344,
+				345,
+				346,
+				347,
+				348,
+				349,
+				350,
+				351,
+				352,
+				353,
+				354,
+				355,
+				356,
+				357,
+				358,
+				359,
+				360,
+				361,
+				362,
+				363,
+				364,
+				365,
+				366,
+				367,
+				368,
+				369,
+				370,
+				371,
+				372,
+				373,
+				374,
+				375,
+				376,
+				377,
+				378,
+				379,
+				380,
+				381,
+				382,
+				383,
+				384,
+				385,
+				386,
+				387,
+				388,
+				389,
+				390,
+				391,
+				392,
+				393,
+				394,
+				395,
+				396,
+				397,
+				398,
+				399,
+				400,
+				401,
+				402,
+				403,
+				404,
+				405,
+				406,
+				407,
+				408,
+				409,
+				410,
+				411,
+				412,
+				413,
+				414,
+				415,
+				416,
+				417,
+				418,
+				419,
+				420,
+				421,
+				422,
+				423,
+				424,
+				425,
+				426,
+				427,
+				428,
+				429,
+				430,
+				431,
+				432,
+				433,
+				434,
+				435,
+				436,
+				437,
+				438,
+				439,
+				440,
+				441,
+				442,
+				443,
+				444,
+				445,
+				446,
+				447,
+				448,
+				449,
+				450,
+				451
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				452,
+				453,
+				454,
+				455,
+				456,
+				457,
+				458,
+				459,
+				460,
+				461,
+				462,
+				463,
+				464,
+				465,
+				466,
+				467,
+				468,
+				469,
+				470,
+				471,
+				472,
+				473,
+				474,
+				475,
+				476,
+				477,
+				478,
+				479,
+				480,
+				481,
+				482,
+				483,
+				484,
+				485,
+				486,
+				487,
+				488,
+				489,
+				490,
+				491,
+				492,
+				493,
+				494,
+				495,
+				496,
+				497,
+				498,
+				499,
+				500,
+				501,
+				502,
+				503,
+				504,
+				505,
+				506,
+				507,
+				508,
+				509,
+				510,
+				511,
+				512,
+				513,
+				514,
+				515,
+				516,
+				517,
+				518,
+				519,
+				520,
+				521,
+				522,
+				523,
+				524,
+				525,
+				526,
+				527,
+				528,
+				529,
+				530,
+				531,
+				532,
+				533,
+				534,
+				535,
+				536,
+				537,
+				538,
+				539,
+				540,
+				541,
+				542,
+				543,
+				544,
+				545,
+				546,
+				547,
+				548,
+				549,
+				550,
+				551,
+				552,
+				553,
+				554,
+				555,
+				556,
+				557,
+				558,
+				559,
+				560,
+				561,
+				562,
+				563,
+				564,
+				565,
+				566,
+				567,
+				568,
+				569,
+				570,
+				571,
+				572,
+				573,
+				574,
+				575,
+				576,
+				577,
+				578,
+				579,
+				580,
+				581,
+				582,
+				583,
+				584,
+				585,
+				586,
+				587,
+				588,
+				589,
+				590,
+				591,
+				592,
+				593,
+				594,
+				595,
+				596,
+				597,
+				598,
+				599,
+				600,
+				601,
+				602,
+				603,
+				604,
+				605,
+				606,
+				607,
+				608,
+				609,
+				610,
+				611,
+				612,
+				613,
+				614,
+				615,
+				616,
+				617,
+				618,
+				619,
+				620,
+				621,
+				622,
+				623,
+				624,
+				625,
+				626,
+				627,
+				628,
+				629,
+				630,
+				631,
+				632,
+				633,
+				634,
+				635,
+				636,
+				637,
+				638,
+				639,
+				640,
+				641,
+				642,
+				643,
+				644,
+				645,
+				646,
+				647,
+				648,
+				649,
+				650,
+				651,
+				652,
+				653,
+				654,
+				655,
+				656,
+				657,
+				658,
+				659,
+				660,
+				661,
+				662,
+				663,
+				664,
+				665,
+				666,
+				667,
+				668,
+				669,
+				670,
+				671,
+				672,
+				673,
+				674,
+				675,
+				676,
+				677,
+				678,
+				679,
+				680,
+				681,
+				682,
+				683,
+				684,
+				685,
+				686,
+				687,
+				688,
+				689,
+				690,
+				691,
+				692,
+				693,
+				694,
+				695,
+				696,
+				697,
+				698,
+				699,
+				700,
+				701,
+				702,
+				703,
+				704,
+				705,
+				706,
+				707,
+				708,
+				709,
+				710,
+				711,
+				712,
+				713,
+				714,
+				715,
+				716,
+				717,
+				718,
+				719,
+				720,
+				721,
+				722,
+				723,
+				724,
+				725,
+				726,
+				727,
+				728,
+				729,
+				730,
+				731,
+				732,
+				733,
+				734,
+				735,
+				736,
+				737,
+				738,
+				739,
+				740,
+				741,
+				742,
+				743,
+				744,
+				745,
+				746,
+				747,
+				748,
+				749,
+				750,
+				751,
+				752,
+				753,
+				754,
+				755,
+				756,
+				757,
+				758,
+				759,
+				760,
+				761,
+				762,
+				763,
+				764,
+				765,
+				766,
+				767,
+				768,
+				769,
+				770,
+				771,
+				772,
+				773,
+				774,
+				775,
+				776,
+				777,
+				778,
+				779,
+				780,
+				781,
+				782,
+				783,
+				784,
+				785,
+				786,
+				787,
+				788,
+				789,
+				790,
+				791,
+				792,
+				793,
+				794,
+				795,
+				796,
+				797,
+				798,
+				799,
+				800,
+				801,
+				802,
+				803,
+				804,
+				805,
+				806,
+				807,
+				808,
+				809,
+				810,
+				811,
+				812,
+				813,
+				814,
+				815,
+				816,
+				817,
+				818,
+				819,
+				820,
+				821,
+				822,
+				823,
+				824,
+				825,
+				826,
+				827,
+				828,
+				829,
+				830,
+				831,
+				832,
+				833,
+				834,
+				835,
+				836,
+				837,
+				838,
+				839,
+				840,
+				841,
+				842,
+				843,
+				844,
+				845,
+				846,
+				847,
+				848,
+				849,
+				850,
+				851,
+				852,
+				853,
+				854,
+				855,
+				856,
+				857,
+				858,
+				859,
+				860,
+				861,
+				862,
+				863,
+				864,
+				865,
+				866,
+				867,
+				868,
+				869,
+				870
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/AABB.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ARAPEnergyType.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/AtA_cached.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/C_STR.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/Camera.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/EPS.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/FastWindingNumberForSoups.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/FileEncoding.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/FileMemoryStream.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/HalfEdgeIterator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/Hit.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/IndexComparison.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/LinSpaced.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MappingEnergyType.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MeshBooleanType.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MshLoader.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MshSaver.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/NormalType.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ONE.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/PI.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/REDRUM.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/STR.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/SolverStatus.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/SortableRow.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/Timer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/Viewport.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/WindingNumberAABB.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/WindingNumberMethod.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/WindingNumberTree.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ZERO.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/accumarray.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/active_set.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/adjacency_list.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/adjacency_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/all.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/all_pairs_distances.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ambient_occlusion.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/angular_distance.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/any.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/any_of.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_dof.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_linear_block.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_rhs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_from_edges_onto_vertices.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_onto_faces.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_onto_vertices.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/avg_edge_length.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/axis_angle_to_quat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycenter.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycentric_coordinates.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycentric_interpolation.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/basename.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bbw.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bezier.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bfs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bfs_orient.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/biharmonic_coordinates.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bijective_composite_harmonic_mapping.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/blkdiag.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/blue_noise.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bone_parents.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_conditions.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_facets.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_loop.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bounding_box.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bounding_box_diagonal.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/canonical_quaternions.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ceil.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/centroid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/circulation.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/circumradius.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/collapse_edge.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/collapse_small_triangles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/colon.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/colormap.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/column_to_quats.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/columnize.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_cross_field.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_frame_field.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_line_field.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/combine.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/compute_frame_field_bisectors.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/connect_boundary_to_infinity.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/connected_components.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix_entries.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix_intrinsic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/count.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/covariance_scatter_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_curvature_correction.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_laplacian.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_mass.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cross.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cross_field_mismatch.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/crouzeix_raviart_cotmatrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/crouzeix_raviart_massmatrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cumprod.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cumsum.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/curved_hessian_energy.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_mesh_from_singularities.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_to_disk.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cylinder.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dated_copy.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/decimate.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/decimate_callback_types.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/decimate_trivial_callbacks.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/default_num_threads.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/deform_skeleton.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/delaunay_triangulation.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/deprecated.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dfs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/diag.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dihedral_angles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dijkstra.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/direct_delta_mush.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/directed_edge_orientations.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/directed_edge_parents.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dirname.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dot.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dot_row.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/doublearea.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dqs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dual_contouring.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ears.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_collapse_is_valid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_exists_near.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_flaps.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_lengths.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_midpoints.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_topology.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_vectors.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edges_to_path.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/eigs.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/euler_characteristic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exact_geodesic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/example_fun.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exploded_view.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extension.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exterior_edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extract_manifold_patches.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extract_non_manifold_edge_curves.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/face_areas.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/face_occurrences.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/faces_first.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/facet_adjacency_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/facet_components.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/false_barycentric_subdivision.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fast_winding_number.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_contents_as_string.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_dialog_open.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_dialog_save.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_exists.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find_cross_field_singularities.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find_zero.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_cubic_bezier.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_plane.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_rotations.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flip_avoiding_line_search.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flip_edge.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flipped_triangles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flood_fill.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/floor.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/for_each.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/forward_kinematics.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frame_field_deformer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frame_to_cross_field.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frustum.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/gaussian_curvature.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/get_seconds.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/get_seconds_hires.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grad.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grad_intrinsic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grid_search.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/group_sum_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/guess_extension.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/harmonic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/harwell_boeing.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hausdorff.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/heat_geodesics.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hessian.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hessian_energy.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/histc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hsv_to_rgb.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/igl_inline.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/in_element.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/infinite_cost_stopping_condition.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/inradius.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/internal_angles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intersect.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intrinsic_delaunay_cotmatrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intrinsic_delaunay_triangulation.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/invert_diag.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_border_vertex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_boundary_edge.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_delaunay.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_dir.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_edge_manifold.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_file.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_intrinsic_delaunay.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_irregular_vertex.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_planar.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_readable.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_sparse.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_stl.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_symmetric.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_vertex_manifold.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_writable.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isdiag.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ismember.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isolines.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isolines_map.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/iterative_closest_point.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/jet.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/kelvinlets.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/kkt_inverse.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/knn.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/launch_medit.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lbs_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lexicographic_triangulation.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/limit_faces.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_field_mismatch.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_search.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_segment_in_rectangle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/linprog.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/list_to_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/local_basis.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/look_at.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/loop.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lscm.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/map_vertices_to_circle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mapping_energy_with_jacobians.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/march_cube.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/marching_cubes.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/marching_cubes_tables.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/marching_tets.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/massmatrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/massmatrix_intrinsic.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_max.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_min.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_to_quat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/material_colors.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/matlab_format.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/matrix_to_list.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max_faces_stopping_condition.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max_size.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/median.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_heap.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed.impl.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_size.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mod.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mode.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mvc.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/nchoosek.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/next_filename.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normal_derivative.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_quat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_row_lengths.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_row_sums.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/null.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/octree.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/offset_surface.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/on_boundary.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orient_halfedges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orient_outward.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orientable_patches.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/oriented_facets.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orth.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ortho.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/outer_element.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/parallel_for.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/parallel_transport_angles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/partition.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/parula.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/path_to_edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/path_to_executable.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pathinfo.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_corner_normals.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_edge_normals.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_face_normals.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_attribute_smoothing.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_normals.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_point_to_plane_quadrics.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/piecewise_constant_winding_number.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pinv.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/planarize_quad_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_in_circle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_mesh_squared_distance.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_simplex_squared_distance.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_dec.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_svd.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_svd3x3.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polygon_corners.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polygons_to_triangles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/principal_curvature.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/print_ijv.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/print_vector.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/procrustes.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_isometrically_to_plane.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_to_line.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_to_line_segment.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/projection_constraint.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pseudonormal_test.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pso.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/qslim.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/qslim_optimal_collapse_edge_callbacks.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quad_grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quad_planarity.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quadprog.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quadric_binary_plus_operator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_conjugate.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_mult.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_to_axis_angle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_to_mat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quats_to_column.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ramer_douglas_peucker.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_dir.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_points_on_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_quaternion.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_search.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/randperm.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_box_intersect.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_mesh_intersect.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_sphere_intersect.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readBF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readCSV.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readDMAT.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readMESH.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readMSH.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readNODE.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readOBJ.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readOFF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readPLY.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readSTL.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readTGF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readWRL.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/read_file_binary.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/read_triangle_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/redux.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remesh_along_isoline.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remove_duplicate_vertices.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remove_unreferenced.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/reorder.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/repdiag.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/repmat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/resolve_duplicated_faces.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rgb_to_hsv.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rigid_alignment.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotate_by_quat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotate_vectors.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotation_matrix_from_directions.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/round.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rows_to_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sample_edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/scalar_to_cr_vector_gradient.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/screen_space_selection.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/seam_edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/segment_segment_intersect.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/serialize.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setdiff.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setunion.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setxor.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shape_diameter_function.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shapeup.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sharp_edges.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shortest_edge_and_midpoint.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/signed_angle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/signed_distance.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/simplify_polyhedron.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_cached.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_into.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_mask.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_sorted.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slim.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/smooth_corner_adjacency.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_points.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_to_canonical_view_quat.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_to_fixed_up.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/solid_angle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_angles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_triangles.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_vectors_ccw.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sortrows.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse_cached.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse_voxel_grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/speye.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/squared_edge_lengths.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/stdin_to_temp.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/straighten_seams.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/string_utils.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sum.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3_avx.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3_sse.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume_bounding_box.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume_signed_distance.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tan_half_angle.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tet_tet_adjacency.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tetrahedralized_grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tinyply.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/topological_hole_fill.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/trackball.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/transpose_blocks.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangle_fan.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangle_triangle_adjacency.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangles_from_strip.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangulated_grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/two_axis_valuator_fixed_up.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/uniformly_sample_two_manifold.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_edge_map.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_rows.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_simplices.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_in_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_on_line.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_on_plane.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_onto_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_ray.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unzip_corners.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/upsample.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vector_area_matrix.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/verbose.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vertex_components.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vertex_triangle_adjacency.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/volume.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/voxel_grid.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/winding_number.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeBF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeDMAT.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeMESH.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeMSH.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeOBJ.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeOFF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writePLY.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeSTL.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeTGF.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeWRL.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/write_triangle_mesh.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/AABB.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/AtA_cached.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/EPS.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/HalfEdgeIterator.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MshLoader.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/MshSaver.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/accumarray.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/active_set.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/adjacency_list.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/adjacency_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/all.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/all_pairs_distances.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ambient_occlusion.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/angular_distance.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/any.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/any_of.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_dof.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_linear_block.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/arap_rhs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_from_edges_onto_vertices.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_onto_faces.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/average_onto_vertices.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/avg_edge_length.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/axis_angle_to_quat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycenter.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycentric_coordinates.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/barycentric_interpolation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/basename.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bbw.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bezier.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bfs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bfs_orient.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/biharmonic_coordinates.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bijective_composite_harmonic_mapping.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/blkdiag.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/blue_noise.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bone_parents.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_conditions.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_facets.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/boundary_loop.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bounding_box.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/bounding_box_diagonal.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/canonical_quaternions.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ceil.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/centroid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/circulation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/circumradius.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/collapse_edge.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/collapse_small_triangles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/colon.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/colormap.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/column_to_quats.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/columnize.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_cross_field.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_frame_field.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/comb_line_field.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/combine.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/compute_frame_field_bisectors.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/connect_boundary_to_infinity.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/connected_components.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix_entries.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cotmatrix_intrinsic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/count.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/covariance_scatter_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_curvature_correction.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_laplacian.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cr_vector_mass.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cross.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cross_field_mismatch.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/crouzeix_raviart_cotmatrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/crouzeix_raviart_massmatrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cumprod.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cumsum.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/curved_hessian_energy.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_mesh_from_singularities.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cut_to_disk.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/cylinder.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dated_copy.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/decimate.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/decimate_trivial_callbacks.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/default_num_threads.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/deform_skeleton.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/delaunay_triangulation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dfs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/diag.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dihedral_angles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dijkstra.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/direct_delta_mush.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/directed_edge_orientations.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/directed_edge_parents.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dirname.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dot.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dot_row.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/doublearea.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dqs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/dual_contouring.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ears.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_collapse_is_valid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_exists_near.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_flaps.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_lengths.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_midpoints.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_topology.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edge_vectors.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/edges_to_path.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/eigs.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/euler_characteristic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exact_geodesic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/example_fun.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exploded_view.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extension.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/exterior_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extract_manifold_patches.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/extract_non_manifold_edge_curves.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/face_areas.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/face_occurrences.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/faces_first.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/facet_adjacency_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/facet_components.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/false_barycentric_subdivision.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fast_winding_number.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_contents_as_string.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_dialog_open.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_dialog_save.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/file_exists.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find_cross_field_singularities.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/find_zero.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_cubic_bezier.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_plane.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/fit_rotations.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flip_avoiding_line_search.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flip_edge.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flipped_triangles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/flood_fill.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/floor.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/forward_kinematics.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frame_field_deformer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frame_to_cross_field.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/frustum.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/gaussian_curvature.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/get_seconds.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/get_seconds_hires.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grad.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grad_intrinsic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/grid_search.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/group_sum_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/guess_extension.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/harmonic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/harwell_boeing.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hausdorff.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/heat_geodesics.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hessian.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hessian_energy.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/histc.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/hsv_to_rgb.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/in_element.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/infinite_cost_stopping_condition.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/inradius.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/internal_angles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intersect.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intrinsic_delaunay_cotmatrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/intrinsic_delaunay_triangulation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/invert_diag.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_border_vertex.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_boundary_edge.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_delaunay.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_dir.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_edge_manifold.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_file.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_intrinsic_delaunay.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_irregular_vertex.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_planar.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_readable.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_sparse.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_stl.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_symmetric.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_vertex_manifold.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/is_writable.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isdiag.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ismember.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isolines.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/isolines_map.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/iterative_closest_point.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/jet.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/kelvinlets.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/kkt_inverse.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/knn.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/launch_medit.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lbs_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lexicographic_triangulation.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/limit_faces.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_field_mismatch.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_search.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/line_segment_in_rectangle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/linprog.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/list_to_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/local_basis.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/look_at.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/loop.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/lscm.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/map_vertices_to_circle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mapping_energy_with_jacobians.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/march_cube.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/marching_cubes.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/marching_tets.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/massmatrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/massmatrix_intrinsic.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_max.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_min.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mat_to_quat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/matlab_format.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/matrix_to_list.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max_faces_stopping_condition.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/max_size.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/median.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed.1.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed.2.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed_precompute.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_quad_with_fixed_solve.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/min_size.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mod.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mode.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/mvc.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/nchoosek.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/next_filename.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normal_derivative.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_quat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_row_lengths.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/normalize_row_sums.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/null.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/octree.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/offset_surface.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/on_boundary.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orient_halfedges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orient_outward.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orientable_patches.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/oriented_facets.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/orth.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ortho.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/outer_element.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/parallel_transport_angles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/partition.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/parula.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/path_to_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/path_to_executable.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pathinfo.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_corner_normals.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_edge_normals.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_face_normals.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_attribute_smoothing.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_normals.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/per_vertex_point_to_plane_quadrics.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/piecewise_constant_winding_number.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pinv.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/planarize_quad_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_in_circle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_mesh_squared_distance.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/point_simplex_squared_distance.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_dec.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_svd.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polar_svd3x3.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polygon_corners.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/polygons_to_triangles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/principal_curvature.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/print_ijv.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/print_vector.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/procrustes.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_isometrically_to_plane.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_to_line.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/project_to_line_segment.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/projection_constraint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pseudonormal_test.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/pso.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/qslim.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/qslim_optimal_collapse_edge_callbacks.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quad_grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quad_planarity.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quadprog.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quadric_binary_plus_operator.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_conjugate.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_mult.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_to_axis_angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quat_to_mat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/quats_to_column.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ramer_douglas_peucker.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_dir.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_points_on_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_quaternion.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/random_search.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/randperm.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_box_intersect.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_mesh_intersect.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/ray_sphere_intersect.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readBF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readCSV.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readDMAT.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readMESH.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readMSH.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readNODE.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readOBJ.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readOFF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readPLY.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readSTL.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readTGF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/readWRL.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/read_file_binary.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/read_triangle_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remesh_along_isoline.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remove_duplicate_vertices.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/remove_unreferenced.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/reorder.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/repdiag.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/repmat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/resolve_duplicated_faces.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rgb_to_hsv.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rigid_alignment.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotate_by_quat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotate_vectors.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rotation_matrix_from_directions.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/round.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/rows_to_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sample_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/scalar_to_cr_vector_gradient.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/screen_space_selection.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/seam_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/segment_segment_intersect.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setdiff.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setunion.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/setxor.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shape_diameter_function.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shapeup.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sharp_edges.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/shortest_edge_and_midpoint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/signed_angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/signed_distance.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/simplify_polyhedron.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_cached.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_into.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_mask.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slice_sorted.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/slim.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/smooth_corner_adjacency.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_points.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_to_canonical_view_quat.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/snap_to_fixed_up.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/solid_angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_angles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_triangles.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sort_vectors_ccw.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sortrows.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse_cached.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sparse_voxel_grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/speye.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/squared_edge_lengths.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/stdin_to_temp.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/straighten_seams.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/string_utils.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/sum.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3_avx.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/svd3x3_sse.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume_bounding_box.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/swept_volume_signed_distance.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tan_half_angle.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tet_tet_adjacency.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tetrahedralized_grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/tinyply.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/topological_hole_fill.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/trackball.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/transpose_blocks.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangle_fan.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangle_triangle_adjacency.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangles_from_strip.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/triangulated_grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/two_axis_valuator_fixed_up.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/uniformly_sample_two_manifold.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_edge_map.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_rows.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unique_simplices.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_in_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_on_line.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_on_plane.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_onto_mesh.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unproject_ray.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/unzip_corners.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/upsample.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vector_area_matrix.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vertex_components.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/vertex_triangle_adjacency.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/volume.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/voxel_grid.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/winding_number.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeBF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeDMAT.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeMESH.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeMSH.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeOBJ.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeOFF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writePLY.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeSTL.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeTGF.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/writeWRL.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 10,
+			"path" : "cmake-build-debug/_deps/libigl-src/include/igl/write_triangle_mesh.cpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "INTERFACE_LIBRARY"
+}

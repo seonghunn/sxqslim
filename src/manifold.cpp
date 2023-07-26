@@ -27,14 +27,11 @@ namespace qem{
         //igl::copyleft::cgal::RemeshSelfIntersectionsParam params;
         //params.detect_only = true;
 
-        Eigen::MatrixXd V_temp;
-        Eigen::MatrixXi F_temp,IF,J,IM;
+        Eigen::MatrixXi intersect, edges;
 
-        //igl::copyleft::cgal::remesh_self_intersections(V, F, params, V_temp, F_temp, IF, J, IM);
-
-        cout << "IF " << IF << endl;
-
-        return true;
+        //TODO: fast_find_self_intersection function doesn't work at all
+       //return igl::fast_find_self_intersections(V, F, intersect, edges);
+       return true;
     }
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){
