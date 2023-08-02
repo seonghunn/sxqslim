@@ -46,6 +46,18 @@
 			"value" : "/Library/Developer/CommandLineTools/usr/bin/ar"
 		},
 		{
+			"name" : "CMAKE_BACKWARDS_COMPATIBILITY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "For backwards compatibility, what version of CMake commands and syntax should this version of CMake try to support."
+				}
+			],
+			"type" : "STRING",
+			"value" : "2.4"
+		},
+		{
 			"name" : "CMAKE_BUILD_TYPE",
 			"properties" : 
 			[
@@ -1454,6 +1466,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "EXECUTABLE_OUTPUT_PATH",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Single output directory for building all executables."
+				}
+			],
+			"type" : "PATH",
+			"value" : ""
+		},
+		{
 			"name" : "FETCHCONTENT_BASE_DIR",
 			"properties" : 
 			[
@@ -1830,6 +1854,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "LIBIGL_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for LIBIGL."
+				}
+			],
+			"type" : "PATH",
+			"value" : "LIBIGL_DIR-NOTFOUND"
+		},
+		{
 			"name" : "LIBIGL_EMBREE",
 			"properties" : 
 			[
@@ -1974,6 +2010,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "LIBRARY_OUTPUT_PATH",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Single output directory for building all libraries."
+				}
+			],
+			"type" : "PATH",
+			"value" : ""
+		},
+		{
 			"name" : "OPENGL_INCLUDE_DIR",
 			"properties" : 
 			[
@@ -2020,6 +2068,42 @@
 			],
 			"type" : "FILEPATH",
 			"value" : "/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework"
+		},
+		{
+			"name" : "Project_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug"
+		},
+		{
+			"name" : "Project_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "Project_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase"
 		},
 		{
 			"name" : "QEM_BINARY_DIR",

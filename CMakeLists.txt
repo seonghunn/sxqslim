@@ -23,4 +23,3 @@ file(GLOB SRC_FILES src/*.cpp)
 #add_executable(${PROJECT_NAME} ${SRC_FILES} src/dataparser.h src/dataparser.cpp src/mesh.cpp src/mesh.h)
 add_executable(${PROJECT_NAME} ${SRC_FILES} src/quadratic.h src/collapse_callback.h src/helper.h src/process.h src/manifold.h src/preprocess.h)
 target_link_libraries(${PROJECT_NAME} PUBLIC igl::glfw)
-

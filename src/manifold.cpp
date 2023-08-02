@@ -30,8 +30,8 @@ namespace qem{
         Eigen::MatrixXi intersect, edges;
 
         //TODO: fast_find_self_intersection function doesn't work at all
-       //return igl::fast_find_self_intersections(V, F, intersect, edges);
-       return true;
+       return igl::fast_find_self_intersections(V, F, intersect);
+       //return true;
     }
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){
@@ -54,9 +54,14 @@ namespace qem{
 */
 
 
-        //TODO: check self-intersection
+        //TODO: check self-intersection, they treat input as self intersected mesh
         //check self-intersection
-        check_self_intersection(V, F);
+/*
+        if(!check_self_intersection(V, F)){
+            cout << "self-intersection test fail" << endl;
+            return false;
+        }
+*/
 
         return true;
     }
