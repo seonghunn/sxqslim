@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: seonghun-test
+spec:
+  template:
+    spec:
+      volumes:
+        - name: seonghun-volume
+          persistentVolumeClaim:
+            claimName: seonghun-fast-vol
+      containers:
+        - name: qem-container
+          image: seonghunn/libigl
+          command: ['/bin/sh', '-c']
+          args: ['cd build && ./QEM bunny0.75.obj bunny_out_kub 0.3']
+          volumeMounts:
+            - mountPath: '/qem/model/output'
+              name: seonghun-volume
+          resources:
+            limits:
+              cpu: 2
+              memory: 2Gi
+            requests:
+              cpu: 1
+              memory: 1Gi
+      restartPolicy: Never
+  backoffLimit: 4

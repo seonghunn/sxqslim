@@ -244,9 +244,11 @@ int main(int argc, char * argv[])
     //viewer.callback_pre_draw = pre_draw;
     process(viewer);
 
-    viewer.data().clear();
-    viewer.data().set_mesh(V,F);
-    viewer.data().set_face_based(true);
+    // Erase this for docker image
+    //viewer.data().clear();
+    //viewer.data().set_mesh(V,F);
+    //viewer.data().set_face_based(true);
 
-    return viewer.launch();
+    //return viewer.launch();
+    return 0;
 }

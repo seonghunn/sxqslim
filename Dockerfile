@@ -1,3 +1,4 @@
+# Use Ubuntu 20.04 as base image
 FROM ubuntu:20.04
 
 # Set timezone
@@ -6,17 +7,18 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    cmake \
-    git \
-    libeigen3-dev \
-    xorg-dev \
-    libgl1-mesa-dev \
-    && rm -rf /var/lib/apt/lists/*
+  build-essential \
+  cmake \
+  git \
+  libeigen3-dev \
+  xorg-dev \
+  libgl1-mesa-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /qem
 
-COPY ../ /qem
+# Copy entire project directory
+COPY . /qem
 
 # Download libigl
 RUN git clone https://github.com/libigl/libigl.git /qem/libigl
