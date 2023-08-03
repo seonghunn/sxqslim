@@ -39,10 +39,10 @@ int main(int argc, char * argv[])
     //read_triangle_mesh(INPUT_PATH + input_filename, OV, F_);
     read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
     // set orient outward
-    //qem::set_input_orient_outward(OV, F_, OF);
-    //for (int i = 0; i < OF.rows(); i++) {
-    //    cout << "F_ : " << F_.row(i) << " OF : " << OF.row(i) << endl;
-    //}
+/*    qem::set_input_orient_outward(OV, F_, OF);
+    for (int i = 0; i < OF.rows(); i++) {
+        cout << "F_ : " << F_.row(i) << " OF : " << OF.row(i) << endl;
+    }*/
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
     if(qem::is_manifold(OV, OF)){

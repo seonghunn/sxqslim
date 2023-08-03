@@ -29,7 +29,7 @@ namespace qem{
 
         Eigen::MatrixXi intersect, edges;
 
-        //TODO: fast_find_self_intersection function doesn't work at all
+        //if it returns false, it means the mesh does not have self-intersections
        return igl::fast_find_self_intersections(V, F, intersect);
        //return true;
     }
@@ -40,28 +40,24 @@ namespace qem{
             cout<< "edge manifold test fail"<<endl;
             return false;
         }
-
         cout << "edge manifold test success" << endl;
 
-/*
-        // check orientation
+        //check self-intersection
+        if(check_self_intersection(V, F)){
+            // self intersection exist
+            cout << "self-intersection test fail" << endl;
+            return false;
+        }
+        cout << "self-intersection test success" << endl;
+
+/*        // check orientation
         if(!qem::check_mesh_orientation(V, F)){
             cout << "orientation test fail" << endl;
             return false;
         }
 
-        cout << "orientation test success" << endl;
-*/
+        cout << "orientation test success" << endl;*/
 
-
-        //TODO: check self-intersection, they treat input as self intersected mesh
-        //check self-intersection
-/*
-        if(!check_self_intersection(V, F)){
-            cout << "self-intersection test fail" << endl;
-            return false;
-        }
-*/
 
         return true;
     }
