@@ -170,6 +170,14 @@
 	[
 		{
 			"backtrace" : 14,
+			"id" : "glfw::@fa9f4482d3a2b070f206"
+		},
+		{
+			"backtrace" : 14,
+			"id" : "glad::@f022c46af7fd79d63a94"
+		},
+		{
+			"backtrace" : 14,
 			"id" : "igl_glfw::@6890427a1f51a3e7e1df"
 		},
 		{
@@ -179,14 +187,6 @@
 		{
 			"backtrace" : 14,
 			"id" : "igl_core::@7e03116a751a0a925ea3"
-		},
-		{
-			"backtrace" : 14,
-			"id" : "glfw::@fa9f4482d3a2b070f206"
-		},
-		{
-			"backtrace" : 14,
-			"id" : "glad::@f022c46af7fd79d63a94"
 		}
 	],
 	"id" : "QEM::@6890427a1f51a3e7e1df",

@@ -11,9 +11,10 @@ spec:
             claimName: seonghun-fast-vol
       containers:
         - name: qem-container
-          image: seonghunn/libigl
+          image: seonghunn/libigl:intcheck
+          imagePullPolicy: Always
           command: ['/bin/sh', '-c']
-          args: ['cd build && ./QEM bunny0.75.obj bunny_out_kub 0.3']
+          args: ['cd build && ./QEM bunny.obj bunny_out_0.01_kub 0.01']
           volumeMounts:
             - mountPath: '/qem/model/output'
               name: seonghun-volume

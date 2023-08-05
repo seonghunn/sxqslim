@@ -1,12 +1,12 @@
 # Use Ubuntu 20.04 as base image
 FROM ubuntu:20.04
 
-# Set timezone
-ENV TZ=America/Los_Angeles
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
+  tzdata \
   build-essential \
   cmake \
   git \
@@ -14,6 +14,9 @@ RUN apt-get update && apt-get install -y \
   xorg-dev \
   libgl1-mesa-dev \
   && rm -rf /var/lib/apt/lists/*
+
+# Set timezone
+RUN ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 WORKDIR /qem
 
@@ -25,3 +28,6 @@ RUN git clone https://github.com/libigl/libigl.git /qem/libigl
 
 # Build your project
 RUN rm -rf build && mkdir build && cd build && cmake .. && make
+
+# Switch back to dialog for any ad-hoc use of apt-get
+ENV DEBIAN_FRONTEND=dialog
