@@ -3,6 +3,7 @@
 //
 
 #include "collapse_callback.h"
+#include <time.h>
 using namespace std;
 
 #define IGL_COLLAPSE_EDGE_NULL 0
@@ -37,8 +38,15 @@ namespace qem{
                 MatrixXi F_ = F;
 
                 //Add this logic : total time complexity -> O(N^2 log(N))
+                clock_t start_remove, end_remove, start_test, end_test;
+                start_remove = clock();
                 qem::remove_duplicated_faces(V_, F_);
+                end_remove = clock();
+                start_test = clock();
                 if(!qem::is_manifold(V_, F_)) return false;
+                end_test = clock();
+                cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
+                cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
 
                 // Get index of vertices which supposed to be replaced
                 RV.v1 = E(e,0);

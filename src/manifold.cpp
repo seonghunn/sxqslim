@@ -3,6 +3,7 @@
 //
 
 #include "manifold.h"
+#include <time.h>
 
 namespace qem{
     //TODO: self orientation doesn't work at large mesh
@@ -36,19 +37,26 @@ namespace qem{
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){
         // check edge_manifold
+        clock_t start_edge, end_edge, start_intersect, end_intersect;
+        start_edge = clock();
         if(!igl::is_edge_manifold(F)) {
-            cout<< "edge manifold test fail"<<endl;
+            //cout<< "edge manifold test fail"<<endl;
             return false;
         }
-        cout << "edge manifold test success" << endl;
+        end_edge = clock();
+        cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec" << endl;
+        //cout << "edge manifold test success" << endl;
 
         //check self-intersection
+        start_intersect = clock();
         if(check_self_intersection(V, F)){
             // self intersection exist
-            cout << "self-intersection test fail" << endl;
+            //cout << "self-intersection test fail" << endl;
             return false;
         }
-        cout << "self-intersection test success" << endl;
+        end_intersect = clock();
+        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec" << endl;
+        //cout << "self-intersection test success" << endl;
 
 /*        // check orientation
         if(!qem::check_mesh_orientation(V, F)){
