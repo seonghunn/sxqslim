@@ -1,10 +1,10 @@
 # ninja log v5
-26	7574	1690253353891721526	CMakeFiles/QEM.dir/src/main.cpp.o	b3cef96c62b4a7c4
 27	948	1690253347340905052	CMakeFiles/QEM.dir/src/manifold.cpp.o	3a3243510c711275
-27	1014	1690253347408454193	CMakeFiles/QEM.dir/src/preprocess.cpp.o	42665645c83abe29
+26	7574	1690253353891721526	CMakeFiles/QEM.dir/src/main.cpp.o	b3cef96c62b4a7c4
 6670	6780	1690248478339522802	_deps/glad-build/CMakeFiles/glad.dir/src/glad.c.o	324dab1590b69dc2
-10	1034	1691368916682766636	build.ninja	70b8f02f104b3fe9
+10	1034	1691372950234386326	build.ninja	70b8f02f104b3fe9
 3990	5032	1690248476575287962	_deps/glfw-build/src/CMakeFiles/glfw.dir/cocoa_window.m.o	d8582b9f5d220892
+27	1014	1690253347408454193	CMakeFiles/QEM.dir/src/preprocess.cpp.o	42665645c83abe29
 7575	8013	1690253354413324591	QEM	97ee3e1dfbc2431c
 29	7971	1690248479499872193	CMakeFiles/QEM.dir/src/process.cpp.o	136e46c31e617921
 5610	6347	1690248477892279260	_deps/glfw-build/src/CMakeFiles/glfw.dir/egl_context.c.o	32be0e02a5d57172
@@ -22,7 +22,7 @@
 2584	2929	1690248474489714023	_deps/glfw-build/src/CMakeFiles/glfw.dir/monitor.c.o	1225ff9170c6da70
 1460	1902	1690248473462106739	_deps/glfw-build/src/CMakeFiles/glfw.dir/context.c.o	1d0bec943e969e70
 2929	3267	1690248474826945764	_deps/glfw-build/src/CMakeFiles/glfw.dir/window.c.o	6af73036d58c16d2
-6797	6933	1690248478497885000	_deps/glfw-build/src/libglfw3.a	4c7783e4b2856919
-28	8751	1690248480275794928	CMakeFiles/QEM.dir/src/helper.cpp.o	8af8e637bc58cea6
 27	8059	1690248479586110280	CMakeFiles/QEM.dir/src/collapse_callback.cpp.o	de8760dfafb55b09
+28	8751	1690248480275794928	CMakeFiles/QEM.dir/src/helper.cpp.o	8af8e637bc58cea6
+6797	6933	1690248478497885000	_deps/glfw-build/src/libglfw3.a	4c7783e4b2856919
 1421	2907	1690248474456490360	CMakeFiles/QEM.dir/src/quadratic.cpp.o	c222c1ca35e07ecf

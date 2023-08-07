@@ -17,6 +17,38 @@
 //Build shared libraries
 BUILD_SHARED_LIBS:BOOL=OFF
 
+//Build the testing tree.
+BUILD_TESTING:BOOL=OFF
+
+//Activate the debug messages of the script FindBoost
+Boost_DEBUG:BOOL=OFF
+
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/opt/homebrew/lib/cmake/Boost-1.82.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/opt/homebrew/include
+
+//Link with static Boost libraries
+CGAL_Boost_USE_STATIC_LIBS:BOOL=ON
+
+//Display memory and real time usage at end of CTest test outputs
+CGAL_CTEST_DISPLAY_MEM_AND_TIME:BOOL=OFF
+
+//Activate the CGAL developers mode. See https://github.com/CGAL/cgal/wiki/CGAL_DEV_MODE
+CGAL_DEV_MODE:BOOL=OFF
+
+//The directory containing a CMake configuration file for CGAL.
+CGAL_DIR:PATH=/opt/homebrew/lib/cmake/CGAL
+
+//If set, the ctest command will not skip the tests of the draw
+// functions.
+CGAL_TEST_DRAW_FUNCTIONS:BOOL=OFF
+
+//Use CGAL with GMPXX: use C++ classes of GNU MP instead of CGAL
+// wrappers
+CGAL_WITH_GMPXX:BOOL=ON
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -350,6 +382,21 @@ GLFW_USE_OSMESA:BOOL=OFF
 //Assume the Vulkan loader is linked with the application
 GLFW_VULKAN_STATIC:BOOL=OFF
 
+//The directory containing the GMPXX include files
+GMPXX_INCLUDE_DIR:PATH=/opt/homebrew/include
+
+//Path to the GMPXX library
+GMPXX_LIBRARIES:FILEPATH=/opt/homebrew/lib/libgmpxx.dylib
+
+//The directory containing the GMP header files
+GMP_INCLUDE_DIR:PATH=/opt/homebrew/include
+
+//Path to the Debug GMP library
+GMP_LIBRARY_DEBUG:FILEPATH=/opt/homebrew/lib/libgmp.dylib
+
+//Path to the Release GMP library
+GMP_LIBRARY_RELEASE:FILEPATH=/opt/homebrew/lib/libgmp.dylib
+
 //Enable Hunter package manager support
 HUNTER_ENABLED:BOOL=OFF
 
@@ -407,6 +454,14 @@ LIBIGL_USE_STATIC_LIBRARY:BOOL=OFF
 //Build target igl::xml
 LIBIGL_XML:BOOL=OFF
 
+//The directory containing the MPFR header files
+MPFR_INCLUDE_DIR:PATH=/opt/homebrew/include
+
+//Path to the MPFR library
+MPFR_LIBRARIES:FILEPATH=/opt/homebrew/lib/libmpfr.dylib
+
+MPFR_LIBRARIES_DIR:FILEPATH=/opt/homebrew/lib
+
 //Include for OpenGL on OS X
 OPENGL_INCLUDE_DIR:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework
 
@@ -424,6 +479,9 @@ QEM_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 QEM_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
+
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/opt/homebrew/lib/cmake/boost_headers-1.82.0
 
 //Value Computed by CMake
 glad_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-build
@@ -448,6 +506,16 @@ libigl_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyC
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DEBUG
+Boost_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CGAL_Boost_USE_STATIC_LIBS
+CGAL_Boost_USE_STATIC_LIBS-ADVANCED:INTERNAL=1
+//CGAL library is configured to use GMP
+CGAL_USE_GMP:INTERNAL=TRUE
+//CGAL library is configured to use MPFR
+CGAL_USE_MPFR:INTERNAL=TRUE
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -613,6 +681,12 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/opt/homebrew/lib/cmake/Boost-1.82.0/BoostConfig.cmake][c ][v1.82.0(1.66)]
+//Details about finding GMP
+FIND_PACKAGE_MESSAGE_DETAILS_GMP:INTERNAL=[/opt/homebrew/lib/libgmp.dylib][/opt/homebrew/include][v()]
+//Details about finding MPFR
+FIND_PACKAGE_MESSAGE_DETAILS_MPFR:INTERNAL=[/opt/homebrew/lib/libmpfr.dylib][/opt/homebrew/include][v()]
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework][/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework][cfound components: OpenGL ][v()]
 //Details about finding Threads
@@ -627,4 +701,6 @@ OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
 
