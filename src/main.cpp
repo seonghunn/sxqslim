@@ -184,6 +184,7 @@ int main(int argc, char * argv[])
                 }
                 something_collapsed = true;
                 num_collapsed++;
+                cout << num_collapsed << " vertices are collapsed\n" << endl;
                 // if stopping condition met, break
                 if (num_collapsed>=stopping_condition) {
                     flag = true;
@@ -205,7 +206,7 @@ int main(int argc, char * argv[])
                 viewer.data().set_mesh(V,F);
                 viewer.data().set_face_based(true);
                 if(flag) {
-                    cout << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
+                    cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
                     if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
                         cout << "Successfully wrote to " << output_filename << ".obj" << endl;
                         return 0;

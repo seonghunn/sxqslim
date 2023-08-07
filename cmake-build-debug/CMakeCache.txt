@@ -23,10 +23,6 @@ CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 //Path to a program.
 CMAKE_AR:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ar
 
-//For backwards compatibility, what version of CMake commands and
-// syntax should this version of CMake try to support.
-CMAKE_BACKWARDS_COMPATIBILITY:STRING=2.4
-
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
@@ -192,7 +188,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 
 //The product will be built against the headers and libraries located
 // inside the indicated SDK.
-CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk
+CMAKE_OSX_SYSROOT:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
 
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
@@ -282,9 +278,6 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Compile Eigen with MPL2 code only
 EIGEN_MPL2_ONLY:BOOL=OFF
-
-//Single output directory for building all executables.
-EXECUTABLE_OUTPUT_PATH:PATH=
 
 //Directory under which to collect all populated content
 FETCHCONTENT_BASE_DIR:PATH=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps
@@ -378,9 +371,6 @@ LIBIGL_COPYLEFT_CORE:BOOL=OFF
 //Build target igl_copyleft::tetgen
 LIBIGL_COPYLEFT_TETGEN:BOOL=OFF
 
-//The directory containing a CMake configuration file for LIBIGL.
-LIBIGL_DIR:PATH=LIBIGL_DIR-NOTFOUND
-
 //Build target igl::embree
 LIBIGL_EMBREE:BOOL=OFF
 
@@ -417,26 +407,14 @@ LIBIGL_USE_STATIC_LIBRARY:BOOL=OFF
 //Build target igl::xml
 LIBIGL_XML:BOOL=OFF
 
-//Single output directory for building all libraries.
-LIBRARY_OUTPUT_PATH:PATH=
-
 //Include for OpenGL on OS X
-OPENGL_INCLUDE_DIR:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework
+OPENGL_INCLUDE_DIR:PATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework
 
 //OpenGL library for OS X
-OPENGL_gl_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework
+OPENGL_gl_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework
 
 //GLU library for OS X (usually same as OpenGL library)
-OPENGL_glu_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework
-
-//Value Computed by CMake
-Project_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
-
-//Value Computed by CMake
-Project_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
+OPENGL_glu_LIBRARY:FILEPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework
 
 //Value Computed by CMake
 QEM_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
@@ -446,15 +424,6 @@ QEM_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 QEM_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
-
-//Value Computed by CMake
-example_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
-
-//Value Computed by CMake
-example_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-example_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
 
 //Value Computed by CMake
 glad_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-build
@@ -645,7 +614,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
-FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework][/Library/Developer/CommandLineTools/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework][cfound components: OpenGL ][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework][/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework][cfound components: OpenGL ][v()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE

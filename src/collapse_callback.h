@@ -9,6 +9,7 @@
 #include <igl/is_edge_manifold.h>
 #include <igl/min_heap.h>
 #include <igl/remove_unreferenced.h>
+#include <igl/collapse_edge.h>
 #include <Eigen/Core>
 #include <vector>
 #include "helper.h"

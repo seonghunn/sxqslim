@@ -3,7 +3,6 @@
 //
 
 #include "collapse_callback.h"
-#include <time.h>
 using namespace std;
 
 #define IGL_COLLAPSE_EDGE_NULL 0
@@ -33,18 +32,28 @@ namespace qem{
                 // if (is_boundary_edge(e, V, F, E, EMAP, EF, EI)) {
                 //     return false;
                 // }
-                // collapsing edges that are not generate non-manifold mesh
+                //Add this logic : total time complexity -> O(N^2 log(N))
+                // collapsing edge candidate
                 MatrixXd V_ = V;
                 MatrixXi F_ = F;
+                MatrixXi E_ = E;
+                VectorXi EMAP_ = EMAP;
+                MatrixXi EF_ = EF;
+                MatrixXi EI_ = EI;
+                RowVectorXd p = V.row(E(e, 0));
+                clock_t start_remove, end_remove, start_test, end_test, start_collapse, end_collapse;
+                start_collapse = clock();
+                igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
+                end_collapse = clock();
 
-                //Add this logic : total time complexity -> O(N^2 log(N))
-                clock_t start_remove, end_remove, start_test, end_test;
                 start_remove = clock();
                 qem::remove_duplicated_faces(V_, F_);
                 end_remove = clock();
                 start_test = clock();
+
                 if(!qem::is_manifold(V_, F_)) return false;
                 end_test = clock();
+                cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
 
