@@ -51,7 +51,7 @@ namespace qem{
         start_intersect = clock();
         if(check_self_intersection(V, F)){
             // self intersection exist
-            //cout << "self-intersection test fail" << endl;
+            cout << "self-intersection test fail" << endl;
             return false;
         }
         end_intersect = clock();

@@ -56,8 +56,9 @@ namespace qem{
                 cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
-
+                cout << "Before collapsing number of vertices : " << V_.rows() << endl;
                 // Get index of vertices which supposed to be replaced
+                //TODO: 여기서 false 일 때 cost 를 infinite 로
                 RV.v1 = E(e,0);
                 RV.v2 = E(e,1);
 
@@ -103,74 +104,36 @@ namespace qem{
 // callback function for post_collapse stage, this function always called every decimation step
     igl::decimate_post_collapse_callback post_collapse;
 // Wrapper function to use qValues table
-    void setup_post_collapse_with_qValues(QValues& qValues) {
+    void setup_post_collapse_with_qValues(QValues& qValues, igl::min_heap< std::tuple<double,int,int> >& Q) {
         post_collapse =
-                [&qValues](const Eigen::MatrixXd &V,
-                           const Eigen::MatrixXi &F,
-                           const Eigen::MatrixXi &E,
-                           const Eigen::VectorXi &EMAP,
-                           const Eigen::MatrixXi &EF,
-                           const Eigen::MatrixXi &EI,
-                           const igl::min_heap<std::tuple<double, int, int> > &Q,
-                           const Eigen::VectorXi &EQ,
-                           const Eigen::MatrixXd &C,
-                           const int e,
-                           const int e1,
-                           const int e2,
-                           const int f1,
-                           const int f2,
-                           const bool collapsed) {
-                    //Note : the resulting vertex after collapsing is C.row(e)
-                    //Note : the vertices list V after collapsing changes to C (for each edge's end vertices)
-                    // If edge is collapsed
+                [&qValues, &Q](const Eigen::MatrixXd &V,
+                               const Eigen::MatrixXi &F,
+                               const Eigen::MatrixXi &E,
+                               const Eigen::VectorXi &EMAP,
+                               const Eigen::MatrixXi &EF,
+                               const Eigen::MatrixXi &EI,
+                               const igl::min_heap<std::tuple<double, int, int> > &,
+                               const Eigen::VectorXi &EQ,
+                               const Eigen::MatrixXd &C,
+                               const int e,
+                               const int e1,
+                               const int e2,
+                               const int f1,
+                               const int f2,
+                               const bool collapsed) {
                     if (collapsed) {
                         int RV_idx1 = RV.v1;
                         int RV_idx2 = RV.v2;
-                        // Update Q = Q1 + Q2 (index of Q might be indices of removed vertices)
                         Eigen::Matrix4d Q1 = qValues.values[RV_idx1];
                         Eigen::Matrix4d Q2 = qValues.values[RV_idx2];
                         qValues.values[RV_idx1] = Q1 + Q2;
                         qValues.values[RV_idx2] = Q1 + Q2;
-
-                        //TODO: remove vertex and faces
                     }
-
-
-/*                    cout << "****V****" << endl;
-                    cout << V << endl;
-                    cout << "****F****" << endl;
-                    cout << F << endl;
-                    cout << "****qValues****" << endl;
-                    for (int i = 0; i < qValues.values.size(); i++) {
-                        cout << "*************" << endl;
-                        cout << qValues.values[i] << endl;
-                    }
-                    cout << endl;
-                    cout << "***E***" << endl;
-                    cout << E << endl;
-
-                    MatrixXd VCopy = V;
-                    MatrixXi FCopy = F;
-
-                    QEM::remove_duplicated_faces(VCopy, FCopy);
-
-                    cout << "****V after****" << endl;
-                    cout << VCopy << endl;
-                    cout << "****F after****" << endl;
-                    cout << FCopy << endl;
-                    cout << "****qValues after****" << endl;
-                    for (int i = 0; i < qValues.values.size(); i++) {
-                        cout << "****after****" << endl;
-                        cout << qValues.values[i] << endl;
-                    }
-                    cout << endl;
-                    cout << "***E after***" << endl;
-                    cout << E << endl;*/
-
                 };
     }
 
-// using qValues table, calculate cost and optimal position of new vertex
+
+    // using qValues table, calculate cost and optimal position of new vertex
     void quadratic(
             const int e,
             const Eigen::MatrixXd & V,

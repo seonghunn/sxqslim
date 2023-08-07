@@ -25,7 +25,7 @@ namespace qem{
     //extern igl::decimate_cost_and_placement_callback cost_and_placement;
 
     //void setup_cost_and_placement_with_qValues(QValues&);
-    void setup_post_collapse_with_qValues(QValues&);
+    void setup_post_collapse_with_qValues(QValues&, igl::min_heap< std::tuple<double,int,int> >&);
     void quadratic(
             const int e,
             const Eigen::MatrixXd & V,

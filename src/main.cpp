@@ -95,8 +95,64 @@ int main(int argc, char * argv[])
     };
     // call wrap function to use qValues in callback function
     //customCBF::setup_cost_and_placement_with_qValues(qValues);
-    qem::setup_post_collapse_with_qValues(qValues);
+    qem::setup_post_collapse_with_qValues(qValues, Q);
 
+    const auto &process = [&](igl::opengl::glfw::Viewer & viewer)->bool
+    {
+        clock_t start, end;
+        start = clock();
+        while(!Q.empty())
+        {
+            bool something_collapsed = false;
+            bool flag = false;
+            // collapse edge
+            const int max_iter = std::ceil(0.01*Q.size());
+            for(int j = 0;j<max_iter;j++)
+            {
+                // if collapsing doesn't occur, break
+                if(!collapse_edge(quadratic_with_qValues,
+                                  qem::pre_collapse,
+                                  qem::post_collapse,
+                                  V, F, E, EMAP, EF, EI, Q, EQ, C))
+                {
+                    break;
+                }
+                something_collapsed = true;
+                num_collapsed++;
+                cout << num_collapsed << " vertices are collapsed\n" << endl;
+                // if stopping condition met, break
+                if (num_collapsed>=stopping_condition) {
+                    flag = true;
+                    // remove duplicated vertices and faces
+                    end = clock();
+                    qem::remove_duplicated_faces(V, F);
+                    cout << "\n" << "*******************************" << endl;
+                    if (qem::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
+                    else { cout << "Resulting mesh is Non-Manifold" << endl; }
+                    cout << "*******************************" << endl;
+                    break;
+                }
+            }
+
+            if(something_collapsed)
+            {
+                if(flag) {
+                    cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
+                    if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
+                        cout << "Successfully wrote to " << output_filename << ".obj" << endl;
+                        return 0;
+                    }
+                    else{
+                        cout << "Failed to wrote to " << output_filename << ".obj" << endl;
+                        return -1;
+                    }
+                }
+            }
+        }
+        return false;
+    };
+
+    /*
     const auto &pre_draw = [&](igl::opengl::glfw::Viewer & viewer)->bool
     {
         // If animating then collapse 10% of edges
@@ -160,71 +216,13 @@ int main(int argc, char * argv[])
                 else return false;
                 return true;
             };
+*/
 
-
-    const auto &process = [&](igl::opengl::glfw::Viewer & viewer)->bool
-    {
-        clock_t start, end;
-        start = clock();
-        while(!Q.empty())
-        {
-            bool something_collapsed = false;
-            bool flag = false;
-            // collapse edge
-            const int max_iter = std::ceil(0.01*Q.size());
-            for(int j = 0;j<max_iter;j++)
-            {
-                // if collapsing doesn't occur, break
-                if(!collapse_edge(quadratic_with_qValues,
-                                  qem::pre_collapse,
-                                  qem::post_collapse,
-                                  V, F, E, EMAP, EF, EI, Q, EQ, C))
-                {
-                    break;
-                }
-                something_collapsed = true;
-                num_collapsed++;
-                cout << num_collapsed << " vertices are collapsed\n" << endl;
-                // if stopping condition met, break
-                if (num_collapsed>=stopping_condition) {
-                    flag = true;
-                    // remove duplicated vertices and faces
-                    end = clock();
-                    qem::remove_duplicated_faces(V, F);
-                    cout << "\n" << "*******************************" << endl;
-                    if (qem::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
-                    else { cout << "Resulting mesh is Non-Manifold" << endl; }
-                    cout << "*******************************" << endl;
-                    break;
-                }
-            }
-
-            if(something_collapsed)
-            {
-                cout << num_collapsed << " vertices are removed" << endl;
-                viewer.data().clear();
-                viewer.data().set_mesh(V,F);
-                viewer.data().set_face_based(true);
-                if(flag) {
-                    cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
-                    if(writeOBJ(OUTPUT_PATH + output_filename + ".obj", V, F)){
-                        cout << "Successfully wrote to " << output_filename << ".obj" << endl;
-                        return 0;
-                    }
-                    else{
-                        cout << "Failed to wrote to " << output_filename << ".obj" << endl;
-                        return -1;
-                    }
-                }
-            }
-        }
-        return false;
-    };
     //reset();
-    // reset function to assign all initial value, especially cost_table (qValues.values)
+    // reset function to assign all initial value in min heap, especially cost_table (qValues.values)
     qem::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
                qValues.values, viewer, num_collapsed);
-    viewer.core().background_color.setConstant(1);
+    //viewer.core().background_color.setConstant(1);
 /*    qem::process(quadratic_with_qValues,
                  qem::pre_collapse,
                  qem::post_collapse,
