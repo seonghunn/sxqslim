@@ -34,7 +34,7 @@ namespace qem{
                 // }
                 //Add this logic : total time complexity -> O(N^2 log(N))
                 // collapsing edge candidate
-                MatrixXd V_ = V;
+/*                MatrixXd V_ = V;
                 MatrixXi F_ = F;
                 MatrixXi E_ = E;
                 VectorXi EMAP_ = EMAP;
@@ -56,7 +56,7 @@ namespace qem{
                 cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "Before collapsing number of vertices : " << V_.rows() << endl;
+                cout << "Before collapsing number of vertices : " << V_.rows() << endl;*/
                 // Get index of vertices which supposed to be replaced
                 //TODO: 여기서 false 일 때 cost 를 infinite 로
                 RV.v1 = E(e,0);

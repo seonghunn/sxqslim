@@ -13,8 +13,8 @@ list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 include(libigl)
 
 # CGAL
-find_package(CGAL REQUIRED)
-include_directories(${CGAL_INCLUDE_DIRS})
+#find_package(CGAL REQUIRED)
+#include_directories(${CGAL_INCLUDE_DIRS})
 
 # Enable the target igl::glfw
 igl_include(glfw)

@@ -11,7 +11,8 @@ spec:
             claimName: seonghun-fast-vol
       containers:
         - name: qem-container
-          image: seonghunn/libigl:intcheck
+          #image: seonghunn/libigl:intcheck
+          image: seonghunn/libigl:latest
           imagePullPolicy: Always
           command: ['/bin/sh', '-c']
           args: ['cd build && ./QEM bunny.obj bunny_out_0.01_kub 0.01']

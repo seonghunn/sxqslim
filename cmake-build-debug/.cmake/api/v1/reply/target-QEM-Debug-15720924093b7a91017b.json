@@ -110,12 +110,6 @@
 			{
 				"command" : 5,
 				"file" : 0,
-				"line" : 17,
-				"parent" : 0
-			},
-			{
-				"command" : 5,
-				"file" : 0,
 				"line" : 23,
 				"parent" : 0
 			}
@@ -137,10 +131,6 @@
 			[
 				{
 					"backtrace" : 15,
-					"path" : "/opt/homebrew/include"
-				},
-				{
-					"backtrace" : 16,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl"
 				},
 				{
@@ -191,6 +181,14 @@
 	[
 		{
 			"backtrace" : 14,
+			"id" : "glfw::@fa9f4482d3a2b070f206"
+		},
+		{
+			"backtrace" : 14,
+			"id" : "glad::@f022c46af7fd79d63a94"
+		},
+		{
+			"backtrace" : 14,
 			"id" : "igl_glfw::@6890427a1f51a3e7e1df"
 		},
 		{
@@ -199,15 +197,7 @@
 		},
 		{
 			"backtrace" : 14,
-			"id" : "glad::@f022c46af7fd79d63a94"
-		},
-		{
-			"backtrace" : 14,
 			"id" : "igl_core::@7e03116a751a0a925ea3"
-		},
-		{
-			"backtrace" : 14,
-			"id" : "glfw::@fa9f4482d3a2b070f206"
 		}
 	],
 	"id" : "QEM::@6890427a1f51a3e7e1df",

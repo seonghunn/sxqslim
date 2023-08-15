@@ -12,13 +12,11 @@
 		"commands" : 
 		[
 			"add_library",
-			"include_directories",
 			"target_include_directories"
 		],
 		"files" : 
 		[
-			"cmake-build-debug/_deps/glad-src/CMakeLists.txt",
-			"CMakeLists.txt"
+			"cmake-build-debug/_deps/glad-src/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -32,16 +30,7 @@
 				"parent" : 0
 			},
 			{
-				"file" : 1
-			},
-			{
 				"command" : 1,
-				"file" : 1,
-				"line" : 17,
-				"parent" : 2
-			},
-			{
-				"command" : 2,
 				"file" : 0,
 				"line" : 5,
 				"parent" : 0
@@ -60,11 +49,7 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
-					"path" : "/opt/homebrew/include"
-				},
-				{
-					"backtrace" : 4,
+					"backtrace" : 2,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include"
 				}
 			],

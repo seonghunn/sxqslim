@@ -119,7 +119,7 @@ int main(int argc, char * argv[])
                 }
                 something_collapsed = true;
                 num_collapsed++;
-                cout << num_collapsed << " vertices are collapsed\n" << endl;
+                //cout << num_collapsed << " vertices are collapsed\n" << endl;
                 // if stopping condition met, break
                 if (num_collapsed>=stopping_condition) {
                     flag = true;
