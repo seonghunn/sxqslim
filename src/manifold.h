@@ -6,7 +6,13 @@
 #define QEM_MANIFOLD_H
 #include <Eigen/Core>
 #include <igl/is_edge_manifold.h>
+
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+#include <CGAL/polygon_mesh_processing/self_intersections.h>
+#include <CGAL/Surface_mesh.h>
+
 #include "../include/igl/fast_find_self_intersections.h"
+#include <time.h>
 
 using namespace Eigen;
 using namespace std;

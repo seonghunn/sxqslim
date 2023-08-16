@@ -3,7 +3,12 @@
 //
 
 #include "manifold.h"
-#include <time.h>
+
+namespace PMP = CGAL::Polygon_mesh_processing;
+typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+typedef K::Point_3 Point_3;
+typedef CGAL::Surface_mesh<Point_3> Mesh;
+
 
 namespace qem{
     //TODO: self orientation doesn't work at large mesh
@@ -23,8 +28,8 @@ namespace qem{
         return true;
     }
 
-    //TODO: Implement self intersection
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
+    // self intersection using libigl
+/*    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
         //igl::copyleft::cgal::RemeshSelfIntersectionsParam params;
         //params.detect_only = true;
 
@@ -33,6 +38,25 @@ namespace qem{
         //if it returns false, it means the mesh does not have self-intersections
        return igl::fast_find_self_intersections(V, F, intersect);
        //return true;
+    }*/
+
+    // self intersection using CGAL
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
+        Mesh mesh;
+
+        std::vector<Mesh::Vertex_index> vertices;
+
+        // Convert Eigen matrix to CGAL Surface_mesh
+        for(int i = 0; i < V.rows(); ++i) {
+            vertices.push_back(mesh.add_vertex(Point_3(V(i,0), V(i,1), V(i,2))));
+        }
+        for(int i = 0; i < F.rows(); ++i) {
+            mesh.add_face(vertices[F(i, 0)], vertices[F(i, 1)], vertices[F(i, 2)]);
+        }
+
+        // Check for self-intersections
+        bool has_self_intersection = PMP::does_self_intersect(mesh, PMP::parameters::vertex_point_map(get(CGAL::vertex_point, mesh)));
+        return has_self_intersection;
     }
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){

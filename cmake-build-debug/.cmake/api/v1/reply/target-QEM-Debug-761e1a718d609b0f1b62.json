@@ -15,6 +15,10 @@
 			"include",
 			"_igl_include_full",
 			"igl_include",
+			"use_CGAL_GMP_support",
+			"CGAL_setup_CGAL_dependencies",
+			"CGAL_setup_target_dependencies",
+			"find_package",
 			"include_directories"
 		],
 		"files" : 
@@ -23,7 +27,11 @@
 			"cmake-build-debug/_deps/libigl-src/cmake/igl/modules/opengl.cmake",
 			"cmake-build-debug/_deps/libigl-src/cmake/igl/igl_include.cmake",
 			"cmake-build-debug/_deps/libigl-src/cmake/igl/modules/glfw.cmake",
-			"cmake-build-debug/_deps/glfw-src/src/CMakeLists.txt"
+			"cmake-build-debug/_deps/glfw-src/src/CMakeLists.txt",
+			"/opt/homebrew/lib/cmake/CGAL/CGAL_SetupGMP.cmake",
+			"/opt/homebrew/lib/cmake/CGAL/CGAL_SetupCGALDependencies.cmake",
+			"/opt/homebrew/lib/cmake/CGAL/CGAL_setup_target_dependencies.cmake",
+			"/opt/homebrew/lib/cmake/CGAL/CGALConfig.cmake"
 		],
 		"nodes" : 
 		[
@@ -33,13 +41,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 29,
+				"line" : 30,
 				"parent" : 0
 			},
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 20,
+				"line" : 18,
 				"parent" : 0
 			},
 			{
@@ -102,15 +110,55 @@
 				"parent" : 12
 			},
 			{
-				"command" : 1,
+				"command" : 8,
 				"file" : 0,
-				"line" : 30,
+				"line" : 15,
 				"parent" : 0
 			},
 			{
+				"file" : 8,
+				"parent" : 14
+			},
+			{
+				"command" : 7,
+				"file" : 8,
+				"line" : 185,
+				"parent" : 15
+			},
+			{
+				"command" : 6,
+				"file" : 7,
+				"line" : 3,
+				"parent" : 16
+			},
+			{
 				"command" : 5,
+				"file" : 6,
+				"line" : 88,
+				"parent" : 17
+			},
+			{
+				"command" : 1,
+				"file" : 5,
+				"line" : 70,
+				"parent" : 18
+			},
+			{
+				"command" : 1,
+				"file" : 5,
+				"line" : 73,
+				"parent" : 18
+			},
+			{
+				"command" : 1,
 				"file" : 0,
-				"line" : 23,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 9,
+				"file" : 0,
+				"line" : 21,
 				"parent" : 0
 			}
 		]
@@ -124,36 +172,48 @@
 					"fragment" : "-g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics"
 				},
 				{
-					"fragment" : "-std=gnu++11"
+					"fragment" : "-std=gnu++14"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 21,
+					"define" : "CGAL_USE_GMPXX=1"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 15,
+					"backtrace" : 22,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 21,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 21,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 21,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 21,
 					"isSystem" : true,
 					"path" : "/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 21,
 					"isSystem" : true,
 					"path" : "/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework"
+				},
+				{
+					"backtrace" : 21,
+					"isSystem" : true,
+					"path" : "/opt/homebrew/include"
 				}
 			],
 			"language" : "CXX",
@@ -161,9 +221,9 @@
 			{
 				"backtraces" : 
 				[
-					14
+					21
 				],
-				"standard" : "11"
+				"standard" : "14"
 			},
 			"sourceIndexes" : 
 			[
@@ -180,24 +240,24 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 14,
-			"id" : "glfw::@fa9f4482d3a2b070f206"
-		},
-		{
-			"backtrace" : 14,
-			"id" : "glad::@f022c46af7fd79d63a94"
-		},
-		{
-			"backtrace" : 14,
+			"backtrace" : 21,
 			"id" : "igl_glfw::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 14,
+			"backtrace" : 21,
 			"id" : "igl_opengl::@6890427a1f51a3e7e1df"
 		},
 		{
-			"backtrace" : 14,
+			"backtrace" : 21,
 			"id" : "igl_core::@7e03116a751a0a925ea3"
+		},
+		{
+			"backtrace" : 21,
+			"id" : "glfw::@fa9f4482d3a2b070f206"
+		},
+		{
+			"backtrace" : 21,
+			"id" : "glad::@f022c46af7fd79d63a94"
 		}
 	],
 	"id" : "QEM::@6890427a1f51a3e7e1df",
@@ -241,6 +301,21 @@
 			{
 				"backtrace" : 13,
 				"fragment" : "-framework CoreFoundation",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 19,
+				"fragment" : "/opt/homebrew/lib/libgmpxx.dylib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/opt/homebrew/lib/libmpfr.dylib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 20,
+				"fragment" : "/opt/homebrew/lib/libgmp.dylib",
 				"role" : "libraries"
 			}
 		],
