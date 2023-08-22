@@ -39,13 +39,13 @@ int main(int argc, char * argv[])
     //read_triangle_mesh(INPUT_PATH + input_filename, OV, F_);
     read_triangle_mesh(INPUT_PATH + input_filename, OV, OF);
     // set orient outward
-/*    qem::set_input_orient_outward(OV, F_, OF);
+/*    qslim::set_input_orient_outward(OV, F_, OF);
     for (int i = 0; i < OF.rows(); i++) {
         cout << "F_ : " << F_.row(i) << " OF : " << OF.row(i) << endl;
     }*/
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
-    if(qem::is_manifold(OV, OF)){
+    if(qslim::is_manifold(OV, OF)){
         cout << "\n" << "*******************************" << endl;
         cout << "Input model is Manifold mesh" << endl;
         cout << "Number of Vertex : " << OV.rows() << endl;
@@ -72,11 +72,11 @@ int main(int argc, char * argv[])
 
     // Surface normal per vertex to compute Q
     Eigen::MatrixXd N_homo(OF.rows(), 4);
-    qem::get_normal_homo_per_face(OV, OF, N_homo);
+    qslim::get_normal_homo_per_face(OV, OF, N_homo);
 
     // Add initial Q value of each vertex to vector
-    qem::QValues qValues;
-    qem::init_qValues(OV, OF, N_homo, qValues.values);
+    qslim::QValues qValues;
+    qslim::init_qValues(OV, OF, N_homo, qValues.values);
 
     edge_flaps(OF, E, EMAP, EF, EI);
 
@@ -91,11 +91,11 @@ int main(int argc, char * argv[])
                                       double & cost,
                                       Eigen::RowVectorXd & p)
     {
-        qem::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
+        qslim::quadratic(e, V, F, E, EMAP, EF, EI, qValues.values, cost, p);
     };
     // call wrap function to use qValues in callback function
     //customCBF::setup_cost_and_placement_with_qValues(qValues);
-    qem::setup_post_collapse_with_qValues(qValues, Q);
+    qslim::setup_post_collapse_with_qValues(qValues, Q);
 
     const auto &process = [&](igl::opengl::glfw::Viewer & viewer)->bool
     {
@@ -111,8 +111,8 @@ int main(int argc, char * argv[])
             {
                 // if collapsing doesn't occur, break
                 if(!collapse_edge(quadratic_with_qValues,
-                                  qem::pre_collapse,
-                                  qem::post_collapse,
+                                  qslim::pre_collapse,
+                                  qslim::post_collapse,
                                   V, F, E, EMAP, EF, EI, Q, EQ, C))
                 {
                     break;
@@ -125,9 +125,9 @@ int main(int argc, char * argv[])
                     flag = true;
                     // remove duplicated vertices and faces
                     end = clock();
-                    qem::remove_duplicated_faces(V, F);
+                    qslim::remove_duplicated_faces(V, F);
                     cout << "\n" << "*******************************" << endl;
-                    if (qem::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
+                    if (qslim::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
                     else { cout << "Resulting mesh is Non-Manifold" << endl; }
                     cout << "*******************************" << endl;
                     break;
@@ -166,8 +166,8 @@ int main(int argc, char * argv[])
             {
                 // if collapsing doesn't occur, break
                 if(!collapse_edge(quadratic_with_qValues,
-                                  qem::pre_collapse,
-                                  qem::post_collapse,
+                                  qslim::pre_collapse,
+                                  qslim::post_collapse,
                                   V, F, E, EMAP, EF, EI, Q, EQ, C))
                 {
                     break;
@@ -179,7 +179,7 @@ int main(int argc, char * argv[])
                     viewer.core().is_animating = false;
                     flag = true;
                     // remove duplicated vertices and faces
-                    qem::remove_duplicated_faces(V, F);
+                    qslim::remove_duplicated_faces(V, F);
                     cout << "\n" << "*******************************" << endl;
                     if(is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
                     else cout << "Resulting mesh is Non-Manifold" << endl;
@@ -220,12 +220,12 @@ int main(int argc, char * argv[])
 
     //reset();
     // reset function to assign all initial value in min heap, especially cost_table (qValues.values)
-    qem::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
-               qValues.values, viewer, num_collapsed);
+    qslim::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
+                 qValues.values, viewer, num_collapsed);
     //viewer.core().background_color.setConstant(1);
-/*    qem::process(quadratic_with_qValues,
-                 qem::pre_collapse,
-                 qem::post_collapse,
+/*    qslim::process(quadratic_with_qValues,
+                 qslim::pre_collapse,
+                 qslim::post_collapse,
                  V,
                  F,
                  E,
@@ -244,10 +244,10 @@ int main(int argc, char * argv[])
     process(viewer);
 
     // Erase this for docker image
-    //viewer.data().clear();
-    //viewer.data().set_mesh(V,F);
-    //viewer.data().set_face_based(true);
+    viewer.data().clear();
+    viewer.data().set_mesh(V,F);
+    viewer.data().set_face_based(true);
+    return viewer.launch();
 
-    //return viewer.launch();
-    return 0;
+    //return 0;
 }

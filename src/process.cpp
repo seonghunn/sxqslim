@@ -4,7 +4,7 @@
 
 #include "process.h"
 
-namespace qem{
+namespace qslim{
     bool process(const decimate_cost_and_placement_callback &cost_and_placement,
                  const decimate_pre_collapse_callback &pre_collapse,
                  const decimate_post_collapse_callback &post_collapse,
@@ -43,7 +43,7 @@ namespace qem{
                     if (num_collapsed >= stopping_condition) {
                         flag = true;
                         // remove duplicated vertices and faces
-                        qem::remove_duplicated_faces(V, F);
+                        qslim::remove_duplicated_faces(V, F);
                         cout << "\n" << "*******************************" << endl;
                         if (is_edge_manifold(F)) cout << "Resulting mesh is Manifold" << endl;
                         else cout << "Resulting mesh is Non-Manifold" << endl;

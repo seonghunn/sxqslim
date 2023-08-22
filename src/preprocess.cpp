@@ -4,7 +4,7 @@
 
 #include "preprocess.h"
 
-namespace qem{
+namespace qslim{
     void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF) {
 /*      VectorXi C, I;
         MatrixXi FF;
@@ -15,7 +15,7 @@ namespace qem{
         igl::orient_outward(V, F, C, FF, I);
 
         return FF;*/
-        if (qem::check_mesh_orientation(V, F)) {
+        if (qslim::check_mesh_orientation(V, F)) {
             FF = F;
             return;
         }

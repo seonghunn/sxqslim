@@ -9,8 +9,7 @@ typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef K::Point_3 Point_3;
 typedef CGAL::Surface_mesh<Point_3> Mesh;
 
-
-namespace qem{
+namespace qslim{
     //TODO: self orientation doesn't work at large mesh
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F){
         for (int i = 0; i < F.rows(); ++i) {
@@ -28,20 +27,37 @@ namespace qem{
         return true;
     }
 
+    // hello AABB tree
+    // Particle radius.
+    double radius = 1.0;
+
+// Set the particle position.
+    std::vector<double> position({10, 10});
+
+// Compute lower and upper AABB bounds.
+    std::vector<double> lowerBound({position[0] - radius, position[1] - radius});
+    std::vector<double> upperBound({position[0] + radius, position[1] + radius});
+
+// Create the AABB.
+    aabb::AABB aabb(lowerBound, upperBound);
+
     // self intersection using libigl
-/*    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
         //igl::copyleft::cgal::RemeshSelfIntersectionsParam params;
         //params.detect_only = true;
+        //test aabb tree
+        aabb::Tree tree;
+        qslim::initializeTreeFromMesh(V, F, tree);
 
         Eigen::MatrixXi intersect, edges;
 
         //if it returns false, it means the mesh does not have self-intersections
        return igl::fast_find_self_intersections(V, F, intersect);
        //return true;
-    }*/
+    }
 
     // self intersection using CGAL
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
+/*    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
         Mesh mesh;
 
         std::vector<Mesh::Vertex_index> vertices;
@@ -57,7 +73,7 @@ namespace qem{
         // Check for self-intersections
         bool has_self_intersection = PMP::does_self_intersect(mesh, PMP::parameters::vertex_point_map(get(CGAL::vertex_point, mesh)));
         return has_self_intersection;
-    }
+    }*/
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F){
         // check edge_manifold
@@ -83,7 +99,7 @@ namespace qem{
         //cout << "self-intersection test success" << endl;
 
 /*        // check orientation
-        if(!qem::check_mesh_orientation(V, F)){
+        if(!qslim::check_mesh_orientation(V, F)){
             cout << "orientation test fail" << endl;
             return false;
         }
@@ -94,3 +110,4 @@ namespace qem{
         return true;
     }
 }
+

@@ -234,7 +234,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=QEM
+CMAKE_PROJECT_NAME:STATIC=qslim
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=2.4.0
@@ -505,6 +505,15 @@ libigl_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 libigl_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src
+
+//Value Computed by CMake
+qslim_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
+
+//Value Computed by CMake
+qslim_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+qslim_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
 
 
 ########################

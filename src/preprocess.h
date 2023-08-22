@@ -11,7 +11,7 @@
 
 using namespace Eigen;
 using namespace std;
-namespace qem{
+namespace qslim{
     // set orientation of input mesh goes outward
     void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF);
 

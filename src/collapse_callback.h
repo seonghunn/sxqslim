@@ -15,7 +15,7 @@
 #include "helper.h"
 #include "manifold.h"
 
-namespace qem{
+namespace qslim{
     struct QValues {
         std::vector<Eigen::Matrix4d> values;
     };

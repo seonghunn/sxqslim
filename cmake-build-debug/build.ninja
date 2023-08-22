@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: QEM
+# Project: qslim
 # Configurations: Debug
 # =============================================================================
 
@@ -53,86 +53,118 @@ build igl_glfw: phony
 build igl_opengl: phony
 
 # =============================================================================
-# Object build statements for EXECUTABLE target QEM
+# Object build statements for EXECUTABLE target qslim
 
 
 #############################################
-# Order-only phony target for QEM
+# Order-only phony target for qslim
 
-build cmake_object_order_depends_target_QEM: phony || _deps/libigl-build/igl_core cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw igl_glfw igl_opengl
+build cmake_object_order_depends_target_qslim: phony || _deps/libigl-build/igl_core cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw igl_glfw igl_opengl
 
-build CMakeFiles/QEM.dir/src/collapse_callback.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/collapse_callback.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/AABB.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/AABB.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/collapse_callback.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/AABB.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/helper.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/helper.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/MeshSimplify.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/MeshSimplify.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/helper.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/MeshSimplify.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/main.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/main.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/bvh.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/bvh.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/main.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/bvh.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/manifold.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/manifold.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/collapse_callback.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/collapse_callback.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/manifold.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/collapse_callback.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/preprocess.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/preprocess.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/helper.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/helper.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/preprocess.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/helper.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/process.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/process.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/main.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/main.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/process.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/main.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
-build CMakeFiles/QEM.dir/src/quadratic.cpp.o: CXX_COMPILER__QEM_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/quadratic.cpp || cmake_object_order_depends_target_QEM
+build CMakeFiles/qslim.dir/src/manifold.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/manifold.cpp || cmake_object_order_depends_target_qslim
   DEFINES = -DCGAL_USE_GMPXX=1
-  DEP_FILE = CMakeFiles/QEM.dir/src/quadratic.cpp.o.d
+  DEP_FILE = CMakeFiles/qslim.dir/src/manifold.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
-  OBJECT_DIR = CMakeFiles/QEM.dir
-  OBJECT_FILE_DIR = CMakeFiles/QEM.dir/src
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
+
+build CMakeFiles/qslim.dir/src/preprocess.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/preprocess.cpp || cmake_object_order_depends_target_qslim
+  DEFINES = -DCGAL_USE_GMPXX=1
+  DEP_FILE = CMakeFiles/qslim.dir/src/preprocess.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
+
+build CMakeFiles/qslim.dir/src/process.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/process.cpp || cmake_object_order_depends_target_qslim
+  DEFINES = -DCGAL_USE_GMPXX=1
+  DEP_FILE = CMakeFiles/qslim.dir/src/process.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
+
+build CMakeFiles/qslim.dir/src/quadratic.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/quadratic.cpp || cmake_object_order_depends_target_qslim
+  DEFINES = -DCGAL_USE_GMPXX=1
+  DEP_FILE = CMakeFiles/qslim.dir/src/quadratic.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
+
+build CMakeFiles/qslim.dir/src/tree.cpp.o: CXX_COMPILER__qslim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/tree.cpp || cmake_object_order_depends_target_qslim
+  DEFINES = -DCGAL_USE_GMPXX=1
+  DEP_FILE = CMakeFiles/qslim.dir/src/tree.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/qslim.dir
+  OBJECT_FILE_DIR = CMakeFiles/qslim.dir/src
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target QEM
+# Link build statements for EXECUTABLE target qslim
 
 
 #############################################
-# Link the executable QEM
+# Link the executable qslim
 
-build QEM: CXX_EXECUTABLE_LINKER__QEM_Debug CMakeFiles/QEM.dir/src/collapse_callback.cpp.o CMakeFiles/QEM.dir/src/helper.cpp.o CMakeFiles/QEM.dir/src/main.cpp.o CMakeFiles/QEM.dir/src/manifold.cpp.o CMakeFiles/QEM.dir/src/preprocess.cpp.o CMakeFiles/QEM.dir/src/process.cpp.o CMakeFiles/QEM.dir/src/quadratic.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a /opt/homebrew/lib/libgmpxx.dylib /opt/homebrew/lib/libmpfr.dylib /opt/homebrew/lib/libgmp.dylib || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
+build qslim: CXX_EXECUTABLE_LINKER__qslim_Debug CMakeFiles/qslim.dir/src/AABB.cpp.o CMakeFiles/qslim.dir/src/MeshSimplify.cpp.o CMakeFiles/qslim.dir/src/bvh.cpp.o CMakeFiles/qslim.dir/src/collapse_callback.cpp.o CMakeFiles/qslim.dir/src/helper.cpp.o CMakeFiles/qslim.dir/src/main.cpp.o CMakeFiles/qslim.dir/src/manifold.cpp.o CMakeFiles/qslim.dir/src/preprocess.cpp.o CMakeFiles/qslim.dir/src/process.cpp.o CMakeFiles/qslim.dir/src/quadratic.cpp.o CMakeFiles/qslim.dir/src/tree.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a /opt/homebrew/lib/libgmpxx.dylib /opt/homebrew/lib/libmpfr.dylib /opt/homebrew/lib/libgmp.dylib || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = _deps/glad-build/libglad.a  /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd  _deps/glfw-build/src/libglfw3.a  -framework Cocoa  -framework IOKit  -framework CoreFoundation  /opt/homebrew/lib/libgmpxx.dylib  /opt/homebrew/lib/libmpfr.dylib  /opt/homebrew/lib/libgmp.dylib
-  OBJECT_DIR = CMakeFiles/QEM.dir
+  OBJECT_DIR = CMakeFiles/qslim.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = QEM
-  TARGET_PDB = QEM.dbg
+  TARGET_FILE = qslim
+  TARGET_PDB = qslim.dbg
 
 
 #############################################
@@ -685,7 +717,7 @@ build libglfw3.a: phony _deps/glfw-build/src/libglfw3.a
 #############################################
 # Folder: /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
 
-build all: phony igl_glfw igl_opengl QEM _deps/libigl-build/all _deps/glfw-build/all _deps/glad-build/all
+build all: phony igl_glfw igl_opengl qslim _deps/libigl-build/all _deps/glfw-build/all _deps/glad-build/all
 
 # =============================================================================
 

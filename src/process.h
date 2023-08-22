@@ -16,7 +16,7 @@
 using namespace std;
 using namespace Eigen;
 using namespace igl;
-namespace qem{
+namespace qslim{
     bool process(const decimate_cost_and_placement_callback &cost_and_placement,
                  const decimate_pre_collapse_callback &pre_collapse,
                  const decimate_post_collapse_callback &post_collapse,

@@ -6,7 +6,7 @@
 using namespace std;
 
 #define IGL_COLLAPSE_EDGE_NULL 0
-namespace qem{
+namespace qslim{
     struct removed_vertices_index{
         int v1;
         int v2;
@@ -34,7 +34,7 @@ namespace qem{
                 // }
                 //Add this logic : total time complexity -> O(N^2 log(N))
                 // collapsing edge candidate
-/*                MatrixXd V_ = V;
+                MatrixXd V_ = V;
                 MatrixXi F_ = F;
                 MatrixXi E_ = E;
                 VectorXi EMAP_ = EMAP;
@@ -47,16 +47,16 @@ namespace qem{
                 end_collapse = clock();
 
                 start_remove = clock();
-                qem::remove_duplicated_faces(V_, F_);
+                qslim::remove_duplicated_faces(V_, F_);
                 end_remove = clock();
                 start_test = clock();
 
-                if(!qem::is_manifold(V_, F_)) return false;
+                if(!qslim::is_manifold(V_, F_)) return false;
                 end_test = clock();
                 cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "Before collapsing number of vertices : " << V_.rows() << endl;*/
+                cout << "Before collapsing number of vertices : " << V_.rows() << endl;
                 // Get index of vertices which supposed to be replaced
                 //TODO: 여기서 false 일 때 cost 를 infinite 로
                 RV.v1 = E(e,0);
@@ -121,6 +121,24 @@ namespace qem{
                                const int f1,
                                const int f2,
                                const bool collapsed) {
+/*                    cout << "V" << endl;
+                    qslim::printMatrix(V);
+                    cout << "F" << endl;
+                    qslim::printMatrix(F);
+                    cout << "E" << endl;
+                    qslim::printMatrix(E);
+                    cout << "EF" << endl;
+                    qslim::printMatrix(EF);
+                    cout << "EI" << endl;
+                    qslim::printMatrix(EI);
+                    cout << "C" << endl;
+                    qslim::printMatrix(C);
+                    cout << "EMAP : " << EMAP << endl;
+                    cout << "e : " << e << endl;
+                    cout << "e1 : " << e1 << endl;
+                    cout << "e2 : " << e2 << endl;
+                    cout << "f1 : " << f1 << endl;
+                    cout << "f2 : " << f2 << endl;*/
                     if (collapsed) {
                         int RV_idx1 = RV.v1;
                         int RV_idx2 = RV.v2;

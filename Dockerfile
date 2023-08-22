@@ -18,13 +18,13 @@ RUN apt-get update && apt-get install -y \
 # Set timezone
 RUN ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
-WORKDIR /qem
+WORKDIR /qslim
 
 # Copy entire project directory
-COPY . /qem
+COPY . /qslim
 
 # Download libigl
-RUN git clone https://github.com/libigl/libigl.git /qem/libigl
+RUN git clone https://github.com/libigl/libigl.git /qslim/libigl
 
 # Build your project
 RUN rm -rf build && mkdir build && cd build && cmake .. && make

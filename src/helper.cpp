@@ -3,9 +3,10 @@
 //
 
 #include "helper.h"
+#include <igl/AABB.h>
 
-
-namespace qem {
+using namespace std;
+namespace qslim {
     bool remove_duplicated_faces(Eigen::MatrixXd &V, Eigen::MatrixXi &F) {
         Eigen::MatrixXi F2(F.rows(), 3);
         Eigen::VectorXi J(F.rows());
@@ -53,7 +54,7 @@ namespace qem {
                 double cost = e;
                 RowVectorXd p(1, 3);
                 //reset each cost
-                qem::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
+                qslim::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
                 C.row(e) = p;
                 costs(e) = cost;
             }, 10000);
@@ -67,4 +68,6 @@ namespace qem {
         viewer.data().set_mesh(V, F);
         viewer.data().set_face_based(true);
     }
+    template<typename Derived>
+    void printMatrix(const Eigen::MatrixBase<Derived>& mat);
 }
