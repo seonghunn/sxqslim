@@ -234,7 +234,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=qslim
+CMAKE_PROJECT_NAME:STATIC=QSlim
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=2.4.0
@@ -484,6 +484,15 @@ QEM_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 QEM_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
+
+//Value Computed by CMake
+QSlim_BINARY_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug
+
+//Value Computed by CMake
+QSlim_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+QSlim_SOURCE_DIR:STATIC=/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase
 
 //The directory containing a CMake configuration file for boost_headers.
 boost_headers_DIR:PATH=/opt/homebrew/lib/cmake/boost_headers-1.82.0

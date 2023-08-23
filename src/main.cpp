@@ -13,6 +13,7 @@
 #include "helper.h"
 #include "manifold.h"
 #include "preprocess.h"
+#include "MeshSimplify.h"
 //#include "process.h"
 
 #define INPUT_PATH "../model/input/"
@@ -220,8 +221,11 @@ int main(int argc, char * argv[])
 
     //reset();
     // reset function to assign all initial value in min heap, especially cost_table (qValues.values)
-    qslim::reset(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
-                 qValues.values, viewer, num_collapsed);
+    //qslim::init_queue(V, OV, F, OF, E, EMAP, EF, EI, EQ, C, Q,
+    //                  qValues.values, viewer, num_collapsed);
+
+    qslim::MeshSimplify meshSimplify(OV, OF, ratio);
+    meshSimplify.process();
     //viewer.core().background_color.setConstant(1);
 /*    qslim::process(quadratic_with_qValues,
                  qslim::pre_collapse,
@@ -245,7 +249,9 @@ int main(int argc, char * argv[])
 
     // Erase this for docker image
     viewer.data().clear();
-    viewer.data().set_mesh(V,F);
+    //TODO: Update qValues using MeshSimplify class ; move callback function into meshSimplify class
+    viewer.data().set_mesh(meshSimplify.get_vertices(), meshSimplify.get_faces());
+    //viewer.data().set_mesh(V, F);
     viewer.data().set_face_based(true);
     return viewer.launch();
 

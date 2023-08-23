@@ -43,8 +43,6 @@ namespace qslim{
 
     // self intersection using libigl
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
-        //igl::copyleft::cgal::RemeshSelfIntersectionsParam params;
-        //params.detect_only = true;
         //test aabb tree
         aabb::Tree tree;
         qslim::initializeTreeFromMesh(V, F, tree);

@@ -1,6 +1,6 @@
 /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/igl_glfw.dir
 /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/igl_opengl.dir
-/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/qslim.dir
+/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/QSlim.dir
 /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/CMakeFiles/list_install_components.dir

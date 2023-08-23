@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(qslim)
+project(QSlim)
 
 # Release type
 if(NOT CMAKE_BUILD_TYPE)

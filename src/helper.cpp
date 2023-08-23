@@ -36,10 +36,10 @@ namespace qslim {
     }
 
     // set all initial value before iteration, compute each cost, position and push into initial priority queue
-    void reset(MatrixXd &V, MatrixXd &OV, MatrixXi &F, MatrixXi &OF,
-               MatrixXi &E, VectorXi &EMAP, MatrixXi &EF, MatrixXi &EI, VectorXi &EQ,
-               MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
-               igl::opengl::glfw::Viewer &viewer, int &num_collapsed) {
+    void init_queue(MatrixXd &V, MatrixXd &OV, MatrixXi &F, MatrixXi &OF,
+                    MatrixXi &E, VectorXi &EMAP, MatrixXi &EF, MatrixXi &EI, VectorXi &EQ,
+                    MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
+                    igl::opengl::glfw::Viewer &viewer, int &num_collapsed) {
 
         F = OF;
         V = OV;
@@ -50,6 +50,7 @@ namespace qslim {
         EQ = Eigen::VectorXi::Zero(E.rows());
         {
             Eigen::VectorXd costs(E.rows());
+            //parallel code
             igl::parallel_for(E.rows(), [&](const int e) {
                 double cost = e;
                 RowVectorXd p(1, 3);
@@ -61,6 +62,23 @@ namespace qslim {
             for (int e = 0; e < E.rows(); e++) {
                 Q.emplace(costs(e), e, 0);
             }
+
+            //serialize
+/*
+            for (int e = 0; e < E.rows(); e++) {
+                double cost = e;
+                RowVectorXd p(3);
+                //reset each cost
+                qslim::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
+                C.row(e) = p;
+                costs(e) = cost;
+            }
+
+            for (int e = 0; e < E.rows(); e++) {
+                Q.emplace(costs(e), e, 0);
+            }
+*/
+
         }
 
         num_collapsed = 0;
