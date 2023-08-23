@@ -45,7 +45,7 @@ namespace qslim{
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
         //test aabb tree
         aabb::Tree tree;
-        qslim::initializeTreeFromMesh(V, F, tree);
+        qslim::initialize_tree_from_mesh(V, F, tree);
 
         Eigen::MatrixXi intersect, edges;
 

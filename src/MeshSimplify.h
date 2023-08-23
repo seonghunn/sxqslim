@@ -8,20 +8,18 @@
 #include "tree.h"
 #include "AABB.hpp"
 #include "collapse_callback.h"
+#include "helper.h"
 #include <Eigen/Core>
 #include <time.h>
 #include <string>
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
 #include <igl/collapse_edge.h>
+#include <iostream>
 
+using namespace std;
 using namespace Eigen;
 namespace qslim{
-    struct index_of_removed_vertices{
-        int v1;
-        int v2;
-    };
-
     class MeshSimplify{
     private:
         // AABB tree
@@ -40,11 +38,15 @@ namespace qslim{
         MatrixXi F, E, EF, EI;
         VectorXi EMAP, EQ;
 
+        // input data
+        MatrixXd OV;
+        MatrixXi OF;
         int num_input_vertices;
         int num_input_faces;
         double ratio;
 
         int num_collapsed;
+        int num_failed;
         int stopping_condition;
 
         string output_filename;

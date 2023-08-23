@@ -10,7 +10,7 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
         this->init_member_variable(OV, OF, ratio);
-        qslim::initializeTreeFromMesh(OV, OF, this->tree);
+        qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
         this->init_queue(OV, OF);
@@ -18,6 +18,8 @@ namespace qslim{
     }
 
     void MeshSimplify::init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio){
+        this->OV = OV;
+        this->OF = OF;
         this->V = OV;
         this->F = OF;
         igl::edge_flaps(this->F, this->E, this->EMAP, this->EF, this->EI);
@@ -28,6 +30,7 @@ namespace qslim{
         this->num_input_faces = OF.rows();
         this->ratio = ratio;
         this->num_collapsed = 0;
+        this->num_failed = 0;
         this->stopping_condition = ceil(this->num_input_vertices * (1.0 - this->ratio));
     }
 
@@ -186,6 +189,7 @@ namespace qslim{
                 Eigen::Matrix4d Q2 = this->qValues[RV_idx2];
                 this->qValues[RV_idx1] = Q1 + Q2;
                 this->qValues[RV_idx2] = Q1 + Q2;
+                qslim::update_tree_after_decimation(this->V, this->F, this->tree, RV_idx1, RV_idx2, f1, f2);
             }
         };
     }
@@ -247,11 +251,23 @@ namespace qslim{
         start = clock();
         while (!this->queue.empty()) {
             // collapse edge
-            igl::collapse_edge(cost_and_placement_callback,
+            cout << "collapsed : " << this->num_collapsed << endl;
+            cout << "decimated index of vertex" << endl;
+            cout << this->RV.v1 << " " << this->RV.v2 << endl;
+            cout << "********V*********" << endl;
+            cout << this->V << endl;
+            cout << "********F*********" << endl;
+            cout << this->F << endl;
+            cout << "********E*********" << endl;
+            cout << this->E << endl;
+            cout << endl;
+            bool collapsed = igl::collapse_edge(cost_and_placement_callback,
                                     pre_collapse_callback,
                                     post_collapse_callback,
                                     this->V, this->F, this->E, this->EMAP,
                                     this->EF, this->EI, this->queue, this->EQ, this->C);
+
+            cout << "true / false " << collapsed << endl;
             this->num_collapsed++;
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
             // if stopping condition met, break

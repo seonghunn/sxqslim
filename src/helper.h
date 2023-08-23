@@ -19,10 +19,17 @@
 
 #include "manifold.h"
 #include "collapse_callback.h"
+#include <iostream>
 #define IGL_COLLAPSE_EDGE_NULL 0
 
+using namespace std;
 using namespace Eigen;
 namespace qslim{
+    struct index_of_removed_vertices{
+        int v1;
+        int v2;
+    };
+
     bool remove_duplicated_faces(MatrixXd& V, MatrixXi& F);
     // init Q value table using surface normal
     void init_queue(MatrixXd &V, MatrixXd &OV, MatrixXi &F, MatrixXi &OF,
