@@ -246,49 +246,37 @@ namespace qslim{
         clock_t start, end;
         start = clock();
         while (!this->queue.empty()) {
-            bool something_collapsed = false;
-            bool flag = false;
             // collapse edge
-            const int max_iter = std::ceil(0.01 * this->queue.size());
-            for (int j = 0; j < max_iter; j++) {
-                // if collapsing doesn't occur, break
-                if (!igl::collapse_edge(cost_and_placement_callback,
-                                   pre_collapse_callback,
-                                   post_collapse_callback,
-                                   this->V, this->F, this->E, this->EMAP,
-                                   this->EF, this->EI, this->queue, this->EQ, this->C)) {
-                    break;
-                }
-                something_collapsed = true;
-                this->num_collapsed++;
-                //cout << num_collapsed << " vertices are collapsed\n" << endl;
-                // if stopping condition met, break
-                if (this->num_collapsed >= this->stopping_condition) {
-                    flag = true;
-                    // remove duplicated vertices and faces
-                    end = clock();
-                    qslim::remove_duplicated_faces(this->V, this->F);
-                    cout << "\n" << "*******************************" << endl;
-                    if (qslim::is_manifold(this->V, this->F)) cout << "Resulting mesh is Manifold" << endl;
-                    else { cout << "Resulting mesh is Non-Manifold" << endl; }
-                    cout << "*******************************" << endl;
-                    break;
-                }
-            }
-
-            if (something_collapsed) {
-                if (flag) {
-                    cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
-                    if (igl::writeOBJ(OUTPUT_PATH + this->output_filename + ".obj", this->V, this->F)) {
-                        cout << "Successfully wrote to " << this->output_filename << ".obj" << endl;
-                        return 0;
-                    } else {
-                        cout << "Failed to wrote to " << this->output_filename << ".obj" << endl;
-                        return -1;
-                    }
-                }
+            igl::collapse_edge(cost_and_placement_callback,
+                                    pre_collapse_callback,
+                                    post_collapse_callback,
+                                    this->V, this->F, this->E, this->EMAP,
+                                    this->EF, this->EI, this->queue, this->EQ, this->C);
+            this->num_collapsed++;
+            //cout << num_collapsed << " vertices are collapsed\n" << endl;
+            // if stopping condition met, break
+            if (this->num_collapsed >= this->stopping_condition) {
+                // remove duplicated vertices and faces
+                end = clock();
+                break;
             }
         }
-        return false;
+        qslim::remove_duplicated_faces(this->V, this->F);
+        cout << "\n" << "*******************************" << endl;
+        if (qslim::is_manifold(this->V, this->F))
+            cout << "Resulting mesh is Manifold" << endl;
+        else
+            cout << "Resulting mesh is Non-Manifold" << endl;
+        cout << "*******************************" << endl;
+        cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
+        // write file
+        if (igl::writeOBJ(OUTPUT_PATH + this->output_filename + ".obj", this->V, this->F)) {
+            cout << "Successfully wrote to " << this->output_filename << ".obj" << endl;
+            return 0;
+        }
+        else {
+            cout << "Failed to wrote to " << this->output_filename << ".obj" << endl;
+            return -1;
+        }
     }
 }
