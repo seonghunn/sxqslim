@@ -10,6 +10,13 @@ typedef K::Point_3 Point_3;
 typedef CGAL::Surface_mesh<Point_3> Mesh;
 
 namespace qslim{
+    bool check_edge_manifold(const MatrixXd &V, const MatrixXi &F){
+        MatrixXd V_ = V;
+        MatrixXi F_ = F;
+        qslim::remove_duplicated_faces(V_, F_);
+        return igl::is_edge_manifold(F_);
+    }
+
     //TODO: self orientation doesn't work at large mesh
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F){
         for (int i = 0; i < F.rows(); ++i) {
@@ -42,8 +49,8 @@ namespace qslim{
     aabb::AABB aabb(lowerBound, upperBound);
 
     // self intersection using libigl
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
-        //test aabb tree
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree, unordered_map<int, bool> &decimated_faces){
+/*        //test aabb tree
         aabb::Tree tree;
         qslim::initialize_tree_from_mesh(V, F, tree);
 
@@ -51,7 +58,8 @@ namespace qslim{
 
         //if it returns false, it means the mesh does not have self-intersections
        return igl::fast_find_self_intersections(V, F, intersect);
-       //return true;
+       //return true;*/
+        return self_intersection_test(V, F, tree, decimated_faces);
     }
 
     // self intersection using CGAL
@@ -73,11 +81,13 @@ namespace qslim{
         return has_self_intersection;
     }*/
 
-    bool is_manifold(const MatrixXd &V, const MatrixXi &F){
+    //TODO: use my self intersection function here
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                     unordered_map<int, bool> &decimated_faces) {
         // check edge_manifold
         clock_t start_edge, end_edge, start_intersect, end_intersect;
         start_edge = clock();
-        if(!igl::is_edge_manifold(F)) {
+        if (!check_edge_manifold(V, F)) {
             //cout<< "edge manifold test fail"<<endl;
             return false;
         }
@@ -87,13 +97,14 @@ namespace qslim{
 
         //check self-intersection
         start_intersect = clock();
-        if(check_self_intersection(V, F)){
+        if (!check_self_intersection(V, F, tree, decimated_faces)) {
             // self intersection exist
             cout << "self-intersection test fail" << endl;
             return false;
         }
         end_intersect = clock();
-        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec" << endl;
+        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec"
+             << endl;
         //cout << "self-intersection test success" << endl;
 
 /*        // check orientation

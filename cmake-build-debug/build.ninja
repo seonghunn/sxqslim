@@ -141,6 +141,14 @@ build CMakeFiles/QSlim.dir/src/quadratic.cpp.o: CXX_COMPILER__QSlim_Debug /Users
   OBJECT_DIR = CMakeFiles/QSlim.dir
   OBJECT_FILE_DIR = CMakeFiles/QSlim.dir/src
 
+build CMakeFiles/QSlim.dir/src/self_intersect.cpp.o: CXX_COMPILER__QSlim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/self_intersect.cpp || cmake_object_order_depends_target_QSlim
+  DEFINES = -DCGAL_USE_GMPXX=1
+  DEP_FILE = CMakeFiles/QSlim.dir/src/self_intersect.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics -std=gnu++14
+  INCLUDES = -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/include/igl -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/libigl-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glad-src/include -I/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/glfw-src/include -isystem /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/cmake-build-debug/_deps/eigen-src -iframework /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/QSlim.dir
+  OBJECT_FILE_DIR = CMakeFiles/QSlim.dir/src
+
 build CMakeFiles/QSlim.dir/src/tree.cpp.o: CXX_COMPILER__QSlim_Debug /Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/src/tree.cpp || cmake_object_order_depends_target_QSlim
   DEFINES = -DCGAL_USE_GMPXX=1
   DEP_FILE = CMakeFiles/QSlim.dir/src/tree.cpp.o.d
@@ -157,7 +165,7 @@ build CMakeFiles/QSlim.dir/src/tree.cpp.o: CXX_COMPILER__QSlim_Debug /Users/seon
 #############################################
 # Link the executable QSlim
 
-build QSlim: CXX_EXECUTABLE_LINKER__QSlim_Debug CMakeFiles/QSlim.dir/src/AABB.cpp.o CMakeFiles/QSlim.dir/src/MeshSimplify.cpp.o CMakeFiles/QSlim.dir/src/bvh.cpp.o CMakeFiles/QSlim.dir/src/collapse_callback.cpp.o CMakeFiles/QSlim.dir/src/helper.cpp.o CMakeFiles/QSlim.dir/src/main.cpp.o CMakeFiles/QSlim.dir/src/manifold.cpp.o CMakeFiles/QSlim.dir/src/preprocess.cpp.o CMakeFiles/QSlim.dir/src/process.cpp.o CMakeFiles/QSlim.dir/src/quadratic.cpp.o CMakeFiles/QSlim.dir/src/tree.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a /opt/homebrew/lib/libgmpxx.dylib /opt/homebrew/lib/libmpfr.dylib /opt/homebrew/lib/libgmp.dylib || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
+build QSlim: CXX_EXECUTABLE_LINKER__QSlim_Debug CMakeFiles/QSlim.dir/src/AABB.cpp.o CMakeFiles/QSlim.dir/src/MeshSimplify.cpp.o CMakeFiles/QSlim.dir/src/bvh.cpp.o CMakeFiles/QSlim.dir/src/collapse_callback.cpp.o CMakeFiles/QSlim.dir/src/helper.cpp.o CMakeFiles/QSlim.dir/src/main.cpp.o CMakeFiles/QSlim.dir/src/manifold.cpp.o CMakeFiles/QSlim.dir/src/preprocess.cpp.o CMakeFiles/QSlim.dir/src/process.cpp.o CMakeFiles/QSlim.dir/src/quadratic.cpp.o CMakeFiles/QSlim.dir/src/self_intersect.cpp.o CMakeFiles/QSlim.dir/src/tree.cpp.o | _deps/glad-build/libglad.a /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd _deps/glfw-build/src/libglfw3.a /opt/homebrew/lib/libgmpxx.dylib /opt/homebrew/lib/libmpfr.dylib /opt/homebrew/lib/libgmp.dylib || _deps/glad-build/libglad.a _deps/glfw-build/src/libglfw3.a _deps/libigl-build/igl_core igl_glfw igl_opengl
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = _deps/glad-build/libglad.a  /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd  _deps/glfw-build/src/libglfw3.a  -framework Cocoa  -framework IOKit  -framework CoreFoundation  /opt/homebrew/lib/libgmpxx.dylib  /opt/homebrew/lib/libmpfr.dylib  /opt/homebrew/lib/libgmp.dylib
   OBJECT_DIR = CMakeFiles/QSlim.dir

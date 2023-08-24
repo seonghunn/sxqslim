@@ -32,6 +32,28 @@ namespace qslim{
         this->num_collapsed = 0;
         this->num_failed = 0;
         this->stopping_condition = ceil(this->num_input_vertices * (1.0 - this->ratio));
+
+        //init hash map for deleted faces
+        for (int i = 0; i < this->num_input_faces; i++) {
+            this->decimated_faces.insert(make_pair(i, false));
+        }
+
+        //init map for affect_triangles
+        this->init_affect_triangles(OV, OF);
+    }
+
+    void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
+        for (int i = 0; i < OV.rows(); i++) {
+            vector<int> triangle_list;
+            for (int j = 0; j < OF.rows(); j++) {
+                for (int k = 0; k < 3; k++) {
+                    if (i == OF(j, k)) {
+                        triangle_list.push_back(j);
+                    }
+                }
+            }
+            this->affected_triangle_indices.insert(make_pair(i, triangle_list));
+        }
     }
 
     void MeshSimplify::init_normal_homo_per_face(MatrixXd &OV, MatrixXi &OF, MatrixXd &N_homo){
@@ -116,7 +138,7 @@ namespace qslim{
             // }
             //Add this logic : total time complexity -> O(N^2 log(N))
             // collapsing edge candidate
-/*                MatrixXd V_ = V;
+                MatrixXd V_ = V;
                 MatrixXi F_ = F;
                 MatrixXi E_ = E;
                 VectorXi EMAP_ = EMAP;
@@ -129,16 +151,17 @@ namespace qslim{
                 end_collapse = clock();
 
                 start_remove = clock();
-                qslim::remove_duplicated_faces(V_, F_);
+                //qslim::remove_duplicated_faces(V_, F_);
                 end_remove = clock();
                 start_test = clock();
 
-                if(!qslim::is_manifold(V_, F_)) return false;
+                if(!qslim::is_manifold(V, F, this->tree, this->decimated_faces))
+                    return false;
                 end_test = clock();
                 cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
+                //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "Before collapsing number of vertices : " << V_.rows() << endl;*/
+                cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
             //TODO: 여기서 false 일 때 cost 를 infinite 로
             this->RV.v1 = E(e,0);
@@ -185,11 +208,18 @@ namespace qslim{
             if (collapsed) {
                 int RV_idx1 = this->RV.v1;
                 int RV_idx2 = this->RV.v2;
+                // update qValues
                 Eigen::Matrix4d Q1 = this->qValues[RV_idx1];
                 Eigen::Matrix4d Q2 = this->qValues[RV_idx2];
                 this->qValues[RV_idx1] = Q1 + Q2;
                 this->qValues[RV_idx2] = Q1 + Q2;
-                qslim::update_tree_after_decimation(this->V, this->F, this->tree, RV_idx1, RV_idx2, f1, f2);
+                // update AABB tree
+                qslim::update_tree_after_decimation(this->V, this->F, this->tree,
+                                                    RV_idx1, RV_idx2, f1, f2, this->decimated_faces,
+                                                    this->affected_triangle_indices);
+                // update Decimated faces table
+                this->decimated_faces[f1] = true;
+                this->decimated_faces[f2] = true;
             }
         };
     }
@@ -250,8 +280,9 @@ namespace qslim{
         clock_t start, end;
         start = clock();
         while (!this->queue.empty()) {
+            //cout << this->num_collapsed << endl;
             // collapse edge
-            cout << "collapsed : " << this->num_collapsed << endl;
+/*            cout << "collapsed : " << this->num_collapsed << endl;
             cout << "decimated index of vertex" << endl;
             cout << this->RV.v1 << " " << this->RV.v2 << endl;
             cout << "********V*********" << endl;
@@ -260,17 +291,17 @@ namespace qslim{
             cout << this->F << endl;
             cout << "********E*********" << endl;
             cout << this->E << endl;
-            cout << endl;
+            cout << endl;*/
+            // if stopping condition met, break
             bool collapsed = igl::collapse_edge(cost_and_placement_callback,
                                     pre_collapse_callback,
                                     post_collapse_callback,
                                     this->V, this->F, this->E, this->EMAP,
                                     this->EF, this->EI, this->queue, this->EQ, this->C);
 
-            cout << "true / false " << collapsed << endl;
+            //cout << "true / false " << collapsed << endl;
             this->num_collapsed++;
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
-            // if stopping condition met, break
             if (this->num_collapsed >= this->stopping_condition) {
                 // remove duplicated vertices and faces
                 end = clock();
@@ -279,7 +310,9 @@ namespace qslim{
         }
         qslim::remove_duplicated_faces(this->V, this->F);
         cout << "\n" << "*******************************" << endl;
-        if (qslim::is_manifold(this->V, this->F))
+        cout << "Output V : " << this->V.rows() << endl;
+        cout << "Output F : " << this->F.rows() << endl;
+        if (qslim::is_manifold(this->V, this->F, this->tree, this->decimated_faces))
             cout << "Resulting mesh is Manifold" << endl;
         else
             cout << "Resulting mesh is Non-Manifold" << endl;

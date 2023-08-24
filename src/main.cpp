@@ -46,7 +46,9 @@ int main(int argc, char * argv[])
     }*/
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
-    if(qslim::is_manifold(OV, OF)){
+
+    //TODO: Put this into initializer at MeshSimplify class
+/*    if(qslim::is_manifold(OV, OF)){
         cout << "\n" << "*******************************" << endl;
         cout << "Input model is Manifold mesh" << endl;
         cout << "Number of Vertex : " << OV.rows() << endl;
@@ -57,7 +59,8 @@ int main(int argc, char * argv[])
         cout << "Input model is Non-Manifold mesh" << endl;
         cout << "Please use Manifold mesh" << endl;
         return -1;
-    }
+    }*/
+
     // Prepare array-based edge data structures and priority queue
     VectorXi EMAP, EQ;
     MatrixXi E,EF,EI;
@@ -128,8 +131,9 @@ int main(int argc, char * argv[])
                     end = clock();
                     qslim::remove_duplicated_faces(V, F);
                     cout << "\n" << "*******************************" << endl;
-                    if (qslim::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
-                    else { cout << "Resulting mesh is Non-Manifold" << endl; }
+                    //TODO: put this in class
+                    //if (qslim::is_manifold(V, F)) cout << "Resulting mesh is Manifold" << endl;
+                    //else { cout << "Resulting mesh is Non-Manifold" << endl; }
                     cout << "*******************************" << endl;
                     break;
                 }

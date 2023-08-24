@@ -48,6 +48,10 @@ namespace qslim{
         int num_collapsed;
         int num_failed;
         int stopping_condition;
+        // hash map for deleted faces
+        std::unordered_map<int, bool> decimated_faces;
+        // hash map for affected_triangles (vertex -> face mapping)
+        std::unordered_map<int, vector<int>> affected_triangle_indices;
 
         string output_filename;
 
@@ -61,6 +65,9 @@ namespace qslim{
 
         // init member variable
         void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio);
+
+        // init affect_triangles table
+        void init_affect_triangles(MatrixXd &OV, MatrixXi &OF);
 
         // init homogeneous surface normal
         static void init_normal_homo_per_face(MatrixXd &V, MatrixXi &F, MatrixXd &N_homo);

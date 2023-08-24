@@ -15,13 +15,20 @@
 #include "./AABB.hpp"
 #include "tree.h"
 #include <time.h>
+#include "self_intersect.h"
 
 using namespace Eigen;
 using namespace std;
 namespace qslim{
+    bool check_edge_manifold(const MatrixXd &V, const MatrixXi &F);
+
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F);
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F);
-    bool is_manifold(const MatrixXd& V, const MatrixXi& F);
+
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                                 unordered_map<int, bool> &decimated_faces);
+
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                     unordered_map<int, bool> &decimated_faces);
 }
 
 

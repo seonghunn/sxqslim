@@ -1210,4 +1210,18 @@ namespace aabb
 
         return isShifted;
     }
+
+    // Custom getter
+    Node* Tree::getNode(unsigned int idx){
+        return &this->nodes[idx];
+    }
+
+    std::unordered_map<unsigned int, unsigned int> Tree::getParticleMap(){
+        return this->particleMap;
+    }
+
+    unsigned int Tree::getParticleNodeMapping(unsigned int particleIdx){
+        std::unordered_map<unsigned int, unsigned int> m = getParticleMap();
+        return m[particleIdx];
+    };
 }

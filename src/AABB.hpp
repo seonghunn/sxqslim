@@ -379,6 +379,23 @@ namespace aabb
         /// Rebuild an optimal tree.
         void rebuild();
 
+        // Custom getter using triangle idx
+        /*! \return
+         *      Node of corresponding triangle index (key)
+         */
+        Node* getNode(unsigned int);
+
+        // Custom getter
+        /*! \return
+         *      Particle Map
+         */
+        std::unordered_map<unsigned int, unsigned int> getParticleMap();
+
+        /*! \return
+         *      Node index using particle index
+         */
+        unsigned int getParticleNodeMapping(unsigned int particleIdx);
+
     private:
         /// The index of the root node.
         unsigned int root;
