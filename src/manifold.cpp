@@ -60,7 +60,7 @@ namespace qslim{
        //return igl::fast_find_self_intersections(V, F, intersect);
        //return true;
        // TODO: this returns always true
-        return self_intersection_test(V, F, tree, decimated_faces);
+        return self_intersection_check(V, F, tree, decimated_faces);
     }
 
     // self intersection using CGAL
@@ -98,7 +98,7 @@ namespace qslim{
 
         //check self-intersection
         start_intersect = clock();
-        if (check_self_intersection(V, F, tree, decimated_faces)) {
+        if (!check_self_intersection(V, F, tree, decimated_faces)) {
             // self intersection exist
             cout << "self-intersection test fail" << endl;
             return false;

@@ -10,7 +10,7 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
         this->init_member_variable(OV, OF, ratio);
-        //this->tree = aabb::Tree(3, 0.05, 16, true);
+        this->tree = aabb::Tree(3, 0.0001, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
