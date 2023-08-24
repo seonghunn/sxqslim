@@ -10,12 +10,29 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
         this->init_member_variable(OV, OF, ratio);
-        this->tree = aabb::Tree(3, 0.0001, 16, false);
+        //this->tree = aabb::Tree(3, 0.0001, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
         this->init_queue(OV, OF);
         this->init_callback();
+        this->input_manifold_test(OV, OF);
+    }
+
+    bool MeshSimplify::input_manifold_test(MatrixXd &OV, MatrixXi &OF){
+        cout << "\n" << "*******************************\n";
+        cout << "Number of Input Vertex : " << OV.rows() << "\n";
+        cout << "Number of Input Faces : " << OF.rows() << "\n";
+        if (is_manifold(OV, OF, this->tree, this->decimated_faces)) {
+            cout << "Input model is Manifold mesh\n";
+            return true;
+        }
+        else{
+            cout << "Input model is Non-Manifold mesh" << endl;
+            cout << "Please use Manifold mesh" << endl;
+            return false;
+        }
+        cout << "*******************************" << "\n\n";
     }
 
     void MeshSimplify::init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio){
@@ -159,9 +176,9 @@ namespace qslim{
                 if(!qslim::is_manifold(V, F, this->tree, this->decimated_faces))
                     return false;
                 end_test = clock();
-                cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
+                //cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
+                cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
                 //cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
             //TODO: 여기서 false 일 때 cost 를 infinite 로
@@ -280,8 +297,8 @@ namespace qslim{
 
         clock_t start, end;
         start = clock();
+        int iteration = 0;
         while (!this->queue.empty()) {
-            cout << "\niteration : " << this->num_collapsed << endl;
             // collapse edge
 /*            cout << "collapsed : " << this->num_collapsed << endl;
             cout << "decimated index of vertex" << endl;
@@ -301,9 +318,15 @@ namespace qslim{
                                     this->EF, this->EI, this->queue, this->EQ, this->C);
 
             //cout << "true / false " << collapsed << endl;
-            this->num_collapsed++;
+            iteration ++;
+            if(collapsed)
+                this->num_collapsed++;
+            else
+                this->num_failed++;
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
-            if (this->num_collapsed >= this->stopping_condition) {
+            cout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
+            // TODO: 여기 num failed 말고 큐가 비면 끝나게 해야함
+            if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->stopping_condition) {
                 // remove duplicated vertices and faces
                 end = clock();
                 break;

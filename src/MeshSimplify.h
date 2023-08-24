@@ -7,7 +7,6 @@
 
 #include "tree.h"
 #include "AABB.hpp"
-#include "collapse_callback.h"
 #include "helper.h"
 #include <Eigen/Core>
 #include <time.h>
@@ -62,6 +61,9 @@ namespace qslim{
 
     public:
         MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio);
+
+        // input manifold test
+        bool input_manifold_test(MatrixXd &OV, MatrixXi &OF);
 
         // init member variable
         void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio);

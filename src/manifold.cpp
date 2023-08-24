@@ -93,19 +93,18 @@ namespace qslim{
             return false;
         }
         end_edge = clock();
-        cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec" << endl;
+        cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec\n";
         //cout << "edge manifold test success" << endl;
 
         //check self-intersection
         start_intersect = clock();
         if (!check_self_intersection(V, F, tree, decimated_faces)) {
             // self intersection exist
-            cout << "self-intersection test fail" << endl;
+            cout << "self-intersection test fail\n";
             return false;
         }
         end_intersect = clock();
-        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec"
-             << endl;
+        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec\n";
         //cout << "self-intersection test success" << endl;
 
 /*        // check orientation
