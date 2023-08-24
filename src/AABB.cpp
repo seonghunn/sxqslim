@@ -1224,4 +1224,8 @@ namespace aabb
         std::unordered_map<unsigned int, unsigned int> m = getParticleMap();
         return m[particleIdx];
     };
+
+    unsigned int Tree::getRootIdx() {
+        return this->root;
+    }
 }

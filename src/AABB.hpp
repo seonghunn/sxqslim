@@ -396,6 +396,8 @@ namespace aabb
          */
         unsigned int getParticleNodeMapping(unsigned int particleIdx);
 
+        unsigned int getRootIdx();
+
     private:
         /// The index of the root node.
         unsigned int root;

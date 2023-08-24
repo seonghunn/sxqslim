@@ -10,6 +10,7 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
         this->init_member_variable(OV, OF, ratio);
+        //this->tree = aabb::Tree(3, 0.05, 16, true);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
@@ -161,7 +162,7 @@ namespace qslim{
                 cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "Before collapsing number of vertices : " << V_.rows() << endl;
+                //cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
             //TODO: 여기서 false 일 때 cost 를 infinite 로
             this->RV.v1 = E(e,0);
@@ -280,7 +281,7 @@ namespace qslim{
         clock_t start, end;
         start = clock();
         while (!this->queue.empty()) {
-            //cout << this->num_collapsed << endl;
+            cout << "\niteration : " << this->num_collapsed << endl;
             // collapse edge
 /*            cout << "collapsed : " << this->num_collapsed << endl;
             cout << "decimated index of vertex" << endl;
