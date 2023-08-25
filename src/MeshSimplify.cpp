@@ -10,7 +10,7 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
         this->init_member_variable(OV, OF, ratio);
-        //this->tree = aabb::Tree(3, 0.0001, 16, false);
+        //this->tree = aabb::Tree(3, 0, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
@@ -242,6 +242,24 @@ namespace qslim{
                 // update Decimated faces table
                 this->decimated_faces[f1] = true;
                 this->decimated_faces[f2] = true;
+
+                // update affected triangle indices (list)
+                // TODO: 이거 너무 크기가 커짐. decimated 된 face들은 include 하지 말아야겠다.
+
+                std::vector<int> combined;
+                for (int faceIdx : this->affected_triangle_indices[RV_idx1]) {
+                    // if face in the list is not decimated yet
+                    if(!this->decimated_faces[faceIdx])
+                        combined.push_back(faceIdx);
+                }
+                for (int faceIdx: this->affected_triangle_indices[RV_idx2]) {
+                    if(!this->decimated_faces[faceIdx])
+                        combined.push_back(faceIdx);
+                }
+                // Remove duplicate
+                combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
+                this->affected_triangle_indices[RV_idx1] = combined;
+                this->affected_triangle_indices[RV_idx2] = combined;
             }
         };
     }
@@ -303,7 +321,7 @@ namespace qslim{
         start = clock();
         int iteration = 0;
         while (!this->queue.empty()) {
-            // collapse edge
+            // collapse edge, print data
 /*            cout << "collapsed : " << this->num_collapsed << endl;
             cout << "decimated index of vertex" << endl;
             cout << this->RV.v1 << " " << this->RV.v2 << endl;
@@ -336,7 +354,7 @@ namespace qslim{
                 break;
             }
         }
-        qslim::remove_duplicated_faces(this->V, this->F);
+        //qslim::remove_duplicated_faces(this->V, this->F);
         cout << "\n" << "*******************************" << endl;
         cout << "Output V : " << this->V.rows() << endl;
         cout << "Output F : " << this->F.rows() << endl;
@@ -344,6 +362,8 @@ namespace qslim{
             cout << "Resulting mesh is Manifold" << endl;
         else
             cout << "Resulting mesh is Non-Manifold" << endl;
+        // Remove duplicated faces
+        qslim::remove_duplicated_faces(this->V, this->F);
         cout << "*******************************" << endl;
         cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
         // write file

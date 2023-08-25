@@ -100,11 +100,11 @@ namespace qslim {
                     if(adjacent_faces(F.row(i), F.row(candidateIdx)) )
                         continue;
 
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 }
 /*

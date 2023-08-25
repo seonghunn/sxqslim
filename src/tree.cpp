@@ -82,7 +82,7 @@ namespace qslim{
                 F(i, 0) == RV_idx2 || F(i, 1) == RV_idx2 || F(i, 2) == RV_idx2) {
                 affectedTriangleIndices.push_back(i);
             }
-        }
+        }듯
 
         // Remove duplicates from the list
         std::sort(affectedTriangleIndices.begin(), affectedTriangleIndices.end());

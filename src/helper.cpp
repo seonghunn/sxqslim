@@ -86,6 +86,4 @@ namespace qslim {
         viewer.data().set_mesh(V, F);
         viewer.data().set_face_based(true);
     }
-    template<typename Derived>
-    void printMatrix(const Eigen::MatrixBase<Derived>& mat);
 }

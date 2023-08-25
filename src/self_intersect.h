@@ -28,7 +28,7 @@ namespace qslim{
 
     // exact self intersection check
     /*!
-     * \return true if there are no self intersections
+     * \return true if there are self intersections
      */
     bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces);

@@ -49,7 +49,10 @@ namespace qslim{
         int stopping_condition;
         // hash map for deleted faces
         std::unordered_map<int, bool> decimated_faces;
+
         // hash map for affected_triangles (vertex -> face mapping)
+        //TODO: update affected triangle indices every time (vertices are merged into one)
+        // 두개가 생기는 거기 때문에 두 개의 원래 vertex의 index를 똑같이 두개의 합으로 업데이트 해주면 될듯
         std::unordered_map<int, vector<int>> affected_triangle_indices;
 
         string output_filename;

@@ -54,12 +54,17 @@ namespace qslim{
         aabb::Tree tree;
         qslim::initialize_tree_from_mesh(V, F, tree);
 */
-        //Eigen::MatrixXi intersect, edges;
 
         //if it returns false, it means the mesh does not have self-intersections
-       //return igl::fast_find_self_intersections(V, F, intersect);
-       //return true;
-       // TODO: this returns always true
+        // use this for libigl
+        Eigen::MatrixXi intersect, edges;
+        Eigen::MatrixXd V_ = V;
+        Eigen::MatrixXi F_ = F;
+        remove_duplicated_faces(V_, F_);
+        //return igl::fast_find_self_intersections(V_, F_, intersect);
+
+        //return true;
+       // use this for custom self intersection check
         return self_intersection_check(V, F, tree, decimated_faces);
     }
 
@@ -102,7 +107,7 @@ namespace qslim{
 
         //check self-intersection
         start_intersect = clock();
-        if (!check_self_intersection(V, F, tree, decimated_faces)) {
+        if (check_self_intersection(V, F, tree, decimated_faces)) {
             // self intersection exist
             cout << "self-intersection test fail\n";
             return false;
