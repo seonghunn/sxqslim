@@ -28,7 +28,7 @@ namespace qslim{
                                  unordered_map<int, bool> &decimated_faces);
 
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces);
+                     unordered_map<int, bool> &decimated_faces, bool useManifoldCheck);
 }
 
 

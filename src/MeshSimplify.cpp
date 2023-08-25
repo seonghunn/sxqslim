@@ -23,16 +23,17 @@ namespace qslim{
         cout << "\n" << "*******************************\n";
         cout << "Number of Input Vertex : " << OV.rows() << "\n";
         cout << "Number of Input Faces : " << OF.rows() << "\n";
-        if (is_manifold(OV, OF, this->tree, this->decimated_faces)) {
+        if (is_manifold(OV, OF, this->tree, this->decimated_faces, true)) {
             cout << "Input model is Manifold mesh\n";
+            cout << "*******************************" << "\n\n";
             return true;
         }
-        else{
+        else {
             cout << "Input model is Non-Manifold mesh" << endl;
             cout << "Please use Manifold mesh" << endl;
+            cout << "*******************************" << "\n\n";
             return false;
         }
-        cout << "*******************************" << "\n\n";
     }
 
     void MeshSimplify::init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio){
@@ -173,8 +174,11 @@ namespace qslim{
                 end_remove = clock();
                 start_test = clock();
 
-                if(!qslim::is_manifold(V, F, this->tree, this->decimated_faces))
+                //qslim::is_manifold(V, F, this->tree, this->decimated_faces);
+
+                if(!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces, false)){
                     return false;
+                }
                 end_test = clock();
                 //cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
@@ -326,7 +330,7 @@ namespace qslim{
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
             cout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
             // TODO: 여기 num failed 말고 큐가 비면 끝나게 해야함
-            if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->stopping_condition) {
+            if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->OV.rows()) {
                 // remove duplicated vertices and faces
                 end = clock();
                 break;
@@ -336,7 +340,7 @@ namespace qslim{
         cout << "\n" << "*******************************" << endl;
         cout << "Output V : " << this->V.rows() << endl;
         cout << "Output F : " << this->F.rows() << endl;
-        if (qslim::is_manifold(this->V, this->F, this->tree, this->decimated_faces))
+        if (qslim::is_manifold(this->V, this->F, this->tree, this->decimated_faces, true))
             cout << "Resulting mesh is Manifold" << endl;
         else
             cout << "Resulting mesh is Non-Manifold" << endl;

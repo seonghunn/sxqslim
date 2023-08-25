@@ -84,16 +84,20 @@ namespace qslim{
 
     //TODO: use my self intersection function here
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces) {
+                     unordered_map<int, bool> &decimated_faces, bool useManifoldCheck) {
         // check edge_manifold
         clock_t start_edge, end_edge, start_intersect, end_intersect;
-        start_edge = clock();
-        if (!check_edge_manifold(V, F)) {
-            //cout<< "edge manifold test fail"<<endl;
-            return false;
+
+        // no need to check edge manifold since
+        if (useManifoldCheck) {
+            start_edge = clock();
+            if (!check_edge_manifold(V, F)) {
+                cout << "edge manifold test fail\n";
+                return false;
+            }
+            end_edge = clock();
+            cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec\n";
         }
-        end_edge = clock();
-        cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec\n";
         //cout << "edge manifold test success" << endl;
 
         //check self-intersection
