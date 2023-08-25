@@ -37,14 +37,6 @@ namespace qslim{
                     MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
                     igl::opengl::glfw::Viewer &viewer, int &num_collapsed);
 
-    // print MatrixXi, Xd
-    template<typename Derived>
-    void printMatrix(const Eigen::MatrixBase<Derived>& mat) {
-        for (int i = 0; i < mat.rows(); i++) {
-            cout<<mat.row(i)<<endl;
-        }
-        cout << endl;
-    }
 }
 
 #endif //QEM_HELPER_H
