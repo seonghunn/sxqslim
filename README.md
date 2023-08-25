@@ -32,7 +32,7 @@ Compile this project using the standard cmake routine:
 
     mkdir build
     cd build
-    cmake ..
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS_RELEASE="-O3" -DCMAKE_C_FLAGS_RELEASE="-O3"
     make
 
 This should find and build the dependencies and create a `example` binary.
@@ -41,7 +41,7 @@ This should find and build the dependencies and create a `example` binary.
 
 From within the `build` directory just issue:
 
-    ./QEM <input_filename> <output_filename> <ratio_of_collapsing>
+    ./QSlim <input_filename> <output_filename> <ratio_of_collapsing>
 
 If you set ratio as 0.3, only 30% of vertices will be remained.<br/>
 A glfw app should launch displaying a 3D cube.

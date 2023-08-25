@@ -9,10 +9,10 @@
 #include <iostream>
 #include <set>
 #include <ctime>
-#include "collapse_callback.h"
+//#include "collapse_callback.h"
 #include "helper.h"
 #include "manifold.h"
-#include "preprocess.h"
+//#include "preprocess.h"
 #include "MeshSimplify.h"
 //#include "process.h"
 
