@@ -162,34 +162,60 @@ namespace qslim{
                 MatrixXi EF_ = EF;
                 MatrixXi EI_ = EI;
                 RowVectorXd p = this->C.row(e); // placement when collapsing edge e
+
+            int RV_idx1 = E(e, 0);
+            int RV_idx2 = E(e, 1);
+            int tmp_f1;
+            int tmp_f2;
+
                 clock_t start_test, end_test, start_collapse, end_collapse;
                 start_collapse = clock();
                 igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
                 end_collapse = clock();
                 start_test = clock();
 
-
-            int RV_idx1 = E(e, 0);
-            int RV_idx2 = E(e, 1);
-            int tmp_f1;
-            int tmp_f2;
-            //TODO: not copying tree. save trajectory and restore them if test fails
-            aabb::Tree tmpTree = this->tree;
+            //TODO: try not to copy the tree. save trajectory and restore them if test fails
+/*            aabb::Tree tmpTree = this->tree;
             unordered_map<int, bool> tmpDecimatedFaces = this->decimated_faces;
-            unordered_map<int, std::vector<int>> tmpAffectedTriangleIndices = this->affected_triangle_indices;
+            unordered_map<int, std::vector<int>> tmpAffectedTriangleIndices = this->affected_triangle_indices;*/
             vector<int> tmpFaceList;
-            for (int i: tmpAffectedTriangleIndices[RV_idx1]) {
-                for (int j: tmpAffectedTriangleIndices[RV_idx2]) {
+            for (int i: this->affected_triangle_indices[RV_idx1]) {
+                for (int j: this->affected_triangle_indices[RV_idx2]) {
                     if(i==j) tmpFaceList.push_back(i);
                 }
             }
             tmp_f1 = tmpFaceList[0];
             tmp_f2 = tmpFaceList[1];
 
-            update_tree_after_decimation(V_, F_, tmpTree, RV_idx1, RV_idx2, tmp_f1, tmp_f2, tmpDecimatedFaces,
-                                         tmpAffectedTriangleIndices);
+            // *************************** //
+            vector<int> affected_triangle_indices_tmp1 = this->affected_triangle_indices[RV_idx1];
+            vector<int> affected_triangle_indices_tmp2 = this->affected_triangle_indices[RV_idx2];
 
-                //TODO: inorder to test manifold, update tree first
+            // update Decimated faces table
+            this->decimated_faces[tmp_f1] = true;
+            this->decimated_faces[tmp_f2] = true;
+
+            // update affected triangle indices (list)
+
+            std::vector<int> combined;
+            for (int faceIdx : this->affected_triangle_indices[RV_idx1]) {
+                // if face in the list is not decimated yet
+                if(!this->decimated_faces[faceIdx])
+                    combined.push_back(faceIdx);
+            }
+            for (int faceIdx: this->affected_triangle_indices[RV_idx2]) {
+                if(!this->decimated_faces[faceIdx])
+                    combined.push_back(faceIdx);
+            }
+            // Remove duplicate
+            combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
+            this->affected_triangle_indices[RV_idx1] = combined;
+            this->affected_triangle_indices[RV_idx2] = combined;
+
+            unordered_map<int, qslim::NodeSnapshot> nodeDataMapForRestore;
+            update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, tmp_f1, tmp_f2, this->decimated_faces,
+                                         this->affected_triangle_indices, nodeDataMapForRestore);
+
 /*            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)) {
                 cout << "collapsing edge" << endl;
@@ -202,8 +228,10 @@ namespace qslim{
                 return false;
             }*/
 
-            if (!qslim::is_manifold(V_, F_, tmpTree, tmpDecimatedFaces,
-                                    tmpAffectedTriangleIndices, RV_idx1, RV_idx2, false)) {
+/*            if (!qslim::is_manifold(V_, F_, tmpTree, tmpDecimatedFaces,
+                                    tmpAffectedTriangleIndices, RV_idx1, RV_idx2, false)) {*/
+            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
+                                    this->affected_triangle_indices, RV_idx1, RV_idx2, false)) {
                 cout << "collapsing edge" << endl;
                 cout << e << endl;
                 cout << "collapsing edge vertex" << endl;
@@ -211,6 +239,19 @@ namespace qslim{
                 cout << this->V.row(E(e, 1)) << endl;
                 cout << " new position : " << p << endl;
                 //여기서 false 일 때 cost 를 infinite 로 (이미 하고 있음 post collapse에서 선택되지 않으면 Infinite cost)
+                for (const auto& pair : nodeDataMapForRestore){
+                    int nodeIdx = pair.first;
+                    qslim::NodeSnapshot ns = pair.second;
+                    if(nodeDataMapForRestore[nodeIdx].isDeleted) {
+                        this->tree.insertParticle(nodeIdx, ns.lowerBound, ns.upperBound);
+                    } else {
+                        aabb::Node *node = this->tree.getNode(nodeIdx);
+                        node->aabb.lowerBound = ns.lowerBound;
+                        node->aabb.upperBound = ns.upperBound;
+                        node->aabb.computeSurfaceArea();
+                        node->aabb.computeCentre();
+                    }
+                }
                 return false;
             }
 
@@ -223,6 +264,14 @@ namespace qslim{
 
             this->RV.v1 = RV_idx1;
             this->RV.v2 = RV_idx2;
+
+            // restore two value
+            this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
+            this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
+
+            // update Decimated faces table
+            this->decimated_faces[tmp_f1] = false;
+            this->decimated_faces[tmp_f2] = false;
             return true;  // Allow the edge to be collapsed.
         };
 
@@ -270,10 +319,13 @@ namespace qslim{
                 this->qValues[RV_idx1] = Q1 + Q2;
                 this->qValues[RV_idx2] = Q1 + Q2;
                 // update AABB tree
+                // TODO: check updating tree at pre-collapse works well
+/*                unordered_map<int, qslim::NodeSnapshot> nodeDataMapForRestore;
                 qslim::update_tree_after_decimation(this->V, this->F, this->tree,
                                                     RV_idx1, RV_idx2, f1, f2, this->decimated_faces,
-                                                    this->affected_triangle_indices);
-                // update Decimated faces table
+                                                    this->affected_triangle_indices, nodeDataMapForRestore);*/
+
+/*                // update Decimated faces table
                 this->decimated_faces[f1] = true;
                 this->decimated_faces[f2] = true;
 
@@ -292,7 +344,7 @@ namespace qslim{
                 // Remove duplicate
                 combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
                 this->affected_triangle_indices[RV_idx1] = combined;
-                this->affected_triangle_indices[RV_idx2] = combined;
+                this->affected_triangle_indices[RV_idx2] = combined;*/
             }
         };
     }

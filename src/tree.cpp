@@ -24,7 +24,8 @@ namespace qslim{
         }
     }
 
-    bool update_ancestors(aabb::Tree &tree, unsigned int triangleIdx, unsigned int dim){
+    bool update_ancestors(aabb::Tree &tree, unsigned int triangleIdx, unsigned int dim,
+                          std::unordered_map<int, NodeSnapshot> &restoreMap) {
         unsigned int nodeIdx = tree.getParticleNodeMapping(triangleIdx);
         aabb::Node *node = tree.getNode(nodeIdx);
         aabb::Node *parentNode;
@@ -38,7 +39,7 @@ namespace qslim{
         while (node->parent != NULL_NODE) {
             unsigned int parentIdx = node->parent;
             parentNode = tree.getNode(parentIdx);
-            unsigned int updatingParticleIdx = parentNode->particle;
+            //unsigned int updatingParticleIdx = parentNode->particle;
             std::vector<double> currentLowerBoundVec = node->aabb.lowerBound;
             std::vector<double> currentUpperBoundVec = node->aabb.upperBound;
 
@@ -47,12 +48,19 @@ namespace qslim{
 
             std::vector<double> lowerBoundVec(dim);
             std::vector<double> upperBoundVec(dim);
-            for (int i=0; i<dim; i++){
+            for (int i = 0; i < dim; i++) {
                 lowerBoundVec[i] = currentLowerBoundVec[i] < parentUpperBoundVec[i] ?
                                    currentLowerBoundVec[i] : parentLowerBoundVec[i];
                 upperBoundVec[i] = currentUpperBoundVec[i] > parentUpperBoundVec[i] ?
                                    currentUpperBoundVec[i] : parentUpperBoundVec[i];
             }
+            // save it to restore map
+            NodeSnapshot ns;
+            ns.isDeleted = false;
+            ns.particleIdx = parentIdx;
+            ns.lowerBound = parentNode->aabb.lowerBound;
+            ns.upperBound = parentNode->aabb.upperBound;
+            restoreMap[parentIdx] = ns;
 
             //tree.updateParticle(updatingParticleIdx, lowerBoundVec, upperBoundVec);
             parentNode->aabb.lowerBound = lowerBoundVec;
@@ -70,7 +78,8 @@ namespace qslim{
             aabb::Tree &tree,
             int RV_idx1, int RV_idx2,
             int f1, int f2, std::unordered_map<int, bool> &decimatedFaces,
-            std::unordered_map<int, std::vector<int>> &affectedTriangleIndices) {
+            std::unordered_map<int, std::vector<int>> &affectedTriangleIndices,
+            std::unordered_map<int, NodeSnapshot> &restoreMap) {
         // 1. Identify affected triangles by checking RV and the provided face indices
         //std::vector<int> affectedTriangleIndices = {f1, f2};
 /*        std::vector<int> affectedTriangleIndices;
@@ -110,7 +119,13 @@ namespace qslim{
 
             // 3. Update the tree
             tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
-            qslim::update_ancestors(tree, triangleIdx, 3);
+            NodeSnapshot ns;
+            ns.isDeleted = false;
+            ns.particleIdx = triangleIdx;
+            ns.lowerBound = lowerBoundVec;
+            ns.upperBound = upperBoundVec;
+            restoreMap[triangleIdx] = ns;
+            qslim::update_ancestors(tree, triangleIdx, 3, restoreMap);
         }
 /*        // update test // update test success, but they didn't update ancestor
         std::vector<double> lowerBoundVec = {-10, -10, -10};
@@ -119,7 +134,21 @@ namespace qslim{
         tree.updateParticle(7, lowerBoundVec, upperBoundVec);
         qslim::update_ancestors(tree, 7, 3);*/
         // 4. Remove the faces that have been collapsed (assuming they are no longer in the mesh)
+        aabb::Node *tmp = tree.getNode(f1);
+        NodeSnapshot tmpNs;
+        tmpNs.isDeleted = false;
+        tmpNs.particleIdx = tmp->particle;
+        tmpNs.lowerBound = tmp->aabb.lowerBound;
+        tmpNs.upperBound = tmp->aabb.upperBound;
+        restoreMap[f1] = tmpNs;
         tree.removeParticle(f1);
+
+        tmp = tree.getNode(f2);
+        tmpNs.isDeleted = false;
+        tmpNs.particleIdx = tmp->particle;
+        tmpNs.lowerBound = tmp->aabb.lowerBound;
+        tmpNs.upperBound = tmp->aabb.upperBound;
+        restoreMap[f2] = tmpNs;
         tree.removeParticle(f2);
 
         return true;
