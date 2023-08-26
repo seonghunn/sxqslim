@@ -78,6 +78,21 @@ namespace qslim {
         RowVector3d source, target;
 
         bool isIntersecting = igl::tri_tri_intersection_test_3d(p1, q1, r1, p2, q2, r2, coplanar, source, target);
+        if(isIntersecting){
+            cout << "faceIdx 1 :" << faceIdx1 << "\n";
+            cout << "faceIdx 2 : " << faceIdx2 << "\n";
+            cout << "F1\n";
+            cout << p1 << endl;
+            cout << q1 << endl;
+            cout << r1 << endl;
+            cout << "F2" << endl;
+            cout << p2 << endl;
+            cout << q2 << endl;
+            cout << r2 << endl;
+            cout << "source - target" << endl;
+            cout << "source : " << source << endl;
+            cout << "target : " << target << endl;
+        }
 
         return isIntersecting;
     }
@@ -94,19 +109,47 @@ namespace qslim {
             dfs(tree, tree.getRootIdx(), queryAABB, candidates);
 
             for (const int &candidateIdx: candidates) {
+                if (candidateIdx == i)
+                    continue;
+                if (adjacent_faces(F.row(i), F.row(candidateIdx)))
+                    continue;
                 if (tri_tri_intersection_check(V, F, i, candidateIdx)) {
-                    if(candidateIdx == i)
-                        continue;
-                    if(adjacent_faces(F.row(i), F.row(candidateIdx)) )
-                        continue;
-
                     return true;
                 }
             }
         }
         return false;
     }
+
+    bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                                 unordered_map<int, bool> &decimated_faces,
+                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 int removed_vertex_idx2) {
+        for (int i: affected_triangle_indices[removed_vertex_idx1]) {
+            // no need to check decimated faces
+            if (decimated_faces[i]) continue;
+
+            aabb::AABB queryAABB = set_current_aabb(V, F, i); // The AABB for triangle i
+
+            vector<int> candidates;
+            dfs(tree, tree.getRootIdx(), queryAABB, candidates);
+
+            for (const int &candidateIdx: candidates) {
+                if (candidateIdx == i)
+                    continue;
+                if (adjacent_faces(F.row(i), F.row(candidateIdx)))
+                    continue;
+                if (tri_tri_intersection_check(V, F, i, candidateIdx)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
+
+
 /*
 namespace qslim {
     bool

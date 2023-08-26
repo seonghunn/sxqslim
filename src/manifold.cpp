@@ -68,6 +68,19 @@ namespace qslim{
         return self_intersection_check(V, F, tree, decimated_faces);
     }
 
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                                 unordered_map<int, bool> &decimated_faces,
+                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 int removed_vertex_idx2){
+
+        // test self intersection locally
+        return self_intersection_check(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
+                                       removed_vertex_idx1);
+
+        // test all self intersection
+        //return self_intersection_check(V, F, tree, decimated_faces);
+    }
+
     // self intersection using CGAL
 /*    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
         Mesh mesh;
@@ -87,7 +100,7 @@ namespace qslim{
         return has_self_intersection;
     }*/
 
-    //TODO: use my self intersection function here
+
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces, bool useManifoldCheck) {
         // check edge_manifold
@@ -113,7 +126,50 @@ namespace qslim{
             return false;
         }
         end_intersect = clock();
-        cout << "self intersect test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec\n";
+        cout << "self intersection test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec\n";
+        //cout << "self-intersection test success" << endl;
+
+/*        // check orientation
+        if(!qslim::check_mesh_orientation(V, F)){
+            cout << "orientation test fail" << endl;
+            return false;
+        }
+
+        cout << "orientation test success" << endl;*/
+
+
+        return true;
+    }
+
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                     unordered_map<int, bool> &decimated_faces,
+                     unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                     int removed_vertex_idx2,  bool useManifoldCheck){
+        // check edge_manifold
+        clock_t start_edge, end_edge, start_intersect, end_intersect;
+
+        // no need to check edge manifold since
+        if (useManifoldCheck) {
+            start_edge = clock();
+            if (!check_edge_manifold(V, F)) {
+                cout << "edge manifold test fail\n";
+                return false;
+            }
+            end_edge = clock();
+            cout << "edge manifold test : " << (double) (end_edge - start_edge) / CLOCKS_PER_SEC << " sec\n";
+        }
+        //cout << "edge manifold test success" << endl;
+
+        //check self-intersection
+        start_intersect = clock();
+        if (check_self_intersection(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
+                                    removed_vertex_idx2)) {
+            // self intersection exist
+            cout << "self-intersection test fail\n";
+            return false;
+        }
+        end_intersect = clock();
+        cout << "self intersection test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec\n";
         //cout << "self-intersection test success" << endl;
 
 /*        // check orientation

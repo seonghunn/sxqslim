@@ -32,6 +32,12 @@ namespace qslim{
      */
     bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces);
+
+    // self intersection check for iteration (pre_collapse_callback)
+    bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                                 unordered_map<int, bool> &decimated_faces,
+                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 int removed_vertex_idx2);
 /*    // exact triangle intersection test at 3d dim
     bool tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2);
 

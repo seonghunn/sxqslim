@@ -63,13 +63,13 @@ namespace qslim{
         igl::decimate_post_collapse_callback post_collapse;
 
     public:
-        MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio);
+        MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
 
         // input manifold test
         bool input_manifold_test(MatrixXd &OV, MatrixXi &OF);
 
         // init member variable
-        void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio);
+        void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
 
         // init affect_triangles table
         void init_affect_triangles(MatrixXd &OV, MatrixXi &OF);
