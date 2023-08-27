@@ -1221,8 +1221,8 @@ namespace aabb
     }
 
     unsigned int Tree::getParticleNodeMapping(unsigned int particleIdx){
-        std::unordered_map<unsigned int, unsigned int> m = getParticleMap();
-        return m[particleIdx];
+        //std::unordered_map<unsigned int, unsigned int> m = getParticleMap();
+        return this->particleMap[particleIdx];
     };
 
     unsigned int Tree::getRootIdx() {

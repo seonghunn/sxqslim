@@ -60,7 +60,7 @@ namespace qslim{
             ns.particleIdx = parentIdx;
             ns.lowerBound = parentNode->aabb.lowerBound;
             ns.upperBound = parentNode->aabb.upperBound;
-            restoreMap[parentIdx] = ns;
+            //restoreMap[parentIdx] = ns;
 
             //tree.updateParticle(updatingParticleIdx, lowerBoundVec, upperBoundVec);
             parentNode->aabb.lowerBound = lowerBoundVec;
@@ -136,7 +136,7 @@ namespace qslim{
         // 4. Remove the faces that have been collapsed (assuming they are no longer in the mesh)
         aabb::Node *tmp = tree.getNode(f1);
         NodeSnapshot tmpNs;
-        tmpNs.isDeleted = false;
+        tmpNs.isDeleted = true;
         tmpNs.particleIdx = tmp->particle;
         tmpNs.lowerBound = tmp->aabb.lowerBound;
         tmpNs.upperBound = tmp->aabb.upperBound;
@@ -144,7 +144,7 @@ namespace qslim{
         tree.removeParticle(f1);
 
         tmp = tree.getNode(f2);
-        tmpNs.isDeleted = false;
+        tmpNs.isDeleted = true;
         tmpNs.particleIdx = tmp->particle;
         tmpNs.lowerBound = tmp->aabb.lowerBound;
         tmpNs.upperBound = tmp->aabb.upperBound;

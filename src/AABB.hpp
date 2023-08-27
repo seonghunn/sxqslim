@@ -170,8 +170,7 @@ namespace aabb
         int height;
 
         /// The index of the particle that the node contains (leaf nodes only).
-        unsigned int particle;
-
+        unsigned int particle = -1;
         //! Test whether the node is a leaf.
         /*! \return
                 Whether the node is a leaf node.

@@ -4,7 +4,7 @@
 
 #include "preprocess.h"
 
-namespace QSlim{
+namespace qslim{
     void set_input_orient_outward(MatrixXd &V, MatrixXi &F, MatrixXi &FF) {
 /*      VectorXi C, I;
         MatrixXi FF;

@@ -216,6 +216,27 @@ namespace qslim{
             update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, tmp_f1, tmp_f2, this->decimated_faces,
                                          this->affected_triangle_indices, nodeDataMapForRestore);
 
+            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
+                                    this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
+                for (int triangleIdx: combined) {
+                    this->tree.removeParticle(triangleIdx);
+                    qslim::NodeSnapshot ns = nodeDataMapForRestore[triangleIdx];
+                    this->tree.insertParticle(triangleIdx, ns.lowerBound, ns.upperBound);
+                }
+                qslim::NodeSnapshot ns1 = nodeDataMapForRestore[tmp_f1];
+                qslim::NodeSnapshot ns2 = nodeDataMapForRestore[tmp_f2];
+                this->tree.insertParticle(tmp_f1, ns1.lowerBound, ns1.upperBound);
+                this->tree.insertParticle(tmp_f2, ns2.lowerBound, ns2.upperBound);
+
+                this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
+                this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
+
+                // restore Decimated faces table
+                this->decimated_faces[tmp_f1] = false;
+                this->decimated_faces[tmp_f2] = false;
+
+                return false;
+            }
 /*            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)) {
                 cout << "collapsing edge" << endl;
@@ -228,9 +249,8 @@ namespace qslim{
                 return false;
             }*/
 
-/*            if (!qslim::is_manifold(V_, F_, tmpTree, tmpDecimatedFaces,
-                                    tmpAffectedTriangleIndices, RV_idx1, RV_idx2, false)) {*/
-            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
+                //TODO: this is working code !
+/*            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)) {
                 cout << "collapsing edge" << endl;
                 cout << e << endl;
@@ -244,6 +264,8 @@ namespace qslim{
                     qslim::NodeSnapshot ns = pair.second;
                     if(nodeDataMapForRestore[nodeIdx].isDeleted) {
                         this->tree.insertParticle(nodeIdx, ns.lowerBound, ns.upperBound);
+                        //this->tree.getNode(nodeIdx)->height = 0;
+                        nodeDataMapForRestore[nodeIdx].isDeleted = false;
                     } else {
                         aabb::Node *node = this->tree.getNode(nodeIdx);
                         node->aabb.lowerBound = ns.lowerBound;
@@ -252,8 +274,16 @@ namespace qslim{
                         node->aabb.computeCentre();
                     }
                 }
+                // restore two value
+                this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
+                this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
+
+                // restore Decimated faces table
+                this->decimated_faces[tmp_f1] = false;
+                this->decimated_faces[tmp_f2] = false;
+
                 return false;
-            }
+            }*/
 
                 end_test = clock();
                 //cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
@@ -265,13 +295,6 @@ namespace qslim{
             this->RV.v1 = RV_idx1;
             this->RV.v2 = RV_idx2;
 
-            // restore two value
-            this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
-            this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
-
-            // update Decimated faces table
-            this->decimated_faces[tmp_f1] = false;
-            this->decimated_faces[tmp_f2] = false;
             return true;  // Allow the edge to be collapsed.
         };
 
