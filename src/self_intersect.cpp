@@ -97,7 +97,7 @@ namespace qslim {
         return isIntersecting;
     }
 
-    bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces) {
         for (int i = 0; i < F.rows(); i++) {
             // no need to check decimated faces
@@ -121,7 +121,7 @@ namespace qslim {
         return false;
     }
 
-    bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+    bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces,
                                  unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2) {
@@ -193,7 +193,6 @@ namespace qslim {
                 currentAABB.upperBound.push_back(upperBound[i]);
             }
 
-            // TODO: tree.query의 런타임이 너무 김
             // Use the tree's query function to find overlapping triangles
             std::vector<unsigned int> potentialIntersections = tree.query(faceIdx, currentAABB);
             unsigned int rootIdx = tree.getRootIdx();

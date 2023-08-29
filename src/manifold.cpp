@@ -34,21 +34,7 @@ namespace qslim{
         return true;
     }
 
-    // hello AABB tree
-    // Particle radius.
-    double radius = 1.0;
-
-// Set the particle position.
-    std::vector<double> position({10, 10});
-
-// Compute lower and upper AABB bounds.
-    std::vector<double> lowerBound({position[0] - radius, position[1] - radius});
-    std::vector<double> upperBound({position[0] + radius, position[1] + radius});
-
-// Create the AABB.
-    aabb::AABB aabb(lowerBound, upperBound);
-
-    // self intersection using libigl
+    // self intersection for input and output test
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree, unordered_map<int, bool> &decimated_faces){
 /*        //test aabb tree
         aabb::Tree tree;
@@ -57,50 +43,39 @@ namespace qslim{
 
         //if it returns false, it means the mesh does not have self-intersections
         // use this for libigl
-        Eigen::MatrixXi intersect, edges;
+/*        Eigen::MatrixXi intersect, edges;
         Eigen::MatrixXd V_ = V;
         Eigen::MatrixXi F_ = F;
         remove_duplicated_faces(V_, F_);
-        //return igl::fast_find_self_intersections(V_, F_, intersect);
+        return igl::fast_find_self_intersections(V_, F_, intersect);*/
 
         //return true;
        // use this for custom self intersection check
-        return self_intersection_check(V, F, tree, decimated_faces);
+       return self_intersection_check_full(V, F, tree, decimated_faces);
     }
 
+    // self intersection check for iteration (pre_collapse_callback)
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces,
                                  unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2){
 
         // test self intersection locally
-        return self_intersection_check(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
+        return self_intersection_check_local(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
                                        removed_vertex_idx1);
 
         // test all self intersection
-        //return self_intersection_check(V, F, tree, decimated_faces);
+        //return self_intersection_check_full(V, F, tree, decimated_faces);
+
+        // use this for libigl
+/*        Eigen::MatrixXi intersect, edges;
+        Eigen::MatrixXd V_ = V;
+        Eigen::MatrixXi F_ = F;
+        remove_duplicated_faces(V_, F_);
+        return igl::fast_find_self_intersections(V_, F_, intersect);*/
     }
 
-    // self intersection using CGAL
-/*    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F){
-        Mesh mesh;
-
-        std::vector<Mesh::Vertex_index> vertices;
-
-        // Convert Eigen matrix to CGAL Surface_mesh
-        for(int i = 0; i < V.rows(); ++i) {
-            vertices.push_back(mesh.add_vertex(Point_3(V(i,0), V(i,1), V(i,2))));
-        }
-        for(int i = 0; i < F.rows(); ++i) {
-            mesh.add_face(vertices[F(i, 0)], vertices[F(i, 1)], vertices[F(i, 2)]);
-        }
-
-        // Check for self-intersections
-        bool has_self_intersection = PMP::does_self_intersect(mesh, PMP::parameters::vertex_point_map(get(CGAL::vertex_point, mesh)));
-        return has_self_intersection;
-    }*/
-
-
+    // manifold test for input and output
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces, bool useManifoldCheck) {
         // check edge_manifold
@@ -141,6 +116,7 @@ namespace qslim{
         return true;
     }
 
+    // manifold check for iteration (pre_collapse_callback)
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces,
                      unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,

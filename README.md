@@ -11,7 +11,7 @@ Compile this project using the standard cmake routine:
 
 From within the `build` directory just issue:
 
-    ./QSlim <input_filename> <output_filename> <ratio_of_collapsing>
+    ./QSlim <input_filename in ./model/input> <output_filename> <ratio_of_collapsing>
 
 If you set ratio as 0.3, only 30% of vertices will be remained.<br/>
 A glfw app should launch displaying a 3D cube.

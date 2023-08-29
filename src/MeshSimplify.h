@@ -6,14 +6,18 @@
 #define QEM_MESHSIMPLIFY_H
 
 #include "tree.h"
-#include "AABB.hpp"
+#include "../include/AABB.hpp"
 #include "helper.h"
+#include "quadratic.h"
+#include "manifold.h"
+#include "igl/opengl/glfw/Viewer.h"
 #include <Eigen/Core>
 #include <time.h>
 #include <string>
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
 #include <igl/collapse_edge.h>
+#include <igl/edge_flaps.h>
 #include <iostream>
 
 using namespace std;

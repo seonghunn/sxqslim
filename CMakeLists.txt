@@ -30,7 +30,7 @@ file(GLOB SRC_FILES src/*.cpp)
 # add_executable(${PROJECT_NAME} ${SRC_FILES} src/dataparser.h src/dataparser.cpp src/mesh.cpp src/mesh.h)
 
 # Your current executable
-add_executable(${PROJECT_NAME} ${SRC_FILES} src/quadratic.h src/collapse_callback.h src/helper.h src/process.h src/manifold.h src/preprocess.h src/bvh.h src/AABB.cpp src/tree.h src/MeshSimplify.h src/self_intersect.h include/tri_tri_intersect.h)
+add_executable(${PROJECT_NAME} ${SRC_FILES} src/quadratic.h src/helper.h src/manifold.h include/AABB.cpp src/tree.h src/MeshSimplify.h src/self_intersect.h include/tri_tri_intersect.h)
 
 # Linking both igl::glfw and CGAL to your project
 target_link_libraries(${PROJECT_NAME} PUBLIC igl::glfw CGAL::CGAL)
