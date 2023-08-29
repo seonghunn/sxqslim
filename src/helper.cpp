@@ -3,7 +3,6 @@
 //
 
 #include "helper.h"
-#include <igl/AABB.h>
 
 using namespace std;
 namespace qslim {
@@ -33,57 +32,5 @@ namespace qslim {
         //TODO: exception handling
 
         return true;
-    }
-
-    // set all initial value before iteration, compute each cost, position and push into initial priority queue
-    void init_queue(MatrixXd &V, MatrixXd &OV, MatrixXi &F, MatrixXi &OF,
-                    MatrixXi &E, VectorXi &EMAP, MatrixXi &EF, MatrixXi &EI, VectorXi &EQ,
-                    MatrixXd &C, igl::min_heap<std::tuple<double, int, int> > &Q, std::vector<Matrix4d> &cost_table,
-                    igl::opengl::glfw::Viewer &viewer, int &num_collapsed) {
-
-        F = OF;
-        V = OV;
-        igl::edge_flaps(F, E, EMAP, EF, EI);
-        C.resize(E.rows(), V.cols());
-        VectorXd costs(E.rows());
-        Q = {};
-        EQ = Eigen::VectorXi::Zero(E.rows());
-        {
-            Eigen::VectorXd costs(E.rows());
-            //parallel code
-            igl::parallel_for(E.rows(), [&](const int e) {
-                double cost = e;
-                RowVectorXd p(1, 3);
-                //reset each cost
-                qslim::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
-                C.row(e) = p;
-                costs(e) = cost;
-            }, 10000);
-            for (int e = 0; e < E.rows(); e++) {
-                Q.emplace(costs(e), e, 0);
-            }
-
-            //serialize
-/*
-            for (int e = 0; e < E.rows(); e++) {
-                double cost = e;
-                RowVectorXd p(3);
-                //reset each cost
-                qslim::quadratic(e, V, F, E, EMAP, EF, EI, cost_table, cost, p);
-                C.row(e) = p;
-                costs(e) = cost;
-            }
-
-            for (int e = 0; e < E.rows(); e++) {
-                Q.emplace(costs(e), e, 0);
-            }
-*/
-
-        }
-
-        num_collapsed = 0;
-        viewer.data().clear();
-        viewer.data().set_mesh(V, F);
-        viewer.data().set_face_based(true);
     }
 }

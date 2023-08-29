@@ -8,9 +8,9 @@
 #define OUTPUT_PATH "../model/output/"
 
 namespace qslim{
-    MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio){
-        this->init_member_variable(OV, OF, ratio);
-        //this->tree = aabb::Tree(3, 0.0001, 16, false);
+    MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename) {
+        this->init_member_variable(OV, OF, ratio, output_filename);
+        this->tree = aabb::Tree(3, 0, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
         this->init_qValues(OV, OF, this->N_homo);
@@ -36,7 +36,8 @@ namespace qslim{
         }
     }
 
-    void MeshSimplify::init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio){
+    void MeshSimplify::init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename){
+        this->output_filename = output_filename;
         this->OV = OV;
         this->OF = OF;
         this->V = OV;
@@ -116,9 +117,6 @@ namespace qslim{
                 this->queue.emplace(costs(e), e, 0);
             }
             this->num_collapsed = 0;
-            this->viewer.data().clear();
-            this->viewer.data().set_mesh(V, F);
-            this->viewer.data().set_face_based(true);
         }
     }
 
@@ -145,49 +143,89 @@ namespace qslim{
                 const Eigen::MatrixXi &,              // EF: Edge to Face adjacency
                 const Eigen::MatrixXi &,              // EI: Edge information (possibly edge to vertex)
                 const igl::min_heap< std::tuple<double,int,int> > &,  // Q: Priority queue of edges to collapse (with costs)
-                const Eigen::VectorXi &,              // EQ: Unknown, possibly edge quality or equivalence
-                const Eigen::MatrixXd &,               // C: Unknown, possibly color or curvature data
-                const int e                            // e: Edge index to collapse
+                const Eigen::VectorXi &,              // EQ: Timestamps for each edge
+                const Eigen::MatrixXd &,               // C: Placement of an edge
+                const int e                            // e: Stores the optimal position data for each edge in the event it's collapsed.
                 ) -> bool
         {
-            // TODO: Your custom logic here. For example, you might want to prevent
-            // collapsing edges that are on the boundary of the mesh:
-            // if (is_boundary_edge(e, V, F, E, EMAP, EF, EI)) {
-            //     return false;
-            // }
-            //Add this logic : total time complexity -> O(N^2 log(N))
-            // collapsing edge candidate
-                MatrixXd V_ = V;
-                MatrixXi F_ = F;
-                MatrixXi E_ = E;
-                VectorXi EMAP_ = EMAP;
-                MatrixXi EF_ = EF;
-                MatrixXi EI_ = EI;
-                RowVectorXd p = V.row(E(e, 0));
-                clock_t start_remove, end_remove, start_test, end_test, start_collapse, end_collapse;
-                start_collapse = clock();
-                igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
-                end_collapse = clock();
+            // return false if manifold test fails
+            // if this function returns false, then the candidate edge is not gonna be collapse
+            // after return false, assign infinity cost for that edge
+            MatrixXd V_ = V;
+            MatrixXi F_ = F;
+            MatrixXi E_ = E;
+            VectorXi EMAP_ = EMAP;
+            MatrixXi EF_ = EF;
+            MatrixXi EI_ = EI;
+            RowVectorXd p = this->C.row(e); // placement when collapsing edge e
 
-                start_remove = clock();
-                //qslim::remove_duplicated_faces(V_, F_);
-                end_remove = clock();
-                start_test = clock();
+            int RV_idx1 = E(e, 0);
+            int RV_idx2 = E(e, 1);
+            int removedFaceIdx1;
+            int removedFaceIdx2;
 
-                //qslim::is_manifold(V, F, this->tree, this->decimated_faces);
-
-                if(!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces, false)){
-                    return false;
+            vector<int> tmpFaceList;
+            for (int i: this->affected_triangle_indices[RV_idx1]) {
+                for (int j: this->affected_triangle_indices[RV_idx2]) {
+                    if(i==j) tmpFaceList.push_back(i);
                 }
+            }
+            // index of decimated faces
+            removedFaceIdx1 = tmpFaceList[0];
+            removedFaceIdx2 = tmpFaceList[1];
+
+            // buffer for affected triangle indices (to restore)
+            vector<int> affected_triangle_indices_tmp1 = this->affected_triangle_indices[RV_idx1];
+            vector<int> affected_triangle_indices_tmp2 = this->affected_triangle_indices[RV_idx2];
+
+            // update Decimated faces table
+            this->decimated_faces[removedFaceIdx1] = true;
+            this->decimated_faces[removedFaceIdx2] = true;
+
+            vector<int> combinedAffectedTriangleIndices;
+            updateAffectedTriangle(this->affected_triangle_indices, this->decimated_faces, RV_idx1, RV_idx2,
+                                   combinedAffectedTriangleIndices);
+
+            unordered_map<int, NodeSnapshot> restoreMap;
+            takeNodeSnapShot(combinedAffectedTriangleIndices, this->tree, removedFaceIdx1, removedFaceIdx2, restoreMap);
+
+            clock_t start_test, end_test, start_collapse, end_collapse;
+            start_collapse = clock();
+            igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
+            end_collapse = clock();
+            start_test = clock();
+
+            // update tree after decimation
+            update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, removedFaceIdx1, removedFaceIdx2, this->decimated_faces,
+                                         combinedAffectedTriangleIndices);
+
+            // if test failed, restore tree
+            if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
+                                    this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
+                restoreTree(combinedAffectedTriangleIndices, restoreMap, this->tree, removedFaceIdx1, removedFaceIdx2);
+
+                //restore affected triangle indices
+                this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
+                this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
+
+                // combined : set of affected triangles except decimated triangles (faces)
+                // need to update for decimated faces
+                // restore Decimated faces table
+                this->decimated_faces[removedFaceIdx1] = false;
+                this->decimated_faces[removedFaceIdx2] = false;
+
+                return false;
+            }
+
                 end_test = clock();
                 //cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
                 //cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
-            //TODO: 여기서 false 일 때 cost 를 infinite 로
-            this->RV.v1 = E(e,0);
-            this->RV.v2 = E(e,1);
+
+            this->RV.v1 = RV_idx1;
+            this->RV.v2 = RV_idx2;
 
             return true;  // Allow the edge to be collapsed.
         };
@@ -227,6 +265,8 @@ namespace qslim{
                     cout << "e2 : " << e2 << endl;
                     cout << "f1 : " << f1 << endl;
                     cout << "f2 : " << f2 << endl;*/
+
+            // if edge was collapsed, update qValues table
             if (collapsed) {
                 int RV_idx1 = this->RV.v1;
                 int RV_idx2 = this->RV.v2;
@@ -235,13 +275,6 @@ namespace qslim{
                 Eigen::Matrix4d Q2 = this->qValues[RV_idx2];
                 this->qValues[RV_idx1] = Q1 + Q2;
                 this->qValues[RV_idx2] = Q1 + Q2;
-                // update AABB tree
-                qslim::update_tree_after_decimation(this->V, this->F, this->tree,
-                                                    RV_idx1, RV_idx2, f1, f2, this->decimated_faces,
-                                                    this->affected_triangle_indices);
-                // update Decimated faces table
-                this->decimated_faces[f1] = true;
-                this->decimated_faces[f2] = true;
             }
         };
     }
@@ -292,6 +325,12 @@ namespace qslim{
         // transform homogeneous coordinates to normal coordinates
         p = target.head<3>() / target.w();
         cost = target.transpose() * Q * target;
+
+        // midpoint
+/*        p = (V.row(v1) + V.row(v2)) / 2.0;
+        Vector4d p_homogeneous;
+        p_homogeneous << p.transpose(), 1;
+        cost = p_homogeneous.transpose() * Q * p_homogeneous;*/
     }
 
     bool MeshSimplify::process(){
@@ -303,7 +342,7 @@ namespace qslim{
         start = clock();
         int iteration = 0;
         while (!this->queue.empty()) {
-            // collapse edge
+            // collapse edge, print data
 /*            cout << "collapsed : " << this->num_collapsed << endl;
             cout << "decimated index of vertex" << endl;
             cout << this->RV.v1 << " " << this->RV.v2 << endl;
@@ -336,14 +375,16 @@ namespace qslim{
                 break;
             }
         }
-        qslim::remove_duplicated_faces(this->V, this->F);
+        //qslim::remove_duplicated_faces(this->V, this->F);
         cout << "\n" << "*******************************" << endl;
-        cout << "Output V : " << this->V.rows() << endl;
-        cout << "Output F : " << this->F.rows() << endl;
         if (qslim::is_manifold(this->V, this->F, this->tree, this->decimated_faces, true))
             cout << "Resulting mesh is Manifold" << endl;
         else
             cout << "Resulting mesh is Non-Manifold" << endl;
+        // Remove duplicated faces
+        qslim::remove_duplicated_faces(this->V, this->F);
+        cout << "Output V : " << this->V.rows() << endl;
+        cout << "Output F : " << this->F.rows() << endl;
         cout << "*******************************" << endl;
         cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
         // write file

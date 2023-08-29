@@ -9,7 +9,7 @@
 #include <iostream>
 #include <igl/intersect.h>
 #include <../include/tri_tri_intersect.h>
-#include "AABB.hpp"
+#include "../include/AABB.hpp"
 
 using namespace Eigen;
 using namespace std;
@@ -23,21 +23,21 @@ namespace qslim{
     // traverse AABB Tree and get candidates
     void dfs(aabb::Tree &tree, int nodeId, aabb::AABB &queryAABB, vector<int> &candidates);
 
-    // triangle intersection check for candidates using AABB
+    // triangle intersection check for intersection candidates
     bool tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2);
 
     // exact self intersection check
     /*!
-     * \return true if there are no self intersections
+     * \return true if there are self intersections
      */
-    bool self_intersection_check(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces);
-/*    // exact triangle intersection test at 3d dim
-    bool tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2);
 
-    // self intersection test, return true if there is self intersection
-    bool self_intersection_test(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                unordered_map<int, bool> &decimated_faces);*/
+    // self intersection check for iteration (pre_collapse_callback)
+    bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                                 unordered_map<int, bool> &decimated_faces,
+                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 int removed_vertex_idx2);
 }
 
 

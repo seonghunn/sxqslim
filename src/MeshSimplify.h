@@ -6,14 +6,18 @@
 #define QEM_MESHSIMPLIFY_H
 
 #include "tree.h"
-#include "AABB.hpp"
+#include "../include/AABB.hpp"
 #include "helper.h"
+#include "quadratic.h"
+#include "manifold.h"
+#include "igl/opengl/glfw/Viewer.h"
 #include <Eigen/Core>
 #include <time.h>
 #include <string>
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
 #include <igl/collapse_edge.h>
+#include <igl/edge_flaps.h>
 #include <iostream>
 
 using namespace std;
@@ -49,7 +53,10 @@ namespace qslim{
         int stopping_condition;
         // hash map for deleted faces
         std::unordered_map<int, bool> decimated_faces;
+
         // hash map for affected_triangles (vertex -> face mapping)
+        //TODO: update affected triangle indices every time (vertices are merged into one)
+        // 두개가 생기는 거기 때문에 두 개의 원래 vertex의 index를 똑같이 두개의 합으로 업데이트 해주면 될듯
         std::unordered_map<int, vector<int>> affected_triangle_indices;
 
         string output_filename;
@@ -60,13 +67,13 @@ namespace qslim{
         igl::decimate_post_collapse_callback post_collapse;
 
     public:
-        MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio);
+        MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
 
         // input manifold test
         bool input_manifold_test(MatrixXd &OV, MatrixXi &OF);
 
         // init member variable
-        void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio);
+        void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
 
         // init affect_triangles table
         void init_affect_triangles(MatrixXd &OV, MatrixXi &OF);

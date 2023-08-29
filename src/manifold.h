@@ -12,7 +12,7 @@
 #include <CGAL/Surface_mesh.h>
 
 #include "../include/igl/fast_find_self_intersections.h"
-#include "./AABB.hpp"
+#include "../include/AABB.hpp"
 #include "tree.h"
 #include <time.h>
 #include "self_intersect.h"
@@ -24,11 +24,26 @@ namespace qslim{
 
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F);
 
+    // self intersection for input and output test
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces);
 
+    // self intersection check for iteration (pre_collapse_callback)
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                     unordered_map<int, bool> &decimated_faces,
+                     unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                     int removed_vertex_idx2);
+
+    // manifold test for input and output
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces, bool useManifoldCheck);
+
+    // manifold check for iteration (pre_collapse_callback)
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
+                     unordered_map<int, bool> &decimated_faces,
+                     unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                     int removed_vertex_idx2, bool useManifoldCheck);
+
 }
 
 

@@ -61,7 +61,7 @@ int main(int argc, char * argv[])
         return -1;
     }*/
     igl::opengl::glfw::Viewer viewer;
-    qslim::MeshSimplify meshSimplify(OV, OF, ratio);
+    qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
     meshSimplify.process();
 
     // Erase this for docker image

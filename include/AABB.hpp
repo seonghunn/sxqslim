@@ -26,6 +26,7 @@
 
 #ifndef _AABB_H
 #define _AABB_H
+#pragma once
 
 #include <algorithm>
 #include <cassert>
@@ -169,8 +170,7 @@ namespace aabb
         int height;
 
         /// The index of the particle that the node contains (leaf nodes only).
-        unsigned int particle;
-
+        unsigned int particle = -1;
         //! Test whether the node is a leaf.
         /*! \return
                 Whether the node is a leaf node.
@@ -378,6 +378,40 @@ namespace aabb
         /// Rebuild an optimal tree.
         void rebuild();
 
+
+/*
+        ****************************************
+        custom function from seonghunn 08/28/23
+        ****************************************
+
+     */
+        // Custom getter using triangle idx
+        /*! \return
+         *      Node of corresponding triangle index (key)
+         */
+        Node* getNode(unsigned int);
+
+        // Custom getter
+        /*! \return
+         *      Particle Map
+         */
+        std::unordered_map<unsigned int, unsigned int> getParticleMap();
+
+        /*! \return
+         *      get Node index using particle index
+         */
+        unsigned int getParticleNodeMapping(unsigned int particleIdx);
+
+        // get root node's index
+        unsigned int getRootIdx();
+
+/*
+        ****************************************
+                custom function end
+        ****************************************
+
+        */
+
     private:
         /// The index of the root node.
         unsigned int root;
@@ -498,6 +532,7 @@ namespace aabb
     };
 }
 
+/*
 namespace aabb
 {
     AABB::AABB()
@@ -1705,5 +1740,6 @@ namespace aabb
         return isShifted;
     }
 }
+*/
 
 #endif /* _AABB_H */
