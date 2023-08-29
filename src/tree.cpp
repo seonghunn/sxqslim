@@ -103,7 +103,9 @@ namespace qslim{
             std::vector<double> upperBoundVec = {upperBound[0], upperBound[1], upperBound[2]};
 
             // 3. Update the tree
-            tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            //tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            tree.removeParticle(triangleIdx);
+            tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);
 /*            NodeSnapshot ns;
             ns.isDeleted = false;
             ns.particleIdx = triangleIdx;
@@ -188,6 +190,8 @@ namespace qslim{
             // if face is deleted at collapsing step, just update it
             if (!restoreMap[triangleIdx].isDeleted) {
                 qslim::NodeSnapshot ns = restoreMap[triangleIdx];
+                //tree.removeParticle(triangleIdx);
+                //tree.insertParticle(triangleIdx, ns.lowerBound, ns.upperBound);
                 tree.updateParticle(triangleIdx, ns.lowerBound, ns.upperBound, true);
             }
         }

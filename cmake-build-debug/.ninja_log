@@ -52,3 +52,15 @@
 27670	27710	1693281098977246000	_deps/glfw-build/src/libglfw3.a	4c7783e4b2856919
 14320	19279	1692675885587156459	CMakeFiles/QEM.dir/src/quadratic.cpp.o	34abb15449f8c045
 25043	25389	1693281096650864703	_deps/glfw-build/src/CMakeFiles/glfw.dir/vulkan.c.o	86414b745fdaeed0
+38	1748	1693344450033177079	CMakeFiles/QSlim.dir/src/helper.cpp.o	3c4f884bd9479897
+40	1895	1693344450176314332	CMakeFiles/QSlim.dir/src/self_intersect.cpp.o	c243bcc0724a7a29
+39	2039	1693344450326500787	CMakeFiles/QSlim.dir/src/quadratic.cpp.o	b3bb134a361ce7de
+1895	2702	1693344451000040295	CMakeFiles/QSlim.dir/include/AABB.cpp.o	5b598cd512ba229a
+1748	3005	1693344451293550289	CMakeFiles/QSlim.dir/src/tree.cpp.o	f3478798ae35e9a5
+39	4898	1693344453170260462	CMakeFiles/QSlim.dir/src/manifold.cpp.o	9c9cd056cd7a92dd
+38	10613	1693344458862601679	CMakeFiles/QSlim.dir/src/MeshSimplify.cpp.o	63b9cb9f7633215
+38	11322	1693344459562498728	CMakeFiles/QSlim.dir/src/main.cpp.o	91f5bbcbff3df47f
+11322	11651	1693344459951401753	QSlim	5012ba52b949a070
+49	950	1693346604097553920	CMakeFiles/QSlim.dir/src/tree.cpp.o	f3478798ae35e9a5
+49	7968	1693346611071623736	CMakeFiles/QSlim.dir/src/MeshSimplify.cpp.o	63b9cb9f7633215
+7968	8311	1693346611462081745	QSlim	5012ba52b949a070
