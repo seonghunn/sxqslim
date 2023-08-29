@@ -1,3 +1,7 @@
+## QSlim implementation for greedy edge collapse
+- using libigl, AABB tree (https://github.com/lohedges/aabbcc)
+- add self intersection test using aabb tree for every iteration
+
 ## Compile
 
 Compile this project using the standard cmake routine:
@@ -15,3 +19,7 @@ From within the `build` directory just issue:
 
 If you set ratio as 0.3, only 30% of vertices will be remained.<br/>
 A glfw app should launch displaying a 3D cube.
+
+## Reference
+Surface Simplification Using Quadric Error Metrics, 1997 </br>
+https://www.cs.cmu.edu/~./garland/Papers/quadrics.pdf
