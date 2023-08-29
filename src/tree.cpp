@@ -103,15 +103,17 @@ namespace qslim{
             std::vector<double> upperBoundVec = {upperBound[0], upperBound[1], upperBound[2]};
 
             // 3. Update the tree
-            //tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
-            tree.removeParticle(triangleIdx);
-            tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            //tree.removeParticle(triangleIdx);
+            //tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);
 /*            NodeSnapshot ns;
             ns.isDeleted = false;
             ns.particleIdx = triangleIdx;
             ns.lowerBound = lowerBoundVec;
             ns.upperBound = upperBoundVec;
             restoreMap[triangleIdx] = ns;*/
+
+            // no need to update tree again
             //qslim::update_ancestors(tree, triangleIdx, 3);
         }
         tree.removeParticle(f1);
