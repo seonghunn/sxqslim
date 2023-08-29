@@ -42,6 +42,10 @@ namespace qslim{
     void
     takeNodeSnapShot(vector<int> &combinedAffectedTriangleIndices, aabb::Tree &tree, int removedFaceIdx1, int removedFaceIdx2,
                      unordered_map<int, NodeSnapshot> &nodeRestoreMap);
+
+    void restoreTree(vector<int> combinedAffectedTriangleIndices, unordered_map<int, NodeSnapshot> &restoreMap,
+                     aabb::Tree &tree, int removedFaceIdx1,
+                     int removedFaceIdx2);
 }
 
 

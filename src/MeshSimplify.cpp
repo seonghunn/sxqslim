@@ -207,29 +207,17 @@ namespace qslim{
             // if test failed, restore tree
             if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
-                // deal with affected faces (not decimated)
-                for (int triangleIdx: combinedAffectedTriangleIndices) {
-                    //this->tree.removeParticle(triangleIdx);
-                    // if face is deleted at collapsing step, just update it
-                    if (!restoreMap[triangleIdx].isDeleted) {
-                        qslim::NodeSnapshot ns = restoreMap[triangleIdx];
-                        this->tree.updateParticle(triangleIdx, ns.lowerBound, ns.upperBound, true);
-                    }
-                }
-                // deal with decimated faces
-                qslim::NodeSnapshot ns1 = restoreMap[tmp_f1];
-                qslim::NodeSnapshot ns2 = restoreMap[tmp_f2];
-                this->tree.insertParticle(tmp_f1, ns1.lowerBound, ns1.upperBound);
-                this->tree.insertParticle(tmp_f2, ns2.lowerBound, ns2.upperBound);
+                restoreTree(combinedAffectedTriangleIndices, restoreMap, this->tree, tmp_f1, tmp_f2);
 
+                //restore affected triangle indices
                 this->affected_triangle_indices[RV_idx1] = affected_triangle_indices_tmp1;
                 this->affected_triangle_indices[RV_idx2] = affected_triangle_indices_tmp2;
 
+                // combined : set of affected triangles except decimated triangles (faces)
+                // need to update for decimated faces
                 // restore Decimated faces table
                 this->decimated_faces[tmp_f1] = false;
                 this->decimated_faces[tmp_f2] = false;
-                // combined : set of affected triangles except decimated triangles (faces)
-                // need to update for decimated faces
 
                 return false;
             }

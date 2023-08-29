@@ -177,5 +177,25 @@ namespace qslim{
         ns2.particleIdx = removedFaceIdx2;
         nodeRestoreMap.insert(make_pair(removedFaceIdx2, ns2));
     }
+
+    void restoreTree(vector<int> combinedAffectedTriangleIndices, unordered_map<int, NodeSnapshot> &restoreMap,
+                     aabb::Tree &tree, int removedFaceIdx1,
+                     int removedFaceIdx2) {
+
+        // deal with affected faces (not decimated)
+        for (int triangleIdx: combinedAffectedTriangleIndices) {
+            //this->tree.removeParticle(triangleIdx);
+            // if face is deleted at collapsing step, just update it
+            if (!restoreMap[triangleIdx].isDeleted) {
+                qslim::NodeSnapshot ns = restoreMap[triangleIdx];
+                tree.updateParticle(triangleIdx, ns.lowerBound, ns.upperBound, true);
+            }
+        }
+        // deal with decimated faces
+        qslim::NodeSnapshot ns1 = restoreMap[removedFaceIdx1];
+        qslim::NodeSnapshot ns2 = restoreMap[removedFaceIdx2];
+        tree.insertParticle(removedFaceIdx1, ns1.lowerBound, ns1.upperBound);
+        tree.insertParticle(removedFaceIdx2, ns2.lowerBound, ns2.upperBound);
+    }
 }
 
