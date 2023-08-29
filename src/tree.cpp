@@ -112,7 +112,7 @@ namespace qslim{
             ns.lowerBound = lowerBoundVec;
             ns.upperBound = upperBoundVec;
             restoreMap[triangleIdx] = ns;*/
-            qslim::update_ancestors(tree, triangleIdx, 3);
+            //qslim::update_ancestors(tree, triangleIdx, 3);
         }
         tree.removeParticle(f1);
         tree.removeParticle(f2);
