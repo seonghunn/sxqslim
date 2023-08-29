@@ -52,8 +52,11 @@ namespace qslim{
                 upperBoundVec[i] = currentUpperBoundVec[i] > parentUpperBoundVec[i] ?
                                    currentUpperBoundVec[i] : parentUpperBoundVec[i];
             }
-
-
+            parentNode->aabb.lowerBound = lowerBoundVec;
+            parentNode->aabb.upperBound = upperBoundVec;
+            parentNode->aabb.centre = parentNode->aabb.computeCentre();
+            parentNode->aabb.surfaceArea = parentNode->aabb.computeSurfaceArea();
+            node = parentNode;
         }
         return true;
     }
@@ -146,7 +149,8 @@ namespace qslim{
         // for modified faces
         for (int triangleIdx: combinedAffectedTriangleIndices) {
             NodeSnapshot ns;
-            aabb::Node *node = tree.getNode(triangleIdx);
+            int nodeIdx = tree.getParticleNodeMapping(triangleIdx);
+            aabb::Node *node = tree.getNode(nodeIdx);
             ns.lowerBound = node->aabb.lowerBound;
             ns.upperBound = node->aabb.upperBound;
             ns.isDeleted = false;
@@ -156,7 +160,8 @@ namespace qslim{
 
         // for deleted faces
         NodeSnapshot ns1;
-        aabb::Node *node1 = tree.getNode(removedFaceIdx1);
+        int nodeIdx1 = tree.getParticleNodeMapping(removedFaceIdx1);
+        aabb::Node *node1 = tree.getNode(nodeIdx1);
         ns1.lowerBound = node1->aabb.lowerBound;
         ns1.upperBound = node1->aabb.upperBound;
         ns1.isDeleted = true;
@@ -164,7 +169,8 @@ namespace qslim{
         nodeRestoreMap.insert(make_pair(removedFaceIdx1, ns1));
 
         NodeSnapshot ns2;
-        aabb::Node *node2 = tree.getNode(removedFaceIdx2);
+        int nodeIdx2 = tree.getParticleNodeMapping(removedFaceIdx2);
+        aabb::Node *node2 = tree.getNode(nodeIdx2);
         ns2.lowerBound = node2->aabb.lowerBound;
         ns2.upperBound = node2->aabb.upperBound;
         ns2.isDeleted = true;
