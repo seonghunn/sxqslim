@@ -47,19 +47,6 @@ int main(int argc, char * argv[])
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
 
-    //TODO: Put this into initializer at MeshSimplify class
-/*    if(qslim::is_manifold(OV, OF)){
-        cout << "\n" << "*******************************" << endl;
-        cout << "Input model is Manifold mesh" << endl;
-        cout << "Number of Vertex : " << OV.rows() << endl;
-        cout << "Number of Faces : " << OF.rows() << endl;
-        cout << "*******************************" << "\n" << endl;
-    }
-    else {
-        cout << "Input model is Non-Manifold mesh" << endl;
-        cout << "Please use Manifold mesh" << endl;
-        return -1;
-    }*/
     igl::opengl::glfw::Viewer viewer;
     qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
     meshSimplify.process();
