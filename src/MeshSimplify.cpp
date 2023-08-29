@@ -168,14 +168,6 @@ namespace qslim{
             int tmp_f1;
             int tmp_f2;
 
-                clock_t start_test, end_test, start_collapse, end_collapse;
-                start_collapse = clock();
-                igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
-                end_collapse = clock();
-                start_test = clock();
-
-            //******************************* non-copying tree *******************************
-
             vector<int> tmpFaceList;
             for (int i: this->affected_triangle_indices[RV_idx1]) {
                 for (int j: this->affected_triangle_indices[RV_idx2]) {
@@ -194,44 +186,36 @@ namespace qslim{
             this->decimated_faces[tmp_f1] = true;
             this->decimated_faces[tmp_f2] = true;
 
-            // update affected triangle indices (list)
-            // combined : set of affected triangles except decimated triangles (faces)
-            std::vector<int> combined;
-            for (int faceIdx : this->affected_triangle_indices[RV_idx1]) {
-                // if face in the list is not decimated yet
-                if(!this->decimated_faces[faceIdx])
-                    combined.push_back(faceIdx);
-            }
-            for (int faceIdx: this->affected_triangle_indices[RV_idx2]) {
-                if(!this->decimated_faces[faceIdx])
-                    combined.push_back(faceIdx);
-            }
-            // Remove duplicate
-            combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
+            vector<int> combinedAffectedTriangleIndices;
+            updateAffectedTriangle(this->affected_triangle_indices, this->decimated_faces, RV_idx1, RV_idx2,
+                                   combinedAffectedTriangleIndices);
 
-            // Two vertex are merged into new position -> assign same value for each list
-            this->affected_triangle_indices[RV_idx1] = combined;
-            this->affected_triangle_indices[RV_idx2] = combined;
+            unordered_map<int, NodeSnapshot> restoreMap;
+            takeNodeSnapShot(combinedAffectedTriangleIndices, this->tree, tmp_f1, tmp_f2, restoreMap);
 
-            // Node data buffer for restoring data
-            unordered_map<int, qslim::NodeSnapshot> nodeDataMapForRestore;
+                clock_t start_test, end_test, start_collapse, end_collapse;
+                start_collapse = clock();
+                igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
+                end_collapse = clock();
+                start_test = clock();
 
+            //******************************* non-copying tree *******************************
             // update tree after decimation
             update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, tmp_f1, tmp_f2, this->decimated_faces,
-                                         this->affected_triangle_indices, nodeDataMapForRestore);
+                                         combinedAffectedTriangleIndices);
 
             // if test failed, restore tree
             if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
-                for (int triangleIdx: combined) {
+                for (int triangleIdx: combinedAffectedTriangleIndices) {
                     //this->tree.removeParticle(triangleIdx);
-                    qslim::NodeSnapshot ns = nodeDataMapForRestore[triangleIdx];
+                    qslim::NodeSnapshot ns = restoreMap[triangleIdx];
                     this->tree.updateParticle(triangleIdx, ns.lowerBound, ns.upperBound);
                 }
                 // combined : set of affected triangles except decimated triangles (faces)
                 // need to update for decimated faces
-                qslim::NodeSnapshot ns1 = nodeDataMapForRestore[tmp_f1];
-                qslim::NodeSnapshot ns2 = nodeDataMapForRestore[tmp_f2];
+                qslim::NodeSnapshot ns1 = restoreMap[tmp_f1];
+                qslim::NodeSnapshot ns2 = restoreMap[tmp_f2];
                 this->tree.insertParticle(tmp_f1, ns1.lowerBound, ns1.upperBound);
                 this->tree.insertParticle(tmp_f2, ns2.lowerBound, ns2.upperBound);
 
