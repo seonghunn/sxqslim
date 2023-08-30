@@ -170,6 +170,10 @@ namespace qslim{
                     if(i==j) tmpFaceList.push_back(i);
                 }
             }
+
+            // if decimated face is not 2, this leads to invalid mesh
+            if(tmpFaceList.size()!=2) return false;
+
             // index of decimated faces
             removedFaceIdx1 = tmpFaceList[0];
             removedFaceIdx2 = tmpFaceList[1];
@@ -195,11 +199,9 @@ namespace qslim{
             end_collapse = clock();
             start_test = clock();
 
-            cout << "before update tree" << endl;
             // update tree after decimation
             update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, removedFaceIdx1, removedFaceIdx2, this->decimated_faces,
                                          combinedAffectedTriangleIndices);
-            cout << "after update tree" << endl;
             // if test failed, restore tree
             if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
