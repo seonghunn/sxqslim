@@ -88,6 +88,15 @@ namespace qslim{
                                       affectedTriangleIndices.end());*/
 
         // 2. Recompute AABBs for affected triangles and update the tree
+// 1. 먼저 벡터를 정렬합니다.
+        std::sort(combinedAffectedTriangleIndices.begin(), combinedAffectedTriangleIndices.end());
+
+// 2. std::unique를 사용하여 중복을 제거합니다.
+        auto last = std::unique(combinedAffectedTriangleIndices.begin(), combinedAffectedTriangleIndices.end());
+
+// 3. 중복된 원소들을 벡터의 끝에서 제거합니다.
+        combinedAffectedTriangleIndices.erase(last, combinedAffectedTriangleIndices.end());
+
         for (int triangleIdx: combinedAffectedTriangleIndices) {
             if (decimatedFaces[triangleIdx])
                 continue;
@@ -103,6 +112,15 @@ namespace qslim{
             std::vector<double> upperBoundVec = {upperBound[0], upperBound[1], upperBound[2]};
 
             // 3. Update the tree
+            cout << "triangleIdx : " << triangleIdx << endl;
+            if (triangleIdx == 175241) {
+                for(int idx : combinedAffectedTriangleIndices){
+                    cout << idx << endl;
+                }
+                int idx = tree.getParticleNodeMapping(triangleIdx);
+                aabb::Node *nd = tree.getNode(idx);
+                cout << "particle : " << nd->particle << endl;
+            }
             tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
             //tree.removeParticle(triangleIdx);
             //tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);

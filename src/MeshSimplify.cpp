@@ -195,10 +195,11 @@ namespace qslim{
             end_collapse = clock();
             start_test = clock();
 
+            cout << "before update tree" << endl;
             // update tree after decimation
             update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, removedFaceIdx1, removedFaceIdx2, this->decimated_faces,
                                          combinedAffectedTriangleIndices);
-
+            cout << "after update tree" << endl;
             // if test failed, restore tree
             if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
                                     this->affected_triangle_indices, RV_idx1, RV_idx2, false)){
