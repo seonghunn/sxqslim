@@ -324,10 +324,22 @@ namespace qslim{
 
         // new optimal point
         //TODO: p is either vertices or midpoint if A is singular
-        Eigen::Vector4d target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
+
+        Eigen::Vector4d target;
+        if(A.determinant() < 1e-5){
+            target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
+            p = target.head<3>() / target.w();
+        }
+        else{
+            p = (V.row(v1) + V.row(v2)) / 2.0;
+            target << p.transpose(), 1;
+        }
+        cost = target.transpose() * Q * target;
         // transform homogeneous coordinates to normal coordinates
+/*
         p = target.head<3>() / target.w();
         cost = target.transpose() * Q * target;
+*/
 
         // midpoint
 /*        p = (V.row(v1) + V.row(v2)) / 2.0;
