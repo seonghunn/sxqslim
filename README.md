@@ -1,6 +1,7 @@
 ## QSlim implementation for greedy edge collapse
 - using libigl, AABB tree (https://github.com/lohedges/aabbcc)
 - add self intersection test using aabb tree for every iteration
+- Input : Manifold, self-intersection free mesh, Output : Decimated Manifold, self-intersection free mesh
 
 ## Compile
 
