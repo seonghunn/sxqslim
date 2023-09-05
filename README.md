@@ -1,8 +1,8 @@
-## QSlim implementation for greedy edge collapse
+## QSlim Implementation for greedy edge collapse
+![img.png](img/tyra.png) ![img_1.png](img/tyra_collapsed.png)
 - using libigl, AABB tree (https://github.com/lohedges/aabbcc)
 - add self intersection test using aabb tree for every iteration
 - Input : Manifold, self-intersection free mesh, Output : Decimated Manifold, self-intersection free mesh
-
 ## Compile
 
 Compile this project using the standard cmake routine:
