@@ -381,7 +381,7 @@ namespace qslim{
             else
                 this->num_failed++;
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
-            cout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
+            lcout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
             // TODO: 여기 num failed 말고 큐가 비면 끝나게 해야함
             if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->OV.rows()) {
                 // remove duplicated vertices and faces
