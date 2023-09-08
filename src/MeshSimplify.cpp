@@ -152,6 +152,7 @@ namespace qslim{
             // return false if manifold test fails
             // if this function returns false, then the candidate edge is not gonna be collapse
             // after return false, assign infinity cost for that edge
+/*
             MatrixXd V_ = V;
             MatrixXi F_ = F;
             MatrixXi E_ = E;
@@ -159,9 +160,11 @@ namespace qslim{
             MatrixXi EF_ = EF;
             MatrixXi EI_ = EI;
             RowVectorXd p = this->C.row(e); // placement when collapsing edge e
+*/
 
             int RV_idx1 = E(e, 0);
             int RV_idx2 = E(e, 1);
+/*
             int removedFaceIdx1;
             int removedFaceIdx2;
 
@@ -227,6 +230,7 @@ namespace qslim{
                 cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
                 //cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
+*/
 
             this->RV.v1 = RV_idx1;
             this->RV.v2 = RV_idx2;

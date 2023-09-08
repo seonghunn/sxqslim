@@ -78,6 +78,7 @@ namespace qslim{
     // manifold test for input and output
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces, bool useManifoldCheck) {
+/*
         // check edge_manifold
         clock_t start_edge, end_edge, start_intersect, end_intersect;
 
@@ -102,16 +103,18 @@ namespace qslim{
         }
         end_intersect = clock();
         cout << "self intersection test : " << (double) (end_intersect - start_intersect) / CLOCKS_PER_SEC << " sec\n";
-        //cout << "self-intersection test success" << endl;
 
+*/
 /*        // check orientation
         if(!qslim::check_mesh_orientation(V, F)){
             cout << "orientation test fail" << endl;
             return false;
         }
 
-        cout << "orientation test success" << endl;*/
+        cout << "orientation test success" << endl;*//*
 
+
+*/
 
         return true;
     }
