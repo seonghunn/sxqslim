@@ -36,6 +36,7 @@ namespace qslim{
         // candidate for removing vertices
         index_of_removed_vertices RV;
 
+        clock_t start, end;
         // mesh data for each timestamps
         MatrixXd V, C, N_homo;
         MatrixXi F, E, EF, EI;

@@ -9,6 +9,7 @@
 
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename) {
+        this->start = clock();
         this->init_member_variable(OV, OF, ratio, output_filename);
         this->tree = aabb::Tree(3, 0, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
@@ -353,8 +354,6 @@ namespace qslim{
         auto pre_collapse_callback = this->get_pre_collapse_callback();
         auto post_collapse_callback = this->get_post_collapse_callback();
 
-        clock_t start, end;
-        start = clock();
         int iteration = 0;
         while (!this->queue.empty()) {
             // collapse edge, print data
@@ -386,7 +385,7 @@ namespace qslim{
             // TODO: 여기 num failed 말고 큐가 비면 끝나게 해야함
             if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->OV.rows()) {
                 // remove duplicated vertices and faces
-                end = clock();
+                this->end = clock();
                 break;
             }
         }
@@ -401,7 +400,7 @@ namespace qslim{
         cout << "Output V : " << this->V.rows() << endl;
         cout << "Output F : " << this->F.rows() << endl;
         cout << "*******************************" << endl;
-        cout << "total time : " << (double) (end - start) / CLOCKS_PER_SEC << " second" << endl;
+        cout << "total time : " << (double) (this->end - this->start) / CLOCKS_PER_SEC << " second" << endl;
         // write file
         if (igl::writeOBJ(OUTPUT_PATH + this->output_filename + ".obj", this->V, this->F)) {
             cout << "Successfully wrote to " << this->output_filename << ".obj" << endl;
