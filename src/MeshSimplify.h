@@ -32,7 +32,7 @@ namespace qslim{
         // Q values table using surface normal
         std::vector<Eigen::Matrix4d> qValues;
         // viewer
-        igl::opengl::glfw::Viewer viewer;
+        //igl::opengl::glfw::Viewer viewer;
         // candidate for removing vertices
         index_of_removed_vertices RV;
 

@@ -10,14 +10,39 @@
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename) {
         this->start = clock();
+        clock_t start, end;
+        cout << "init member variable start" << endl;
+        start = clock();
         this->init_member_variable(OV, OF, ratio, output_filename);
+        end = clock();
+        cout << "init member variable done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
+        cout << "init aabb tree start" << endl;
+        start = clock();
         this->tree = aabb::Tree(3, 0, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
+        end = clock();
+        cout << "init aabb tree done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
+        cout << "init surface normal per face start" << endl;
+        start = clock();
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
+        end = clock();
+        cout << "init surface normal per face done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
+        cout << "init queue start" << endl;
+        start = clock();
         this->init_qValues(OV, OF, this->N_homo);
         this->init_queue(OV, OF);
+        end = clock();
+        cout << "init queue done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
+        cout << "init callback start" << endl;
+        start = clock();
         this->init_callback();
+        end = clock();
+        cout << "init callback done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
+        cout << "input manifold test start" << endl;
+        start = clock();
         this->input_manifold_test(OV, OF);
+        end = clock();
+        cout << "input manifold test done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec" << endl;
     }
 
     bool MeshSimplify::input_manifold_test(MatrixXd &OV, MatrixXi &OF){
@@ -59,10 +84,17 @@ namespace qslim{
             this->decimated_faces.insert(make_pair(i, false));
         }
 
+        clock_t start,end;
         //init map for affect_triangles
+        start = clock();
+        cout << "init affected triangles start" << endl;
         this->init_affect_triangles(OV, OF);
+        end = clock();
+        cout << "init affected triangles done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec" << endl;
     }
 
+
+    // serial implementation
     void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
         for (int i = 0; i < OV.rows(); i++) {
             vector<int> triangle_list;
@@ -76,6 +108,24 @@ namespace qslim{
             this->affected_triangle_indices.insert(make_pair(i, triangle_list));
         }
     }
+
+//TODO: Parallel implementation for init_affect_triangles
+
+/*    void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
+        unordered_map<int, vector<int>> um;
+        igl::parallel_for(this->OV.rows(), [&](const int i){
+            vector<int> triangle_list;
+            for (int j = 0; j < OF.rows(); j++) {
+                for (int k = 0; k < 3; k++) {
+                    if (i == OF(j, k)) {
+                        triangle_list.push_back(j);
+                    }
+                }
+            }
+            //this->affected_triangle_indices.insert(make_pair(i, triangle_list));
+            um.insert(make_pair(i, triangle_list));
+        }, 10000);
+    }*/
 
     void MeshSimplify::init_normal_homo_per_face(MatrixXd &OV, MatrixXi &OF, MatrixXd &N_homo){
         Eigen::MatrixXd N_faces;
@@ -120,6 +170,24 @@ namespace qslim{
             this->num_collapsed = 0;
         }
     }
+
+/*    void MeshSimplify::init_queue(MatrixXd &OV, MatrixXi &OF){
+        int num = this->E.rows();
+        VectorXd costs(num);
+        for (int e=0; e < num; e++) {
+            double cost = e;
+            RowVectorXd p(1, 3);
+            qslim::quadratic(e, this->V, this->F, this->E, this->EMAP,
+                             this->EF, this->EI, this->qValues, cost, p);
+            this->C.row(e) = p;
+            costs(e) = cost;
+        }
+        for (int e = 0; e < this->E.rows(); e++) {
+            this->queue.emplace(costs(e), e, 0);
+        }
+        this->num_collapsed = 0;
+    }*/
+
 
     void MeshSimplify::init_callback() {
         this->cost_and_position_callback = [this](
@@ -381,7 +449,7 @@ namespace qslim{
             else
                 this->num_failed++;
             //cout << num_collapsed << " vertices are collapsed\n" << endl;
-            lcout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
+            cout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
             // TODO: 여기 num failed 말고 큐가 비면 끝나게 해야함
             if (this->num_collapsed >= this->stopping_condition || num_failed > 10 * this->OV.rows()) {
                 // remove duplicated vertices and faces

@@ -47,11 +47,11 @@ int main(int argc, char * argv[])
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
 
-    igl::opengl::glfw::Viewer viewer;
     qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
     meshSimplify.process();
 
     // Erase this for docker image
+    igl::opengl::glfw::Viewer viewer;
     viewer.data().clear();
     //TODO: Update qValues using MeshSimplify class ; move callback function into meshSimplify class
     viewer.data().set_mesh(meshSimplify.get_vertices(), meshSimplify.get_faces());
