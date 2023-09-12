@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="49ed84f8-4e5f-45fc-a73b-edbe0561276f" name="Nautilus">
+        <fileTransfer rootFolder="/seoh_fast_cephfs" accessType="SFTP" host="Nautilus" port="8080" sshConfigId="73f5ae6c-05d2-4319-8de3-f5a2b318a4e0" sshConfig="root@Nautilus:8080 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
