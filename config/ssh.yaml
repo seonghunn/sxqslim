@@ -23,8 +23,8 @@ spec:
             - |
               mkdir -p /var/run/sshd
               /usr/sbin/sshd -D
-          ports:
-            - containerPort: 2000
+          #ports:
+            #- containerPort: 8000
           resources:
             limits:
               cpu: 1

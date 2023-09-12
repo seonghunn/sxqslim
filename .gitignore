@@ -3,6 +3,9 @@
 *.lo
 *.o
 *.obj
+!bunny.obj
+!crab_2m.obj
+!tyra.obj
 *.txt
 *.off
 *.rtf

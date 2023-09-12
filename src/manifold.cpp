@@ -4,10 +4,10 @@
 
 #include "manifold.h"
 
-namespace PMP = CGAL::Polygon_mesh_processing;
+/*namespace PMP = CGAL::Polygon_mesh_processing;
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
 typedef K::Point_3 Point_3;
-typedef CGAL::Surface_mesh<Point_3> Mesh;
+typedef CGAL::Surface_mesh<Point_3> Mesh;*/
 
 namespace qslim{
     bool check_edge_manifold(const MatrixXd &V, const MatrixXi &F){
