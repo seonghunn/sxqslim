@@ -95,7 +95,7 @@ namespace qslim{
 
 
     // serial implementation
-    void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
+/*    void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
         for (int i = 0; i < OV.rows(); i++) {
             vector<int> triangle_list;
             for (int j = 0; j < OF.rows(); j++) {
@@ -107,25 +107,21 @@ namespace qslim{
             }
             this->affected_triangle_indices.insert(make_pair(i, triangle_list));
         }
-    }
+    }*/
 
-//TODO: Parallel implementation for init_affect_triangles
-
-/*    void MeshSimplify::init_affect_triangles(MatrixXd &OV, MatrixXi &OF){
-        unordered_map<int, vector<int>> um;
-        igl::parallel_for(this->OV.rows(), [&](const int i){
-            vector<int> triangle_list;
-            for (int j = 0; j < OF.rows(); j++) {
-                for (int k = 0; k < 3; k++) {
-                    if (i == OF(j, k)) {
-                        triangle_list.push_back(j);
-                    }
+    void MeshSimplify::init_affect_triangles(Eigen::MatrixXd &OV, Eigen::MatrixXi &OF) {
+        for (int i = 0; i < OF.rows(); i++) {
+            for (int j = 0; j < 3; j++) {
+                if (!this->affected_triangle_indices.count(OF(i, j))) {
+                    vector<int> triangle_list;
+                    triangle_list.push_back(i);
+                    this->affected_triangle_indices.insert(make_pair(OF(i, j), triangle_list));
+                } else {
+                    this->affected_triangle_indices[OF(i, j)].push_back(i);
                 }
             }
-            //this->affected_triangle_indices.insert(make_pair(i, triangle_list));
-            um.insert(make_pair(i, triangle_list));
-        }, 10000);
-    }*/
+        }
+    }
 
     void MeshSimplify::init_normal_homo_per_face(MatrixXd &OV, MatrixXi &OF, MatrixXd &N_homo){
         Eigen::MatrixXd N_faces;
@@ -220,14 +216,37 @@ namespace qslim{
             // return false if manifold test fails
             // if this function returns false, then the candidate edge is not gonna be collapse
             // after return false, assign infinity cost for that edge
+            clock_t start, end;
+            start = clock();
             MatrixXd V_ = V;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             MatrixXi F_ = F;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             MatrixXi E_ = E;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             VectorXi EMAP_ = EMAP;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             MatrixXi EF_ = EF;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             MatrixXi EI_ = EI;
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
+            start = clock();
             RowVectorXd p = this->C.row(e); // placement when collapsing edge e
+            end = clock();
+            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
 
+            start = clock();
             int RV_idx1 = E(e, 0);
             int RV_idx2 = E(e, 1);
             int removedFaceIdx1;
@@ -261,11 +280,14 @@ namespace qslim{
 
             unordered_map<int, NodeSnapshot> restoreMap;
             takeNodeSnapShot(combinedAffectedTriangleIndices, this->tree, removedFaceIdx1, removedFaceIdx2, restoreMap);
-
+            end = clock();
+            cout << "update and take node snapshot : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
             clock_t start_test, end_test, start_collapse, end_collapse;
             start_collapse = clock();
             igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
             end_collapse = clock();
+            cout << "pre_collapse : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec\n";
+
             start_test = clock();
 
             // update tree after decimation
@@ -292,7 +314,7 @@ namespace qslim{
                 end_test = clock();
                 //cout << "pre - collapsing edge : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec" << endl;
                 //cout << "remove duplicated faces : " << (double) (end_remove - start_remove) / CLOCKS_PER_SEC << " sec" << endl;
-                cout << "total test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
+                cout << "test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
                 //cout << "Before collapsing number of vertices : " << V_.rows() << endl;
             // Get index of vertices which supposed to be replaced
 
@@ -436,6 +458,8 @@ namespace qslim{
             cout << this->E << endl;
             cout << endl;*/
             // if stopping condition met, break
+            clock_t start_per_iter, end_per_iter;
+            start_per_iter = clock();
             bool collapsed = igl::collapse_edge(cost_and_placement_callback,
                                     pre_collapse_callback,
                                     post_collapse_callback,
@@ -456,6 +480,8 @@ namespace qslim{
                 this->end = clock();
                 break;
             }
+            end_per_iter = clock();
+            cout << (double) (end_per_iter - start_per_iter) / CLOCKS_PER_SEC << " sec per iteration\n";
         }
         //qslim::remove_duplicated_faces(this->V, this->F);
         cout << "\n" << "*******************************" << endl;
