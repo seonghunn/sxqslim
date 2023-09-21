@@ -127,12 +127,16 @@ namespace qslim{
         Eigen::MatrixXd N_faces;
         N_homo = MatrixXd(OF.rows(), 4);
         igl::per_face_normals(OV, OF, N_faces);
+        //cout << "N_faces" << endl;
+        //cout << N_faces << endl;
         // Transform to Homogeneous Coordinate
         for (int i = 0; i < N_faces.rows(); i++) {
             Eigen::RowVector3d n = N_faces.row(i);
             double d = -n.dot(OV.row(OF(i, 0)));
             N_homo.row(i) << n, d;
         }
+        //cout << "N_homo" << endl;
+        //cout << N_homo << endl;
     }
 
     void MeshSimplify::init_qValues(MatrixXd &V, MatrixXi &F, MatrixXd &N_homo){
@@ -147,7 +151,7 @@ namespace qslim{
         }
     }
 
-    void MeshSimplify::init_queue(MatrixXd &OV,MatrixXi &OF) {
+/*    void MeshSimplify::init_queue(MatrixXd &OV,MatrixXi &OF) {
         {
             Eigen::VectorXd costs(this->E.rows());
             //parallel code
@@ -159,27 +163,27 @@ namespace qslim{
                                  this->EF, this->EI, this->qValues, cost, p);
                 this->C.row(e) = p;
                 costs(e) = cost;
-/*                cout << "edge index : " << e << " edge: " << this->E.row(e) << endl;
+*//*                cout << "edge index : " << e << " edge: " << this->E.row(e) << endl;
                 cout << "edge with vertex : " << this->V.row((this->E(e, 0))) << " " << this->V.row((this->E(e, 1)))
                      << endl;
                 cout << "cost : " << costs(e) << endl;
-                cout << endl;*/
+                cout << endl;*//*
             }, 10000);
             for (int e = 0; e < this->E.rows(); e++) {
                 this->queue.emplace(costs(e), e, 0);
             }
             this->num_collapsed = 0;
         }
-/*
+*//*
         cout << "Edge List" << endl;
         cout << this->E << endl;
         cout << "Vertex List" << endl;
         cout << this->V << endl;
-*/
+*//*
 
-    }
+    }*/
 
-/*    void MeshSimplify::init_queue(MatrixXd &OV, MatrixXi &OF){
+    void MeshSimplify::init_queue(MatrixXd &OV, MatrixXi &OF){
         int num = this->E.rows();
         VectorXd costs(num);
         for (int e=0; e < num; e++) {
@@ -189,12 +193,19 @@ namespace qslim{
                              this->EF, this->EI, this->qValues, cost, p);
             this->C.row(e) = p;
             costs(e) = cost;
-        }
-        for (int e = 0; e < this->E.rows(); e++) {
+/*            cout << "edge index : " << e << " edge: " << this->E.row(e) << endl;
+                cout << "edge with vertex : " << this->V.row((this->E(e, 0))) << " " << this->V.row((this->E(e, 1)))
+                     << endl;
+                cout << "cost : " << costs(e) << endl;
+                cout << endl;*/
+
             this->queue.emplace(costs(e), e, 0);
+
+
         }
+
         this->num_collapsed = 0;
-    }*/
+    }
 
 
     void MeshSimplify::init_callback() {
@@ -424,13 +435,14 @@ namespace qslim{
         A.row(1) << Q.row(1);
         A.row(2) << Q.row(2);
         A.row(3) << 0, 0, 0, 1;
+        //A.row(3) << Q.row(3);
 
         // new optimal point
         //TODO: p is either vertices or midpoint if A is singular
 
 
         // TODO: this is my implementation
-        Eigen::Vector4d target;
+/*        Eigen::Vector4d target;
         if(A.determinant() > 1e-5){
             target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
             p = target.head<3>() / target.w();
@@ -439,7 +451,7 @@ namespace qslim{
             p = (V.row(v1) + V.row(v2)) / 2.0;
             target << p.transpose(), 1;
         }
-        cost = target.transpose() * Q * target;
+        cost = target.transpose() * Q * target;*/
 
 
 /*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
@@ -451,10 +463,11 @@ namespace qslim{
 */
 
         // midpoint
-/*        p = (V.row(v1) + V.row(v2)) / 2.0;
+        p = (V.row(v1) + V.row(v2)) / 2.0;
         Vector4d p_homogeneous;
         p_homogeneous << p.transpose(), 1;
-        cost = p_homogeneous.transpose() * Q * p_homogeneous;*/
+        //cout << "Q : " << Q << endl;
+        cost = p_homogeneous.transpose() * Q * p_homogeneous;
     }
 
     bool MeshSimplify::process(){
@@ -463,6 +476,14 @@ namespace qslim{
         auto post_collapse_callback = this->get_post_collapse_callback();
 
         int iteration = 0;
+/*        igl::min_heap< std::tuple<double,int,int> > tempQueue = this->queue;  // 원본 큐 복사
+
+        while (!tempQueue.empty()) {
+            std::tuple<double, int, int> elem = tempQueue.top();
+            std::cout << std::get<0>(elem) << ", " << std::get<1>(elem) << ", " << std::get<2>(elem) << std::endl;
+            tempQueue.pop();
+        }*/
+
 
         while (!this->queue.empty()) {
             // collapse edge, print data
