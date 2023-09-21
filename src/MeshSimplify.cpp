@@ -159,12 +159,24 @@ namespace qslim{
                                  this->EF, this->EI, this->qValues, cost, p);
                 this->C.row(e) = p;
                 costs(e) = cost;
+/*                cout << "edge index : " << e << " edge: " << this->E.row(e) << endl;
+                cout << "edge with vertex : " << this->V.row((this->E(e, 0))) << " " << this->V.row((this->E(e, 1)))
+                     << endl;
+                cout << "cost : " << costs(e) << endl;
+                cout << endl;*/
             }, 10000);
             for (int e = 0; e < this->E.rows(); e++) {
                 this->queue.emplace(costs(e), e, 0);
             }
             this->num_collapsed = 0;
         }
+/*
+        cout << "Edge List" << endl;
+        cout << this->E << endl;
+        cout << "Vertex List" << endl;
+        cout << this->V << endl;
+*/
+
     }
 
 /*    void MeshSimplify::init_queue(MatrixXd &OV, MatrixXi &OF){
@@ -416,8 +428,10 @@ namespace qslim{
         // new optimal point
         //TODO: p is either vertices or midpoint if A is singular
 
+
+        // TODO: this is my implementation
         Eigen::Vector4d target;
-        if(A.determinant() < 1e-5){
+        if(A.determinant() > 1e-5){
             target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
             p = target.head<3>() / target.w();
         }
@@ -426,6 +440,10 @@ namespace qslim{
             target << p.transpose(), 1;
         }
         cost = target.transpose() * Q * target;
+
+
+/*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
+        cout << "cost : " << cost << endl;*/
         // transform homogeneous coordinates to normal coordinates
 /*
         p = target.head<3>() / target.w();
@@ -445,6 +463,7 @@ namespace qslim{
         auto post_collapse_callback = this->get_post_collapse_callback();
 
         int iteration = 0;
+
         while (!this->queue.empty()) {
             // collapse edge, print data
 /*            cout << "collapsed : " << this->num_collapsed << endl;
