@@ -24,8 +24,8 @@ int main(int argc, char * argv[])
     using namespace std;
     using namespace Eigen;
     using namespace igl;
-    cout << "[filename.(off|obj|ply)]" << endl;
-    cout<<"  [space]  toggle animation."<<endl;
+    //cout << "[filename.(off|obj|ply)]" << endl;
+    //cout<<"  [space]  toggle animation."<<endl;
     //cout<<"  'r'  reset."<<endl;
     string input_filename(argv[1]);
     string output_filename(argv[2]);

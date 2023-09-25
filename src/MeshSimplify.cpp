@@ -442,7 +442,7 @@ namespace qslim{
 
 
         // TODO: this is my implementation
-/*        Eigen::Vector4d target;
+        Eigen::Vector4d target;
         if(A.determinant() > 1e-5){
             target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
             p = target.head<3>() / target.w();
@@ -451,7 +451,7 @@ namespace qslim{
             p = (V.row(v1) + V.row(v2)) / 2.0;
             target << p.transpose(), 1;
         }
-        cost = target.transpose() * Q * target;*/
+        cost = target.transpose() * Q * target;
 
 
 /*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
@@ -463,11 +463,11 @@ namespace qslim{
 */
 
         // midpoint
-        p = (V.row(v1) + V.row(v2)) / 2.0;
+/*        p = (V.row(v1) + V.row(v2)) / 2.0;
         Vector4d p_homogeneous;
         p_homogeneous << p.transpose(), 1;
         //cout << "Q : " << Q << endl;
-        cost = p_homogeneous.transpose() * Q * p_homogeneous;
+        cost = p_homogeneous.transpose() * Q * p_homogeneous;*/
     }
 
     bool MeshSimplify::process(){
