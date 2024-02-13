@@ -29,6 +29,7 @@ namespace qslim{
         A.row(2) << Q.row(2);
         A.row(3) << 0, 0, 0, 1;
 
+/*
         // TODO: this is my implementation
         Eigen::Vector4d target;
         if(A.determinant() > 1e-5){
@@ -40,6 +41,7 @@ namespace qslim{
             target << p.transpose(), 1;
         }
         cost = target.transpose() * Q * target;
+*/
 
 
 /*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
@@ -51,10 +53,12 @@ namespace qslim{
 */
 
         // midpoint
-/*        p = (V.row(v1) + V.row(v2)) / 2.0;
+        p = (V.row(v1) + V.row(v2)) / 2.0;
         Vector4d p_homogeneous;
         p_homogeneous << p.transpose(), 1;
-        cost = p_homogeneous.transpose() * Q * p_homogeneous;*/
+        //cost = p_homogeneous.transpose() * Q * p_homogeneous;
+        Eigen::MatrixXd result = p_homogeneous.transpose() * Q * p_homogeneous; // 이 연산의 결과는 1x1 행렬입니다.
+        cost = std::max(0.0, result(0, 0));
         //cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
         //cout << "cost : " << cost << endl;
     }

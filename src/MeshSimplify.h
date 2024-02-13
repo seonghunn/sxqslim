@@ -16,7 +16,8 @@
 #include <string>
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
-#include <igl/collapse_edge.h>
+//#include <igl/collapse_edge.h>
+#include "../include/igl/collapse_edge.h"
 #include <igl/edge_flaps.h>
 #include <iostream>
 
@@ -35,6 +36,7 @@ namespace qslim{
         //igl::opengl::glfw::Viewer viewer;
         // candidate for removing vertices
         index_of_removed_vertices RV;
+        unordered_map<int, NodeSnapshot> restoreMap;
 
         clock_t start, end;
         // mesh data for each timestamps

@@ -61,8 +61,10 @@ IGL_INLINE bool igl::collapse_edge(
   const int s = eflip?E(e,1):E(e,0);
   const int d = eflip?E(e,0):E(e,1);
 
+  // TODO: edge collapse is invalid
   if(!edge_collapse_is_valid(Nsv,Ndv))
   {
+      std::cout<<"not valid edge collapse"<<std::endl;
     return false;
   }
 
@@ -272,6 +274,7 @@ IGL_INLINE bool igl::collapse_edge(
     if(std::get<0>(p) == std::numeric_limits<double>::infinity())
     {
       e = -1;
+      //std::cout<<"max cost"<<std::endl;
       // min cost edge is infinite cost
       return false;
     }
@@ -287,6 +290,7 @@ IGL_INLINE bool igl::collapse_edge(
     // try again.
   }
 
+  std::cout<<"current cost : "<< std::get<0>(p)<<std::endl;
   // Why is this computed up here?
   // If we just need original face neighbors of edge, could we gather that more
   // directly than gathering face neighbors of each vertex?
@@ -295,6 +299,7 @@ IGL_INLINE bool igl::collapse_edge(
   std::vector<int> /*Nde,*/Ndf,Ndv;
   circulation(e, false,F,EMAP,EF,EI,/*Nde,*/Ndv,Ndf);
 
+  std::cout<<"circulation done"<<std::endl;
 
   bool collapsed = true;
   if(pre_collapse(V,F,E,EMAP,EF,EI,Q,EQ,C,e))
@@ -306,6 +311,7 @@ IGL_INLINE bool igl::collapse_edge(
   }else
   {
     // Aborted by pre collapse callback
+      std::cout<<"pre collapse false in callback"<<std::endl;
     collapsed = false;
   }
   post_collapse(V,F,E,EMAP,EF,EI,Q,EQ,C,e,e1,e2,f1,f2,collapsed);

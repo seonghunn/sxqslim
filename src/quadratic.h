@@ -8,6 +8,7 @@
 #include "Eigen/Core"
 #include <igl/per_vertex_normals.h>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 namespace qslim{

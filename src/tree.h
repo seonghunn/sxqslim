@@ -45,7 +45,7 @@ namespace qslim{
             const Eigen::MatrixXi &F,
             aabb::Tree &tree,
             int RV_idx1, int RV_idx2,
-            int f1, int f2, std::unordered_map<int, bool> &decimatedFaces,
+            std::unordered_map<int, bool> &decimatedFaces,
             vector<int> &affectedTriangleIndices);
 
     // update Affected Triangle list
@@ -56,9 +56,9 @@ namespace qslim{
      * @param RV_idx2
      * @param combinedAffectedTriangleIndices
      */
-    void updateAffectedTriangle(unordered_map<int, vector<int>> &affectedTriangleIndices,
-                                unordered_map<int, bool> &decimatedFaces, int RV_idx1, int RV_idx2,
-                                vector<int> &combinedAffectedTriangleIndices);
+    void getCombinedAffectedTriangleIndices(unordered_map<int, vector<int>> &affectedTriangleIndices,
+                                            unordered_map<int, bool> &decimatedFaces, int RV_idx1, int RV_idx2,
+                                            vector<int> &combinedAffectedTriangleIndices);
 
     /*!
      * @param combinedAffectedTriangleIndices combined list of affected triangle indices after collapsing edge e
@@ -68,7 +68,7 @@ namespace qslim{
      * @param nodeRestoreMap
      */
     void
-    takeNodeSnapShot(vector<int> &combinedAffectedTriangleIndices, aabb::Tree &tree, int removedFaceIdx1, int removedFaceIdx2,
+    takeNodeSnapShot(vector<int> &combinedAffectedTriangleIndices, aabb::Tree &tree,
                      unordered_map<int, NodeSnapshot> &nodeRestoreMap);
 
     /*!

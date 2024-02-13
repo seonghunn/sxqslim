@@ -31,7 +31,7 @@ namespace qslim{
     // self intersection check for iteration (pre_collapse_callback)
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces,
-                     unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                     vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                      int removed_vertex_idx2);
 
     // manifold test for input and output
@@ -41,7 +41,7 @@ namespace qslim{
     // manifold check for iteration (pre_collapse_callback)
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                      unordered_map<int, bool> &decimated_faces,
-                     unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                     vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                      int removed_vertex_idx2, bool useManifoldCheck);
 
 }

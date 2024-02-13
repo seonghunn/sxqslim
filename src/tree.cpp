@@ -66,8 +66,7 @@ namespace qslim{
             const Eigen::MatrixXd &V,
             const Eigen::MatrixXi &F,
             aabb::Tree &tree,
-            int RV_idx1, int RV_idx2,
-            int f1, int f2, std::unordered_map<int, bool> &decimatedFaces,
+            int RV_idx1, int RV_idx2, std::unordered_map<int, bool> &decimatedFaces,
             vector<int> &combinedAffectedTriangleIndices) {
         // 1. Identify affected triangles by checking RV and the provided face indices
         //std::vector<int> affectedTriangleIndices = {f1, f2};
@@ -89,8 +88,11 @@ namespace qslim{
 
         // Recompute AABBs for affected triangles and update the tree
         for (int triangleIdx: combinedAffectedTriangleIndices) {
-            if (decimatedFaces[triangleIdx])
+            if (F(triangleIdx,0)== 0 && F(triangleIdx, 1)==0 && F(triangleIdx, 2)==0){
+                //remove
+                //tree.removeParticle(triangleIdx);
                 continue;
+            }
             Eigen::Vector3d v1 = V.row(F(triangleIdx, 0));
             Eigen::Vector3d v2 = V.row(F(triangleIdx, 1));
             Eigen::Vector3d v3 = V.row(F(triangleIdx, 2));
@@ -103,10 +105,12 @@ namespace qslim{
             std::vector<double> upperBoundVec = {upperBound[0], upperBound[1], upperBound[2]};
 
             // 3. Update the tree
-            //tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
-            tree.removeParticle(triangleIdx);
-            tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);
-/*            NodeSnapshot ns;
+            tree.updateParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            // TODO: restore it if need ------
+            //tree.removeParticle(triangleIdx);
+            //tree.insertParticle(triangleIdx, lowerBoundVec, upperBoundVec);
+            //---------------------
+            /*            NodeSnapshot ns;
             ns.isDeleted = false;
             ns.particleIdx = triangleIdx;
             ns.lowerBound = lowerBoundVec;
@@ -116,16 +120,16 @@ namespace qslim{
             // no need to update tree again
             //qslim::update_ancestors(tree, triangleIdx, 3);
         }
-        tree.removeParticle(f1);
-        tree.removeParticle(f2);
+/*        tree.removeParticle(f1);
+        tree.removeParticle(f2);*/
 
 
         return true;
     }
 
-    void updateAffectedTriangle(unordered_map<int, vector<int>> &affectedTriangleIndices,
-                                unordered_map<int, bool> &decimatedFaces, int RV_idx1, int RV_idx2,
-                                vector<int> &combinedAffectedTriangleIndices) {
+    void getCombinedAffectedTriangleIndices(unordered_map<int, vector<int>> &affectedTriangleIndices,
+                                            unordered_map<int, bool> &decimatedFaces, int RV_idx1, int RV_idx2,
+                                            vector<int> &combinedAffectedTriangleIndices) {
         // update affected triangle indices (list)
         // combined : set of affected triangles except decimated triangles (faces)
         std::vector<int> combined;
@@ -143,14 +147,14 @@ namespace qslim{
         combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
 
         // Two vertex are merged into new position -> assign same value for each list
-        affectedTriangleIndices[RV_idx1] = combined;
+/*        affectedTriangleIndices[RV_idx1] = combined;
         affectedTriangleIndices[RV_idx2] = combined;
-
+*/
         combinedAffectedTriangleIndices = combined;
     }
 
     void
-    takeNodeSnapShot(vector<int> &combinedAffectedTriangleIndices, aabb::Tree &tree, int removedFaceIdx1, int removedFaceIdx2,
+    takeNodeSnapShot(vector<int> &combinedAffectedTriangleIndices, aabb::Tree &tree,
                      unordered_map<int, NodeSnapshot> &nodeRestoreMap) {
         // for modified faces
         for (int triangleIdx: combinedAffectedTriangleIndices) {
@@ -164,7 +168,7 @@ namespace qslim{
             nodeRestoreMap.insert(make_pair(triangleIdx, ns));
         }
 
-        // for deleted faces
+/*        // for deleted faces
         NodeSnapshot ns1;
         int nodeIdx1 = tree.getParticleNodeMapping(removedFaceIdx1);
         aabb::Node *node1 = tree.getNode(nodeIdx1);
@@ -181,7 +185,7 @@ namespace qslim{
         ns2.upperBound = node2->aabb.upperBound;
         ns2.isDeleted = true;
         ns2.particleIdx = removedFaceIdx2;
-        nodeRestoreMap.insert(make_pair(removedFaceIdx2, ns2));
+        nodeRestoreMap.insert(make_pair(removedFaceIdx2, ns2));*/
     }
 
     void restoreTree(vector<int> combinedAffectedTriangleIndices, unordered_map<int, NodeSnapshot> &restoreMap,
@@ -202,8 +206,10 @@ namespace qslim{
         // deal with decimated faces
         qslim::NodeSnapshot ns1 = restoreMap[removedFaceIdx1];
         qslim::NodeSnapshot ns2 = restoreMap[removedFaceIdx2];
-        tree.insertParticle(removedFaceIdx1, ns1.lowerBound, ns1.upperBound);
-        tree.insertParticle(removedFaceIdx2, ns2.lowerBound, ns2.upperBound);
+        // TODO: restore this
+        //tree.insertParticle(removedFaceIdx1, ns1.lowerBound, ns1.upperBound);
+        //tree.insertParticle(removedFaceIdx2, ns2.lowerBound, ns2.upperBound);
     }
 }
 
+//TODO: Tree restore and update 021224

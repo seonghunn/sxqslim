@@ -7,6 +7,7 @@
 #include <Eigen/Dense>
 #include <unordered_map>
 #include <vector>
+#include "tri_tri_3d_blender.h"
 //#include <igl/tri_tri_intersection_test_3d.h>
 //#include "aabb.h"
 
@@ -40,16 +41,17 @@ namespace qslim {
     }
 
     template <typename Derived>
-    bool adjacent_faces(const Eigen::MatrixBase<Derived>& A,
+    int get_num_of_shared_vertex(const Eigen::MatrixBase<Derived>& A,
                         const Eigen::MatrixBase<Derived>& B)
     {
+        int num = 0;
         for(int i=0;i<3;++i)
             for(int j=0;j<3;j++)
             {
                 if(A(i)==B(j))
-                    return true;
+                    num++;
             }
-        return false;
+        return num;
     }
 
     void dfs(aabb::Tree &tree, int nodeId, aabb::AABB &queryAABB, vector<int> &candidates) {
@@ -65,7 +67,8 @@ namespace qslim {
     }
 
     bool
-    tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2) {
+    tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2,
+                               int shared_vertex) {
         RowVector3d p1 = V.row(F(faceIdx1, 0));
         RowVector3d q1 = V.row(F(faceIdx1, 1));
         RowVector3d r1 = V.row(F(faceIdx1, 2));
@@ -74,26 +77,54 @@ namespace qslim {
         RowVector3d q2 = V.row(F(faceIdx2, 1));
         RowVector3d r2 = V.row(F(faceIdx2, 2));
 
+        // avg normalize
+        RowVector3d mean = (p1 + q1 + r1 + p2 + q2 + r2) / 6.0;
+        mean = mean * 10;
+/*
+        p1 = p1.array() / mean.array();
+        q1 = q1.array() / mean.array();
+        r1 = r1.array() / mean.array();
+        p2 = p2.array() / mean.array();
+        q2 = q2.array() / mean.array();
+        r2 = r2.array() / mean.array();
+*/
+
         bool coplanar;
         RowVector3d source, target;
-
-        bool isIntersecting = igl::tri_tri_intersection_test_3d(p1, q1, r1, p2, q2, r2, coplanar, source, target);
-        if(isIntersecting){
-            cout << "faceIdx 1 :" << faceIdx1 << "\n";
-            cout << "faceIdx 2 : " << faceIdx2 << "\n";
-            cout << "F1\n";
-            cout << p1 << endl;
-            cout << q1 << endl;
-            cout << r1 << endl;
-            cout << "F2" << endl;
-            cout << p2 << endl;
-            cout << q2 << endl;
-            cout << r2 << endl;
-            cout << "source - target" << endl;
+        float r_i1[3];
+        float r_i2[3];
+        igl::tri_tri_intersection_test_3d(p1, q1, r1, p2, q2, r2, coplanar, source, target);
+        if(coplanar) return false;
+        bool isIntersecting = isect_tri_tri_v3(p1, q1, r1, p2, q2, r2, r_i1, r_i2);
+        copy_v3_v3_rowVec3d_float(source, r_i1);
+        copy_v3_v3_rowVec3d_float(target, r_i2);
+        //bool isIntersecting = igl::tri_tri_intersection_test_3d(p1, q1, r1, p2, q2, r2, coplanar, source, target);
+        double threshold = 1e-3;
+        bool isClose = ((source - target).array().abs() <= threshold).all();
+        if(isIntersecting && shared_vertex == 1 && isClose) {
+/*            cout << "false source - target" << endl;
             cout << "source : " << source << endl;
             cout << "target : " << target << endl;
+            return false;*/
+            return false;
         }
-
+        if(isIntersecting) {
+            cout << "faceIdx 1 :" << faceIdx1 << "\n";
+            cout << "faceIdx 2 : " << faceIdx2 << "\n";
+            //cout << "F1\n";
+                cout <<"v "<< p1 << endl;
+                cout <<"v " <<q1 << endl;
+                cout <<"v "<< r1 << endl;
+                //cout << "F2" << endl;
+                cout <<"v "<< p2 << endl;
+                cout <<"v "<< q2 << endl;
+                cout << "v "<< r2 << endl;
+                cout<<"f 1 2 3"<<endl;
+                cout<<"f 4 5 6"<<endl;
+                cout << "source - target" << endl;
+                cout << "source : " << source << endl;
+                cout << "target : " << target << endl;
+        }
         return isIntersecting;
     }
 
@@ -101,7 +132,12 @@ namespace qslim {
                                  unordered_map<int, bool> &decimated_faces) {
         for (int i = 0; i < F.rows(); i++) {
             // no need to check decimated faces
-            if(decimated_faces[i]) continue;
+            if (F(i, 0) == 0 && F(i, 1)==0 && F(i,2)==0) {
+                //std::cout<<"decimated faces : "<<F(i,0)<<" "<<F(i,1)<<" "<<F(i,2)<<std::endl;
+                //std::cout<<"continue"<<std::endl;
+                continue;
+            }
+
 
             aabb::AABB queryAABB = set_current_aabb(V, F, i); // The AABB for triangle i
 
@@ -111,9 +147,10 @@ namespace qslim {
             for (const int &candidateIdx: candidates) {
                 if (candidateIdx == i)
                     continue;
-                if (adjacent_faces(F.row(i), F.row(candidateIdx)))
+                int shared_vertex = get_num_of_shared_vertex(F.row(i), F.row(candidateIdx));
+                if (shared_vertex == 2)
                     continue;
-                if (tri_tri_intersection_check(V, F, i, candidateIdx)) {
+                if (tri_tri_intersection_check(V, F, i, candidateIdx, shared_vertex)) {
                     return true;
                 }
             }
@@ -123,11 +160,15 @@ namespace qslim {
 
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces,
-                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2) {
-        for (int i: affected_triangle_indices[removed_vertex_idx1]) {
+        for (int i: affected_triangle_indices) {
             // no need to check decimated faces
-            if (decimated_faces[i]) continue;
+            if (F(i, 0) == 0 && F(i, 1)==0 && F(i,2)==0) {
+                //std::cout<<"decimated faces : "<<F(i,0)<<" "<<F(i,1)<<" "<<F(i,2)<<std::endl;
+                std::cout<<"continue"<<std::endl;
+                continue;
+            }
 
             aabb::AABB queryAABB = set_current_aabb(V, F, i); // The AABB for triangle i
 
@@ -137,13 +178,65 @@ namespace qslim {
             for (const int &candidateIdx: candidates) {
                 if (candidateIdx == i)
                     continue;
-                if (adjacent_faces(F.row(i), F.row(candidateIdx)))
+                if (F(candidateIdx, 0) == 0 && F(candidateIdx, 1)==0 && F(candidateIdx,2)==0) continue;
+                int shared_vertex = get_num_of_shared_vertex(F.row(i), F.row(candidateIdx));
+                if (shared_vertex == 2)
                     continue;
-                if (tri_tri_intersection_check(V, F, i, candidateIdx)) {
+                if (tri_tri_intersection_check(V, F, i, candidateIdx, shared_vertex)) {
                     return true;
                 }
             }
         }
+/*        for (int i: affected_triangle_indices[removed_vertex_idx1]) {
+            // no need to check decimated faces
+            if (F(i, 0) == 0 && F(i, 1)==0 && F(i,2)==0) {
+                //std::cout<<"decimated faces : "<<F(i,0)<<" "<<F(i,1)<<" "<<F(i,2)<<std::endl;
+                std::cout<<"continue"<<std::endl;
+                continue;
+            }
+
+            aabb::AABB queryAABB = set_current_aabb(V, F, i); // The AABB for triangle i
+
+            vector<int> candidates;
+            dfs(tree, tree.getRootIdx(), queryAABB, candidates);
+
+            for (const int &candidateIdx: candidates) {
+                if (candidateIdx == i)
+                    continue;
+                if (F(candidateIdx, 0) == 0 && F(candidateIdx, 1)==0 && F(candidateIdx,2)==0) continue;
+                int shared_vertex = get_num_of_shared_vertex(F.row(i), F.row(candidateIdx));
+                if (shared_vertex == 2)
+                    continue;
+                if (tri_tri_intersection_check(V, F, i, candidateIdx, shared_vertex)) {
+                    return true;
+                }
+            }
+        }
+        for (int i: affected_triangle_indices[removed_vertex_idx2]) {
+            // no need to check decimated faces
+            //if (decimated_faces[i]) continue;
+            if (F(i, 0) == 0 && F(i, 1)==0 && F(i,2)==0) {
+                std::cout<<"continue"<<std::endl;
+                continue;
+            }
+
+            aabb::AABB queryAABB = set_current_aabb(V, F, i); // The AABB for triangle i
+
+            vector<int> candidates;
+            dfs(tree, tree.getRootIdx(), queryAABB, candidates);
+
+            for (const int &candidateIdx: candidates) {
+                if (candidateIdx == i)
+                    continue;
+                if (F(candidateIdx, 0) == 0 && F(candidateIdx, 1)==0 && F(candidateIdx,2)==0) continue;
+                int shared_vertex = get_num_of_shared_vertex(F.row(i), F.row(candidateIdx));
+                if (shared_vertex == 2)
+                    continue;
+                if (tri_tri_intersection_check(V, F, i, candidateIdx, shared_vertex)) {
+                    return true;
+                }
+            }
+        }*/
         return false;
     }
 

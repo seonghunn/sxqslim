@@ -16,8 +16,8 @@
 #include "MeshSimplify.h"
 //#include "process.h"
 
-#define INPUT_PATH "../model/input/"
-#define OUTPUT_PATH "../model/output/"
+#define INPUT_PATH ""
+#define OUTPUT_PATH ""
 
 int main(int argc, char * argv[])
 {
@@ -50,6 +50,7 @@ int main(int argc, char * argv[])
     qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
     meshSimplify.process();
 
+    igl::writeOBJ(output_filename + ".obj", meshSimplify.get_vertices(), meshSimplify.get_faces());
     // Erase this for docker image
     igl::opengl::glfw::Viewer viewer;
     viewer.data().clear();
@@ -59,5 +60,5 @@ int main(int argc, char * argv[])
     viewer.data().set_face_based(true);
     return viewer.launch();
 
-    //return 0;
+    return 0;
 }

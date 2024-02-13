@@ -24,7 +24,8 @@ namespace qslim{
     void dfs(aabb::Tree &tree, int nodeId, aabb::AABB &queryAABB, vector<int> &candidates);
 
     // triangle intersection check for intersection candidates
-    bool tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2);
+    bool tri_tri_intersection_check(const MatrixXd &V, const MatrixXi &F, unsigned int faceIdx1, unsigned int faceIdx2,
+                                    int shared_vertex);
 
     // exact self intersection check
     /*!
@@ -36,7 +37,7 @@ namespace qslim{
     // self intersection check for iteration (pre_collapse_callback)
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces,
-                                 unordered_map<int, vector<int>> &affected_triangle_indices, int removed_vertex_idx1,
+                                 vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2);
 }
 
