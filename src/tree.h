@@ -5,7 +5,7 @@
 #ifndef QEM_TREE_H
 #define QEM_TREE_H
 
-#include "../include/AABB.hpp"
+#include "AABB.hpp"
 #include "helper.h"
 #include <Eigen/Core>
 

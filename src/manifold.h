@@ -11,8 +11,8 @@
 //#include <CGAL/polygon_mesh_processing/self_intersections.h>
 //#include <CGAL/Surface_mesh.h>
 
-#include "../include/igl/fast_find_self_intersections.h"
-#include "../include/AABB.hpp"
+//#include "../include/igl/fast_find_self_intersections.h"
+#include "AABB.hpp"
 #include "tree.h"
 #include <time.h>
 #include "self_intersect.h"

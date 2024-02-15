@@ -9,8 +9,8 @@
 #include <iostream>
 #include <igl/intersect.h>
 #include <unordered_set>
-#include <../include/tri_tri_intersect.h>
-#include "../include/AABB.hpp"
+//#include <../include/tri_tri_intersect.h>
+#include "AABB.hpp"
 #include <igl/circulation.h>
 
 using namespace Eigen;

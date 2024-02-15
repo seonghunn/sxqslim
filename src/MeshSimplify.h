@@ -6,7 +6,7 @@
 #define QEM_MESHSIMPLIFY_H
 
 #include "tree.h"
-#include "../include/AABB.hpp"
+#include "AABB.hpp"
 #include "helper.h"
 #include "quadratic.h"
 #include "manifold.h"
@@ -16,8 +16,8 @@
 #include <string>
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
-//#include <igl/collapse_edge.h>
-#include "../include/igl/collapse_edge.h"
+#include <igl/collapse_edge.h>
+//#include "../include/igl/collapse_edge.h"
 #include <igl/circulation.h>
 #include <unordered_set>
 #include <igl/edge_flaps.h>
