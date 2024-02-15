@@ -25,22 +25,18 @@ namespace qslim{
     bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F);
 
     // self intersection for input and output test
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                 unordered_map<int, bool> &decimated_faces);
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree);
 
     // self intersection check for iteration (pre_collapse_callback)
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces,
                      vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                      int removed_vertex_idx2);
 
     // manifold test for input and output
-    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces, bool useManifoldCheck);
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree, bool useManifoldCheck);
 
     // manifold check for iteration (pre_collapse_callback)
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces,
                      vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                      int removed_vertex_idx2, bool useManifoldCheck);
 

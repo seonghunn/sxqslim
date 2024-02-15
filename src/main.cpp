@@ -52,8 +52,8 @@ int main(int argc, char * argv[])
     VectorXi J;
     //igl::decimate(OV,OF,100000,VR,FR,J);
 
-    qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
-    meshSimplify.process();
+    qslim::MeshSimplify meshSimplify(OV, OF);
+    meshSimplify.process(ratio);
 
     igl::writeOBJ(output_filename + ".obj", meshSimplify.get_vertices(), meshSimplify.get_faces());
     // Erase this for docker image

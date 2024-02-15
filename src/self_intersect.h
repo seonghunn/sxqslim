@@ -33,8 +33,7 @@ namespace qslim{
     /*!
      * \return true if there are self intersections
      */
-    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                 unordered_map<int, bool> &decimated_faces);
+    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree);
 
 
     void get_two_ring_neigh(MatrixXi &F,
@@ -51,7 +50,6 @@ namespace qslim{
             std::vector<int> &one_ring_faces);
     // self intersection check for iteration (pre_collapse_callback)
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                 unordered_map<int, bool> &decimated_faces,
                                  vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2);
 }

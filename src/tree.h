@@ -35,7 +35,6 @@ namespace qslim{
      * @param RV_idx2 removed vertex index 1
      * @param f1 removed face index 1
      * @param f2 removed face index 1
-     * @param decimatedFaces decimated Faces hash map (true : already decimated)
      * @param affectedTriangleIndices affected triangle indices hash map (key : vertex, value : vector list of indices of affected faces)
      * @return is updating done without error
      */
@@ -45,7 +44,6 @@ namespace qslim{
             const Eigen::MatrixXi &F,
             aabb::Tree &tree,
             int RV_idx1, int RV_idx2,
-            std::unordered_map<int, bool> &decimatedFaces,
             vector<int> &affectedTriangleIndices);
 
     // update Affected Triangle list

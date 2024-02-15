@@ -35,7 +35,7 @@ namespace qslim{
     }
 
     // self intersection for input and output test
-    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree, unordered_map<int, bool> &decimated_faces){
+    bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree){
 /*        //test aabb tree
         aabb::Tree tree;
         qslim::initialize_tree_from_mesh(V, F, tree);
@@ -51,17 +51,16 @@ namespace qslim{
 
         //return true;
        // use this for custom self intersection check
-       return self_intersection_check_full(V, F, tree, decimated_faces);
+       return self_intersection_check_full(V, F, tree);
     }
 
     // self intersection check for iteration (pre_collapse_callback)
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                 unordered_map<int, bool> &decimated_faces,
                                  vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                                  int removed_vertex_idx2){
 
         // test self intersection locally
-        return self_intersection_check_local(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
+        return self_intersection_check_local(V, F, tree, affected_triangle_indices, removed_vertex_idx1,
                                        removed_vertex_idx1);
 
         // test all self intersection
@@ -76,8 +75,7 @@ namespace qslim{
     }
 
     // manifold test for input and output
-    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces, bool useManifoldCheck) {
+    bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree, bool useManifoldCheck) {
         // check edge_manifold
         clock_t start_edge, end_edge, start_intersect, end_intersect;
         //return true;
@@ -96,7 +94,7 @@ namespace qslim{
 
         //check self-intersection
         start_intersect = clock();
-        if (check_self_intersection(V, F, tree, decimated_faces)) {
+        if (check_self_intersection(V, F, tree)) {
             // self intersection exist
             cout << "self-intersection test fail\n";
             return false;
@@ -120,7 +118,6 @@ namespace qslim{
 
     // manifold check for iteration (pre_collapse_callback)
     bool is_manifold(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                     unordered_map<int, bool> &decimated_faces,
                      vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                      int removed_vertex_idx2,  bool useManifoldCheck){
         // check edge_manifold
@@ -141,7 +138,7 @@ namespace qslim{
 
         //check self-intersection
         start_intersect = clock();
-        if (check_self_intersection(V, F, tree, decimated_faces, affected_triangle_indices, removed_vertex_idx1,
+        if (check_self_intersection(V, F, tree, affected_triangle_indices, removed_vertex_idx1,
                                     removed_vertex_idx2)) {
             // self intersection exist
             cout << "self-intersection test fail\n";

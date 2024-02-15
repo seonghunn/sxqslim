@@ -66,7 +66,7 @@ namespace qslim{
             const Eigen::MatrixXd &V,
             const Eigen::MatrixXi &F,
             aabb::Tree &tree,
-            int RV_idx1, int RV_idx2, std::unordered_map<int, bool> &decimatedFaces,
+            int RV_idx1, int RV_idx2,
             vector<int> &combinedAffectedTriangleIndices) {
         // 1. Identify affected triangles by checking RV and the provided face indices
         //std::vector<int> affectedTriangleIndices = {f1, f2};
@@ -119,9 +119,6 @@ namespace qslim{
 
             // no need to update tree again
             //qslim::update_ancestors(tree, triangleIdx, 3);
-            if (triangleIdx == 30529 || triangleIdx == 120875) {
-                std::cout << "update tris " << triangleIdx << endl;
-            }
         }
 /*        tree.removeParticle(f1);
         tree.removeParticle(f2);*/

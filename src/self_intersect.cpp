@@ -90,14 +90,12 @@ namespace qslim
         // avg normalize
         RowVector3d mean = (p1 + q1 + r1 + p2 + q2 + r2) / 6.0;
         mean = mean * 10;
-        /*
-                p1 = p1.array() / mean.array();
-                q1 = q1.array() / mean.array();
-                r1 = r1.array() / mean.array();
-                p2 = p2.array() / mean.array();
-                q2 = q2.array() / mean.array();
-                r2 = r2.array() / mean.array();
-        */
+        p1 = p1.array() / mean.array();
+        q1 = q1.array() / mean.array();
+        r1 = r1.array() / mean.array();
+        p2 = p2.array() / mean.array();
+        q2 = q2.array() / mean.array();
+        r2 = r2.array() / mean.array();
 
         bool coplanar;
         RowVector3d source, target;
@@ -140,8 +138,7 @@ namespace qslim
         return isIntersecting;
     }
 
-    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                      unordered_map<int, bool> &decimated_faces)
+    bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree)
     {
         for (int i = 0; i < F.rows(); i++)
         {
@@ -231,7 +228,6 @@ namespace qslim
     }
 
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
-                                       unordered_map<int, bool> &decimated_faces,
                                        vector<int> &affected_triangle_indices, int removed_vertex_idx1,
                                        int removed_vertex_idx2)
     {
@@ -240,8 +236,6 @@ namespace qslim
             // no need to check decimated faces
             if (F(i, 0) == 0 && F(i, 1) == 0 && F(i, 2) == 0)
             {
-                // std::cout<<"decimated faces : "<<F(i,0)<<" "<<F(i,1)<<" "<<F(i,2)<<std::endl;
-                std::cout << "continue" << std::endl;
                 continue;
             }
 

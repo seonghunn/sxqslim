@@ -58,14 +58,14 @@ namespace qslim{
         int num_failed;
         int stopping_condition;
         // hash map for deleted faces
-        std::unordered_map<int, bool> decimated_faces;
+        //std::unordered_map<int, bool> decimated_faces;
 
         // hash map for affected_triangles (vertex -> face mapping)
         //TODO: update affected triangle indices every time (vertices are merged into one)
         // 두개가 생기는 거기 때문에 두 개의 원래 vertex의 index를 똑같이 두개의 합으로 업데이트 해주면 될듯
-        std::unordered_map<int, vector<int>> affected_triangle_indices;
+        //std::unordered_map<int, vector<int>> affected_triangle_indices;
 
-        string output_filename;
+        //string output_filename;
 
         // callback functions
         igl::decimate_cost_and_placement_callback cost_and_position_callback;
@@ -73,16 +73,13 @@ namespace qslim{
         igl::decimate_post_collapse_callback post_collapse;
 
     public:
-        MeshSimplify(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
+        MeshSimplify(MatrixXd &OV, MatrixXi &OF);
 
         // input manifold test
         bool input_manifold_test(MatrixXd &OV, MatrixXi &OF);
 
         // init member variable
-        void init_member_variable(MatrixXd &OV, MatrixXi &OF, double ratio, string output_filename);
-
-        // init affect_triangles table
-        void init_affect_triangles(MatrixXd &OV, MatrixXi &OF);
+        void init_member_variable(MatrixXd &OV, MatrixXi &OF);
 
         // init homogeneous surface normal
         static void init_normal_homo_per_face(MatrixXd &V, MatrixXi &F, MatrixXd &N_homo);
@@ -117,7 +114,7 @@ namespace qslim{
                 double & cost,
                 Eigen::RowVectorXd & p);
 
-        bool process();
+        void process(double ratio);
     };
 }
 
