@@ -14,6 +14,7 @@ namespace qslim{
         clock_t start, end;
         cout << "init member variable start" << endl;
         start = clock();
+        //qslim::remove_duplicated_faces(OV, OF);
         this->init_member_variable(OV, OF, ratio, output_filename);
         end = clock();
         cout << "init member variable done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
@@ -335,20 +336,47 @@ namespace qslim{
             cout << "pre_collapse : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec\n";
 
             start_test = clock();
-
+            vector<int> twoRingNeigh;
+            get_two_ring_neigh(this->F, this->affected_triangle_indices, combinedAffectedTriangleIndices, twoRingNeigh);
+            clock_t start_cir = clock();
+            vector<int> oneRingNeigh;
+            get_one_ring_neigh(e, this->F, this->EMAP, this->EF, this->EI, oneRingNeigh);
+            clock_t end_cir = clock();
+            cout << "time for get 1ring : " << (double) (end_cir - start_cir) / CLOCKS_PER_SEC << endl;
+            cout << "one ring neigh" << endl;
+            for (int i: combinedAffectedTriangleIndices) {
+                cout << i << " ";
+            }
+            cout << endl;
+            cout << "one ring neigh igl" << endl;
+            for (int i: oneRingNeigh) {
+                cout << i << " ";
+            }
+            cout << endl;
+            cout << "two ring neigh" << endl;
+            for (int i : twoRingNeigh) {
+                cout << i << " ";
+            }
+            cout << endl;
             // update tree after decimation
+            //aabb::Tree tmpTree = aabb::Tree(3, 0, 16, false);
+            //qslim::initialize_tree_from_mesh(V_, F_, tmpTree);
 /*            clock_t start_tree = clock();
             aabb::Tree tmpTree = this->tree;
             clock_t end_tree = clock();
             cout<<"tree copy : "<<(double)(end_tree - start_tree) /CLOCKS_PER_SEC<<endl;*/
             update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2,
                                          this->decimated_faces,
-                                         combinedAffectedTriangleIndices);
+                                         //combinedAffectedTriangleIndices);
+                                         oneRingNeigh);
             //std::cout<<"decimated faces : "<<F_(removedFaceIdx1,0)<<" "<<F_(removedFaceIdx1,1)<<" "<<F_(removedFaceIdx1,2)<<std::endl;
             //std::cout<<"flag : "<< this->decimated_faces[removedFaceIdx1]<< this->decimated_faces[removedFaceIdx2]<<std::endl;
             // if test failed, restore tree
+            //if (!qslim::is_manifold(V_, F_, tmpTree, this->decimated_faces,
             if (!qslim::is_manifold(V_, F_, this->tree, this->decimated_faces,
-                                    combinedAffectedTriangleIndices, RV_idx1, RV_idx2, false)){
+//                                    combinedAffectedTriangleIndices, RV_idx1, RV_idx2, false)){
+                                    //twoRingNeigh, RV_idx1, RV_idx2, false)){
+                                    oneRingNeigh, RV_idx1, RV_idx2, false)){
 /*                restoreTree(combinedAffectedTriangleIndices, this->restoreMap, this->tree, removedFaceIdx1, removedFaceIdx2);
 
                 //restore affected triangle indices
@@ -419,6 +447,7 @@ namespace qslim{
             //int RV_idx2 = this->RV.v2;
             int RV_idx1 = E(e, 0);
             int RV_idx2 = E(e, 1);
+
             vector<int> combinedAffectedTriangleIndices;
             getCombinedAffectedTriangleIndices(this->affected_triangle_indices, this->decimated_faces, RV_idx1, RV_idx2,
                                                combinedAffectedTriangleIndices);
@@ -533,7 +562,8 @@ namespace qslim{
             p = (V.row(v1) + V.row(v2)) / 2.0;
             target << p.transpose(), 1;
         }
-        cost = target.transpose() * Q * target;*/
+        Eigen::MatrixXd result = target.transpose() * Q * target;
+        cost = std::max(0.0, result(0, 0));*/
 
 
 /*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
@@ -582,12 +612,6 @@ namespace qslim{
             cout << this->E << endl;
             cout << endl;*/
             // if stopping condition met, break
-/*            if((iteration+1) % 50000 == 0){
-                //qslim::remove_duplicated_faces(this->V, this->F);
-                this->tree = aabb::Tree(3, 0, 16, false);
-                std::cout<<"reinit tree"<<std::endl;
-                qslim::initialize_tree_from_mesh(this->V, this->F, this->tree);
-            }*/
             clock_t start_per_iter, end_per_iter;
             start_per_iter = clock();
             bool collapsed = igl::collapse_edge(cost_and_placement_callback,
@@ -595,7 +619,53 @@ namespace qslim{
                                     post_collapse_callback,
                                     this->V, this->F, this->E, this->EMAP,
                                     this->EF, this->EI, this->queue, this->EQ, this->C);
-
+/*            if (true) {
+                vector<int> combinedAffectedTriangleIndices;
+                getCombinedAffectedTriangleIndices(this->affected_triangle_indices, this->decimated_faces, E(182840, 0), E(182840, 1),
+                                                   combinedAffectedTriangleIndices);
+                cout << "182840" << endl;
+                for (int i: this->affected_triangle_indices[E(182840, 0)]) {
+                    cout << i << " ";
+                }
+                cout << endl;
+                for (int i: this->affected_triangle_indices[E(182840, 1)]) {
+                    cout << i << " ";
+                }
+                cout << endl;
+                vector<int> twoRingNeigh;
+                get_two_ring_neigh(this->F, this->affected_triangle_indices, combinedAffectedTriangleIndices, twoRingNeigh);
+                cout << "two ring of 182840" << endl;
+                for (int i: twoRingNeigh) {
+                    cout << i << " ";
+                }
+                cout << endl;
+                cout << "F 30529 120875" << endl;
+                MatrixXd p1, q1, r1, p2, q2, r2;
+                cout << this->F(30529, 0) << " " << this->F(30529, 1) << " " << this->F(30529, 2) << endl;
+                cout << this->V(this->F(30529, 0), 0) << " " << this->V(this->F(30529, 0), 1) << " "
+                     << this->V(this->F(30529, 0), 2) << endl;
+                cout << this->V(this->F(30529, 1), 0) << " " << this->V(this->F(30529, 1), 1) << " "
+                     << this->V(this->F(30529, 1), 2) << endl;
+                cout << this->V(this->F(30529, 2), 0) << " " << this->V(this->F(30529, 2), 1) << " "
+                     << this->V(this->F(30529, 2), 2) << endl;
+                cout << this->F(120875, 0) << " " << this->F(120875, 1) << " " << this->F(120875, 2) << endl;
+                cout << this->V(this->F(120875, 0), 0) << " " << this->V(this->F(120875, 0), 1) << " "
+                     << this->V(this->F(120875, 0), 2) << endl;
+                cout << this->V(this->F(120875, 1), 0) << " " << this->V(this->F(120875, 1), 1) << " "
+                     << this->V(this->F(120875, 1), 2) << endl;
+                cout << this->V(this->F(120875, 2), 0) << " " << this->V(this->F(120875, 2), 1) << " "
+                     << this->V(this->F(120875, 2), 2) << endl;
+                cout << this->decimated_faces[30529] << " " << this->decimated_faces[120875] << endl;
+            }
+            if(iteration == 6654){ // 6654 for reinit tree test
+                //qslim::remove_duplicated_faces(this->V, this->F);
+                cout << "self intersection check full" << endl;
+                bool insect = self_intersection_check_full(this->V, this->F, this->tree, this->decimated_faces);
+                cout << "self intersection check result : " << insect << endl;
+                //this->tree = aabb::Tree(3, 0, 16, false);
+                //std::cout<<"reinit tree"<<std::endl;
+                //qslim::initialize_tree_from_mesh(this->V, this->F, this->tree);
+            }*/
             //cout << "true / false " << collapsed << endl;
             iteration ++;
             if(collapsed)

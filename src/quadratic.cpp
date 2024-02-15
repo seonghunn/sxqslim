@@ -29,9 +29,8 @@ namespace qslim{
         A.row(2) << Q.row(2);
         A.row(3) << 0, 0, 0, 1;
 
-/*
         // TODO: this is my implementation
-        Eigen::Vector4d target;
+/*        Eigen::Vector4d target;
         if(A.determinant() > 1e-5){
             target = A.inverse() * Eigen::Vector4d(0, 0, 0, 1);
             p = target.head<3>() / target.w();
@@ -40,9 +39,8 @@ namespace qslim{
             p = (V.row(v1) + V.row(v2)) / 2.0;
             target << p.transpose(), 1;
         }
-        cost = target.transpose() * Q * target;
-*/
-
+        Eigen::MatrixXd result = target.transpose() * Q * target;
+        cost = std::max(0.0, result(0, 0));*/
 
 /*        cout << "edge : " << E(e, 0) << " " << E(e, 1) << endl;
         cout << "cost : " << cost << endl;*/

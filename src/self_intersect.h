@@ -8,8 +8,10 @@
 #include <Eigen/Core>
 #include <iostream>
 #include <igl/intersect.h>
+#include <unordered_set>
 #include <../include/tri_tri_intersect.h>
 #include "../include/AABB.hpp"
+#include <igl/circulation.h>
 
 using namespace Eigen;
 using namespace std;
@@ -34,6 +36,19 @@ namespace qslim{
     bool self_intersection_check_full(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces);
 
+
+    void get_two_ring_neigh(MatrixXi &F,
+                            unordered_map<int, vector<int>> &affected_triangle_list,
+                            vector<int> &combined_affected_triangle_indices,
+                            vector<int> &two_ring_neigh);
+
+    void get_one_ring_neigh(
+            const int e,
+            const Eigen::MatrixXi &F,
+            const Eigen::VectorXi &EMAP,
+            const Eigen::MatrixXi &EF,
+            const Eigen::MatrixXi &EI,
+            std::vector<int> &one_ring_faces);
     // self intersection check for iteration (pre_collapse_callback)
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,
                                  unordered_map<int, bool> &decimated_faces,

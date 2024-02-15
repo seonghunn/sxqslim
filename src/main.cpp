@@ -14,6 +14,7 @@
 #include "manifold.h"
 //#include "preprocess.h"
 #include "MeshSimplify.h"
+#include <igl/decimate.h>
 //#include "process.h"
 
 #define INPUT_PATH ""
@@ -46,6 +47,10 @@ int main(int argc, char * argv[])
     }*/
     // check whether mesh is manifold
     //if(is_edge_manifold(OF)) {
+    MatrixXd VR;
+    MatrixXi FR;
+    VectorXi J;
+    //igl::decimate(OV,OF,100000,VR,FR,J);
 
     qslim::MeshSimplify meshSimplify(OV, OF, ratio, output_filename);
     meshSimplify.process();
@@ -56,7 +61,7 @@ int main(int argc, char * argv[])
     viewer.data().clear();
     //TODO: Update qValues using MeshSimplify class ; move callback function into meshSimplify class
     viewer.data().set_mesh(meshSimplify.get_vertices(), meshSimplify.get_faces());
-    //viewer.data().set_mesh(V, F);
+    //viewer.data().set_mesh(VR, FR);
     viewer.data().set_face_based(true);
     return viewer.launch();
 

@@ -147,6 +147,7 @@ namespace qslim {
             for (const int &candidateIdx: candidates) {
                 if (candidateIdx == i)
                     continue;
+                if (F(candidateIdx, 0) == 0 && F(candidateIdx, 1)==0 && F(candidateIdx,2)==0) continue;
                 int shared_vertex = get_num_of_shared_vertex(F.row(i), F.row(candidateIdx));
                 if (shared_vertex == 2)
                     continue;
@@ -156,6 +157,53 @@ namespace qslim {
             }
         }
         return false;
+    }
+
+    void get_two_ring_neigh(MatrixXi &F,
+                            unordered_map<int, vector<int>> &affected_triangle_list,
+                            vector<int> &combined_affected_triangle_indices,
+                            vector<int> &two_ring_neigh){
+
+        unordered_set<int> vertexIndices;
+        for (int faceIndex : combined_affected_triangle_indices) {
+            for (int i = 0; i < F.cols(); ++i) { // F의 열 수만큼 반복 (삼각형 메쉬라면 3)
+                int vertexIndex = F(faceIndex, i); // 현재 face의 i번째 vertex 인덱스
+                vertexIndices.insert(vertexIndex); // 세트에 vertex 인덱스 추가 (중복 자동 제거)
+            }
+        }
+
+        std::unordered_set<int> uniqueAdjacentFaceIndices;
+        for (int vertexIndex : vertexIndices) {
+            // 해당 vertex에 인접한 face들의 인덱스를 확인
+            if (affected_triangle_list.find(vertexIndex) != affected_triangle_list.end()) {
+                // 현재 vertex에 인접한 모든 face의 인덱스를 uniqueAdjacentFaceIndices 세트에 추가
+                for (int faceIndex : affected_triangle_list[vertexIndex]) {
+                    uniqueAdjacentFaceIndices.insert(faceIndex);
+                }
+            }
+        }
+        std::vector<int> adjacentFaceIndicesVector(uniqueAdjacentFaceIndices.begin(), uniqueAdjacentFaceIndices.end());
+        two_ring_neigh = adjacentFaceIndicesVector;
+    }
+
+    void get_one_ring_neigh(
+            const int e,
+            const Eigen::MatrixXi &F,
+            const Eigen::VectorXi &EMAP,
+            const Eigen::MatrixXi &EF,
+            const Eigen::MatrixXi &EI,
+            std::vector<int> &one_ring_faces){
+        std::vector<int> /*Nse,*/Nsf,Nsv;
+        igl::circulation(e, true,F,EMAP,EF,EI,/*Nse,*/Nsv,Nsf);
+        std::vector<int> /*Nde,*/Ndf,Ndv;
+        igl::circulation(e, false,F,EMAP,EF,EI,/*Nde,*/Ndv,Ndf);
+
+        std::vector<int> Nf;
+        Nf.reserve( Nsf.size() + Ndf.size() ); // preallocate memory
+        Nf.insert( Nf.end(), Nsf.begin(), Nsf.end() );
+        Nf.insert( Nf.end(), Ndf.begin(), Ndf.end() );
+
+        one_ring_faces = Nf;
     }
 
     bool self_intersection_check_local(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree,

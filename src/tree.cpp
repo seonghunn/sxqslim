@@ -119,6 +119,9 @@ namespace qslim{
 
             // no need to update tree again
             //qslim::update_ancestors(tree, triangleIdx, 3);
+            if (triangleIdx == 30529 || triangleIdx == 120875) {
+                std::cout << "update tris " << triangleIdx << endl;
+            }
         }
 /*        tree.removeParticle(f1);
         tree.removeParticle(f2);*/

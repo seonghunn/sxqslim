@@ -19,7 +19,7 @@ for input_file in "$input_dir"/1088281.obj; do
     output_file="$output_dir/${filename}" # 확장자는 필요에 따라 조정
 
     # QSlim 실행
-    ./build/QSlim "$input_file" "$output_file" 0.5
+    ./build/QSlim "$input_file" "$output_file" 0.8
 done
 
 echo "모든 파일이 처리되었습니다."

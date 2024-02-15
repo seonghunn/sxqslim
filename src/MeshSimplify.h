@@ -18,8 +18,11 @@
 #include <igl/writeOBJ.h>
 //#include <igl/collapse_edge.h>
 #include "../include/igl/collapse_edge.h"
+#include <igl/circulation.h>
+#include <unordered_set>
 #include <igl/edge_flaps.h>
 #include <iostream>
+#include <igl/adjacency_list.h>
 
 using namespace std;
 using namespace Eigen;

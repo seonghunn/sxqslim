@@ -350,6 +350,7 @@ IGL_INLINE bool igl::collapse_edge(
           Ne.push_back(ei);
         }
       }
+      std::cout << "near face " << n << std::endl;
     }
     // Only process edge once
     std::sort( Ne.begin(), Ne.end() );
@@ -360,6 +361,7 @@ IGL_INLINE bool igl::collapse_edge(
        double cost;
        RowVectorXd place;
        cost_and_placement(ei,V,F,E,EMAP,EF,EI,cost,place);
+       std::cout <<"inside collapse"<< E(ei, 0) << " " << E(ei, 1) << std::endl;
        // Increment timestamp
        EQ(ei)++;
        // Replace in queue
