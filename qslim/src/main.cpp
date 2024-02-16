@@ -2,7 +2,6 @@
 #include <igl/edge_flaps.h>
 #include <igl/parallel_for.h>
 #include <igl/read_triangle_mesh.h>
-#include <igl/opengl/glfw/Viewer.h>
 #include <igl/per_face_normals.h>
 //#include <igl/bfs_orient.h>
 #include <Eigen/Core>
@@ -44,14 +43,14 @@ int main(int argc, char * argv[])
     meshSimplify.process(ratio);
 
     igl::writeOBJ(output_filename + ".obj", meshSimplify.get_vertices(), meshSimplify.get_faces());
-    // Erase this for docker image
+/*    // Erase this for docker image
     igl::opengl::glfw::Viewer viewer;
     viewer.data().clear();
     //TODO: Update qValues using MeshSimplify class ; move callback function into meshSimplify class
     viewer.data().set_mesh(meshSimplify.get_vertices(), meshSimplify.get_faces());
     //viewer.data().set_mesh(VR, FR);
     viewer.data().set_face_based(true);
-    return viewer.launch();
+    return viewer.launch();*/
 
     return 0;
 }

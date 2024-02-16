@@ -10,7 +10,6 @@
 #include "remove_duplicated.h"
 #include "quadratic.h"
 #include "manifold.h"
-#include "igl/opengl/glfw/Viewer.h"
 #include <Eigen/Core>
 #include <time.h>
 #include <string>
