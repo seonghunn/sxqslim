@@ -6,7 +6,7 @@
 namespace py = pybind11;
 namespace qslim {
 
-    PYBIND11_MODULE(QSlim, m) {
+    PYBIND11_MODULE(sxqslim, m) {
         py::class_<MeshSimplify>(m, "MeshSimplify")
                 .def(py::init<Eigen::MatrixXd &, Eigen::MatrixXi &>(),
                      py::arg("V"), py::arg("F"))

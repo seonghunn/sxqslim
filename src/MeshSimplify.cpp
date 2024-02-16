@@ -5,60 +5,34 @@
 #include "MeshSimplify.h"
 #include <algorithm>
 
-#define INPUT_PATH "../model/input/"
-#define OUTPUT_PATH "../model/output/"
-
 namespace qslim{
     MeshSimplify::MeshSimplify(MatrixXd &OV, MatrixXi &OF) {
-        this->start = clock();
-        clock_t start, end;
-        cout << "init member variable start" << endl;
+        cout << "# of Input Vertex : " << OV.rows() << "\n";
+        cout << "# of Input Face : " << OF.rows() << "\n";
         start = clock();
         this->init_member_variable(OV, OF);
-        end = clock();
-        cout << "init member variable done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
-        cout << "init aabb tree start" << endl;
-        start = clock();
         this->tree = aabb::Tree(3, 0, 16, false);
         qslim::initialize_tree_from_mesh(OV, OF, this->tree);
-        end = clock();
-        cout << "init aabb tree done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
-        cout << "init surface normal per face start" << endl;
-        start = clock();
         this->init_normal_homo_per_face(OV, OF, this->N_homo);
-        end = clock();
-        cout << "init surface normal per face done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
-        cout << "init queue start" << endl;
-        start = clock();
         this->init_qValues(OV, OF, this->N_homo);
-        this->init_queue(OV, OF);
-        end = clock();
-        cout << "init queue done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
-        cout << "init callback start" << endl;
-        start = clock();
+        this->init_queue();
         this->init_callback();
         end = clock();
-        cout << "init callback done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n\n";
-        cout << "input manifold test start" << endl;
+        cout << "Initialize tree done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec" << endl;
         start = clock();
         this->input_manifold_test(OV, OF);
         end = clock();
-        cout << "input manifold test done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec" << endl;
+        cout << "Input manifold test done : " << (double) (end - start) / CLOCKS_PER_SEC << " sec" << endl;
     }
 
     bool MeshSimplify::input_manifold_test(MatrixXd &OV, MatrixXi &OF){
-        cout << "\n" << "*******************************\n";
-        cout << "Number of Input Vertex : " << OV.rows() << "\n";
-        cout << "Number of Input Faces : " << OF.rows() << "\n";
         if (is_manifold(OV, OF, this->tree, true)) {
-            cout << "Input model is Manifold mesh\n";
-            cout << "*******************************" << "\n\n";
+            //cout << "Input is manifold mesh\n";
             return true;
         }
         else {
-            cout << "Input model is Non-Manifold mesh" << endl;
+            cout << "Input is Non-Manifold mesh" << endl;
             cout << "Please use Manifold mesh" << endl;
-            cout << "*******************************" << "\n\n";
             return false;
         }
     }
@@ -102,7 +76,7 @@ namespace qslim{
         }
     }
 
-    void MeshSimplify::init_queue(MatrixXd &OV, MatrixXi &OF){
+    void MeshSimplify::init_queue(){
         int num = this->E.rows();
         VectorXd costs(num);
         for (int e=0; e < num; e++) {
@@ -152,60 +126,34 @@ namespace qslim{
             // return false if manifold test fails
             // if this function returns false, then the candidate edge is not gonna be collapse
             // after return false, assign infinity cost for that edge
-            clock_t start, end;
-            start = clock();
-            MatrixXd V_ = V;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            MatrixXi F_ = F;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            MatrixXi E_ = E;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            VectorXi EMAP_ = EMAP;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            MatrixXi EF_ = EF;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            MatrixXi EI_ = EI;
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
-            start = clock();
-            RowVectorXd p = this->C.row(e); // placement when collapsing edge e
-            end = clock();
-            cout << "copy variable : " << (double) (end - start) / CLOCKS_PER_SEC << " sec\n";
 
-            start = clock();
+            // copy variable to pre-collapse
+            MatrixXd V_ = V;
+            MatrixXi F_ = F;
+            MatrixXi E_ = E;
+            VectorXi EMAP_ = EMAP;
+            MatrixXi EF_ = EF;
+            MatrixXi EI_ = EI;
+            RowVectorXd p = this->C.row(e); // placement when collapsing edge e
+
             // vertices of collapsed edge
             int RV_idx1 = E(e, 0);
             int RV_idx2 = E(e, 1);
 
-            clock_t start_test, end_test, start_collapse, end_collapse;
-            start_collapse = clock();
-            // TODO: change this collapse function to get f1 and f2 index
-            igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
-            end_collapse = clock();
-            cout << "pre_collapse : " << (double) (end_collapse - start_collapse) / CLOCKS_PER_SEC << " sec\n";
-
-            start_test = clock();
+            // get restore values before edge collapse
             vector<int> oneRingNeigh;
             get_one_ring_neigh(e, this->F, this->EMAP, this->EF, this->EI, oneRingNeigh);
             takeNodeSnapShot(oneRingNeigh, this->tree, this->restoreMap);
-            update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2,
-                                         oneRingNeigh);
+
+            // pre collapse
+            igl::collapse_edge(e, p, V_, F_, E_, EMAP_, EF_, EI_);
+            // update tree based on edge collapse
+            update_tree_after_decimation(V_, F_, this->tree, RV_idx1, RV_idx2, oneRingNeigh);
+            // self intersection check
             if (!qslim::is_manifold(V_, F_, this->tree, oneRingNeigh, RV_idx1, RV_idx2, false)){
-                std::cout<<"pre collapse false"<<std::endl;
+                //std::cout<<"pre collapse false"<<std::endl;
                 return false;
             }
-            end_test = clock();
-            cout << "test : " << (double) (end_test - start_test) / CLOCKS_PER_SEC << " sec\n";
             return true;  // Allow the edge to be collapsed.
         };
 
@@ -227,6 +175,7 @@ namespace qslim{
                 const bool collapsed
                 ) {
 
+            // if collapse is failed, restore the tree
             if(!collapsed){
                 vector<int> oneRingNeigh;
                 get_one_ring_neigh(e, this->F, this->EMAP, this->EF, this->EI, oneRingNeigh);
@@ -305,7 +254,7 @@ namespace qslim{
         auto pre_collapse_callback = this->get_pre_collapse_callback();
         auto post_collapse_callback = this->get_post_collapse_callback();
 
-
+        this->start = clock();
         int iteration = 0;
         while (!this->queue.empty()) {
             // TODO: is num failed ok?
@@ -314,9 +263,9 @@ namespace qslim{
                 this->end = clock();
                 break;
             }
+            if(iteration % 5000 == 0 && iteration != 0)
+                cout << "Iteration : " << iteration << endl;
 
-            clock_t start_per_iter, end_per_iter;
-            start_per_iter = clock();
             bool collapsed = igl::collapse_edge(cost_and_placement_callback,
                                     pre_collapse_callback,
                                     post_collapse_callback,
@@ -327,22 +276,15 @@ namespace qslim{
                 this->num_collapsed++;
             else
                 this->num_failed++;
-            //cout << num_collapsed << " vertices are collapsed\n" << endl;
-            cout << "\niteration : " << iteration << " num - collapsed : " << this->num_collapsed << "\n";
-            end_per_iter = clock();
-            cout << (double) (end_per_iter - start_per_iter) / CLOCKS_PER_SEC << " sec per iteration\n";
         }
-        //qslim::remove_duplicated_faces(this->V, this->F);
-        cout << "\n" << "*******************************" << endl;
-        if (qslim::is_manifold(this->V, this->F, this->tree, true))
+/*        if (qslim::is_manifold(this->V, this->F, this->tree, true))
             cout << "Resulting mesh is Manifold" << endl;
         else
-            cout << "Resulting mesh is Non-Manifold" << endl;
+            cout << "Resulting mesh is Non-Manifold" << endl;*/
         // Remove duplicated faces
         qslim::remove_duplicated_faces(this->V, this->F);
         cout << "Output V : " << this->V.rows() << endl;
         cout << "Output F : " << this->F.rows() << endl;
-        cout << "*******************************" << endl;
-        cout << "total time : " << (double) (this->end - this->start) / CLOCKS_PER_SEC << " second" << endl;
+        cout << "total runtime : " << (double) (this->end - this->start) / CLOCKS_PER_SEC << " second" << endl;
     }
 }

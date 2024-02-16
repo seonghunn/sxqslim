@@ -2,7 +2,7 @@
 // Created by seonghun on 7/20/23.
 //
 
-#include "helper.h"
+#include "remove_duplicated.h"
 
 using namespace std;
 namespace qslim {

@@ -6,7 +6,7 @@
 #define QEM_TREE_H
 
 #include "AABB.hpp"
-#include "helper.h"
+#include "remove_duplicated.h"
 #include <Eigen/Core>
 
 using namespace Eigen;
@@ -46,20 +46,10 @@ namespace qslim{
             int RV_idx1, int RV_idx2,
             vector<int> &affectedTriangleIndices);
 
-    // update Affected Triangle list
-    /*!
-     * @param affectedTriangleIndices
-     * @param decimatedFaces
-     * @param RV_idx1
-     * @param RV_idx2
-     * @param combinedAffectedTriangleIndices
-     */
-    void getCombinedAffectedTriangleIndices(unordered_map<int, vector<int>> &affectedTriangleIndices,
-                                            unordered_map<int, bool> &decimatedFaces, int RV_idx1, int RV_idx2,
-                                            vector<int> &combinedAffectedTriangleIndices);
 
+    // take a node restore map to undo tree update if self intersection check fails
     /*!
-     * @param combinedAffectedTriangleIndices combined list of affected triangle indices after collapsing edge e
+     * @param combinedAffectedTriangleIndices combined list (1-ring neighborhood) of affected triangle indices after collapsing edge e
      * @param tree
      * @param removedFaceIdx1
      * @param removedFaceIdx2
@@ -78,6 +68,7 @@ namespace qslim{
      * @param removedFaceIdx2
      */
 
+    // restore tree
     void restoreTree(vector<int> combinedAffectedTriangleIndices, unordered_map<int, NodeSnapshot> &restoreMap,
                      aabb::Tree &tree, int removedFaceIdx1,
                      int removedFaceIdx2);

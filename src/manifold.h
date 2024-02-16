@@ -22,8 +22,6 @@ using namespace std;
 namespace qslim{
     bool check_edge_manifold(const MatrixXd &V, const MatrixXi &F);
 
-    bool check_mesh_orientation(const MatrixXd &V, const MatrixXi &F);
-
     // self intersection for input and output test
     bool check_self_intersection(const MatrixXd &V, const MatrixXi &F, aabb::Tree &tree);
 

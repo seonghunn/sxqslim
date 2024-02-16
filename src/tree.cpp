@@ -24,43 +24,6 @@ namespace qslim{
         }
     }
 
-    bool update_ancestors(aabb::Tree &tree, unsigned int triangleIdx, unsigned int dim) {
-        aabb::Node *node = tree.getNode(triangleIdx);
-        aabb::Node *parentNode;
-        // all triangle must be in leaf node
-        if (!node->isLeaf()) return false;
-        // if node is parent, no need to be updated
-        if (node->parent == NULL_NODE) return false;
-
-        // Compare AABB with parent and current node, update it
-        // TODO: get first node index using particleMap
-        while (node->parent != NULL_NODE) {
-            unsigned int parentIdx = node->parent;
-            parentNode = tree.getNode(parentIdx);
-            //unsigned int updatingParticleIdx = parentNode->particle;
-            std::vector<double> currentLowerBoundVec = node->aabb.lowerBound;
-            std::vector<double> currentUpperBoundVec = node->aabb.upperBound;
-
-            std::vector<double> parentLowerBoundVec = parentNode->aabb.lowerBound;
-            std::vector<double> parentUpperBoundVec = parentNode->aabb.upperBound;
-
-            std::vector<double> lowerBoundVec(dim);
-            std::vector<double> upperBoundVec(dim);
-            for (int i = 0; i < dim; i++) {
-                lowerBoundVec[i] = currentLowerBoundVec[i] < parentUpperBoundVec[i] ?
-                                   currentLowerBoundVec[i] : parentLowerBoundVec[i];
-                upperBoundVec[i] = currentUpperBoundVec[i] > parentUpperBoundVec[i] ?
-                                   currentUpperBoundVec[i] : parentUpperBoundVec[i];
-            }
-            parentNode->aabb.lowerBound = lowerBoundVec;
-            parentNode->aabb.upperBound = upperBoundVec;
-            parentNode->aabb.centre = parentNode->aabb.computeCentre();
-            parentNode->aabb.surfaceArea = parentNode->aabb.computeSurfaceArea();
-            node = parentNode;
-        }
-        return true;
-    }
-
     // TODO: fix this (inifinte loop)
     bool update_tree_after_decimation(
             const Eigen::MatrixXd &V,
@@ -212,4 +175,39 @@ namespace qslim{
     }
 }
 
-//TODO: Tree restore and update 021224
+/*    bool update_ancestors(aabb::Tree &tree, unsigned int triangleIdx, unsigned int dim) {
+        aabb::Node *node = tree.getNode(triangleIdx);
+        aabb::Node *parentNode;
+        // all triangle must be in leaf node
+        if (!node->isLeaf()) return false;
+        // if node is parent, no need to be updated
+        if (node->parent == NULL_NODE) return false;
+
+        // Compare AABB with parent and current node, update it
+        // TODO: get first node index using particleMap
+        while (node->parent != NULL_NODE) {
+            unsigned int parentIdx = node->parent;
+            parentNode = tree.getNode(parentIdx);
+            //unsigned int updatingParticleIdx = parentNode->particle;
+            std::vector<double> currentLowerBoundVec = node->aabb.lowerBound;
+            std::vector<double> currentUpperBoundVec = node->aabb.upperBound;
+
+            std::vector<double> parentLowerBoundVec = parentNode->aabb.lowerBound;
+            std::vector<double> parentUpperBoundVec = parentNode->aabb.upperBound;
+
+            std::vector<double> lowerBoundVec(dim);
+            std::vector<double> upperBoundVec(dim);
+            for (int i = 0; i < dim; i++) {
+                lowerBoundVec[i] = currentLowerBoundVec[i] < parentUpperBoundVec[i] ?
+                                   currentLowerBoundVec[i] : parentLowerBoundVec[i];
+                upperBoundVec[i] = currentUpperBoundVec[i] > parentUpperBoundVec[i] ?
+                                   currentUpperBoundVec[i] : parentUpperBoundVec[i];
+            }
+            parentNode->aabb.lowerBound = lowerBoundVec;
+            parentNode->aabb.upperBound = upperBoundVec;
+            parentNode->aabb.centre = parentNode->aabb.computeCentre();
+            parentNode->aabb.surfaceArea = parentNode->aabb.computeSurfaceArea();
+            node = parentNode;
+        }
+        return true;
+    }*/

@@ -7,7 +7,7 @@
 
 #include "tree.h"
 #include "AABB.hpp"
-#include "helper.h"
+#include "remove_duplicated.h"
 #include "quadratic.h"
 #include "manifold.h"
 #include "igl/opengl/glfw/Viewer.h"
@@ -17,7 +17,6 @@
 #include <igl/min_heap.h>
 #include <igl/writeOBJ.h>
 #include <igl/collapse_edge.h>
-//#include "../include/igl/collapse_edge.h"
 #include <igl/circulation.h>
 #include <unordered_set>
 #include <igl/edge_flaps.h>
@@ -35,10 +34,7 @@ namespace qslim{
         igl::min_heap< std::tuple<double,int,int> > queue;
         // Q values table using surface normal
         std::vector<Eigen::Matrix4d> qValues;
-        // viewer
-        //igl::opengl::glfw::Viewer viewer;
-        // candidate for removing vertices
-        index_of_removed_vertices RV;
+        // restore map for tree
         unordered_map<int, NodeSnapshot> restoreMap;
 
         clock_t start, end;
@@ -57,15 +53,6 @@ namespace qslim{
         int num_collapsed;
         int num_failed;
         int stopping_condition;
-        // hash map for deleted faces
-        //std::unordered_map<int, bool> decimated_faces;
-
-        // hash map for affected_triangles (vertex -> face mapping)
-        //TODO: update affected triangle indices every time (vertices are merged into one)
-        // 두개가 생기는 거기 때문에 두 개의 원래 vertex의 index를 똑같이 두개의 합으로 업데이트 해주면 될듯
-        //std::unordered_map<int, vector<int>> affected_triangle_indices;
-
-        //string output_filename;
 
         // callback functions
         igl::decimate_cost_and_placement_callback cost_and_position_callback;
@@ -88,7 +75,7 @@ namespace qslim{
         void init_qValues(MatrixXd &V, MatrixXi &F, MatrixXd &N_homo);
 
         // init queue
-        void init_queue(MatrixXd &OV, MatrixXi &OF);
+        void init_queue();
 
         // init callback
         void init_callback();

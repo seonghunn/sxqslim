@@ -2,7 +2,7 @@
 // Created by seonghun on 2/8/24.
 //
 
-#include "tri_tri_3d_blender.h"
+#include "tri_tri_3d.h"
 
 #include <cmath>
 #include <cassert>
