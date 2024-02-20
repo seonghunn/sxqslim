@@ -48,7 +48,6 @@ model
 /dataset/
 /thingi10k_result/
 /qslim/sxqslim.egg-info
-/.gitmodules
 /Dockerfile
 /install_packages.sh
 /run.sh
