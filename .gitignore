@@ -52,3 +52,5 @@ model
 /Dockerfile
 /install_packages.sh
 /run.sh
+/.idea
+

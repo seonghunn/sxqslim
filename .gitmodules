@@ -1,3 +1,0 @@
-[submodule "qslim/external/libigl"]
-	path = qslim/external/libigl
-	url = https://github.com/libigl/libigl.git
