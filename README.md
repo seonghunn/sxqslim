@@ -1,4 +1,4 @@
-## QSlim Implementation for greedy edge collapse
+## sxqslim : Self-intersection free mesh simplification with QEM
 ![img.png](img/tyra.png) ![img_1.png](img/tyra_collapsed.png)
 - using libigl, AABB tree (https://github.com/lohedges/aabbcc)
 - add self intersection test using aabb tree for every iteration
