@@ -52,4 +52,5 @@ model
 /install_packages.sh
 /run.sh
 /.idea
+/qslim/external
 
