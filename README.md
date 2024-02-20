@@ -43,7 +43,6 @@ output_file_path = './simplified_mesh.obj'
 simplified_mesh.export(output_file_path)
 
 print(f"Mesh saved to {output_file_path}")
-Run the example code with:
 ```
 Run the example code with:
 ```
