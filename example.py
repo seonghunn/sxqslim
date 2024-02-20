@@ -1,7 +1,7 @@
 import sxqslim
 import trimesh
 
-file_path = '/Users/seonghun/Documents/study/research/sulab/code/MyCode/QEM-codebase/model/input/tyra_92.obj'
+file_path = './mesh/bunny.obj'
 
 mesh = trimesh.load(file_path)
 vertices = mesh.vertices
